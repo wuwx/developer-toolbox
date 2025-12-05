@@ -15,5 +15,14 @@ export default defineNuxtConfig({
     clientBundle: {
       scan: true
     }
+  },
+
+  // 部署配置
+  app: {
+    baseURL: process.env.NUXT_APP_BASE_URL || '/'
+  },
+
+  nitro: {
+    preset: 'github_pages'
   }
 })

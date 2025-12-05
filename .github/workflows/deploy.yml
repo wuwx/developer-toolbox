@@ -2,10 +2,10 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
+# 允许 GITHUB_TOKEN 进行部署
 permissions:
   contents: read
   pages: write
@@ -22,19 +22,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: 20
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build with Nuxt
         run: npm run generate
         env:
-          NITRO_PRESET: github_pages
+          # 核心魔法：自动将仓库名作为 Base URL
+          # 例如仓库是 developer-toolbox，这里就会变成 /developer-toolbox/
+          NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
