@@ -1,2 +1,34 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+@theme {
+  --color-primary-50: var(--ui-primary-50);
+  --color-primary-100: var(--ui-primary-100);
+  --color-primary-200: var(--ui-primary-200);
+  --color-primary-300: var(--ui-primary-300);
+  --color-primary-400: var(--ui-primary-400);
+  --color-primary-500: var(--ui-primary-500);
+  --color-primary-600: var(--ui-primary-600);
+  --color-primary-700: var(--ui-primary-700);
+  --color-primary-800: var(--ui-primary-800);
+  --color-primary-900: var(--ui-primary-900);
+  --color-primary-950: var(--ui-primary-950);
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 dark:bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-300 dark:bg-gray-600;
+}

@@ -6,12 +6,14 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   modules: [
-    '@nuxt/test-utils',
     '@nuxt/ui',
-    '@nuxt/scripts',
-    '@nuxt/image',
-    '@nuxt/eslint',
-    '@nuxt/content',
-    '@nuxt/hints'
-  ]
+    '@nuxt/eslint'
+  ],
+
+  // Nuxt UI 4 的图标配置
+  icon: {
+    clientBundle: {
+      scan: true
+    }
+  }
 })
