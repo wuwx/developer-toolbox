@@ -42,13 +42,15 @@
           <UTextarea
             v-model="inputText"
             placeholder="在此输入需要加密的文本内容..."
-            :rows="6"
-            size="lg"
+            :rows="8"
+            size="xl"
             autoresize
-            :maxrows="15"
+            :maxrows="20"
             @input="handleInput"
-            class="font-mono text-base"
-            :ui="{ base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20' }"
+            class="font-mono text-base block w-full"
+            :ui="{ 
+              base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 min-h-[200px] p-4 w-full'
+            }"
           />
           <!-- 底部操作栏 -->
           <div class="mt-4 flex justify-end">
@@ -70,11 +72,6 @@
           <USeparator class="my-6" icon="i-heroicons-arrow-down" />
           
           <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 relative overflow-hidden">
-            <!-- 背景装饰 -->
-            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-              <UIcon name="i-heroicons-shield-check" class="w-24 h-24" />
-            </div>
-
             <div class="relative z-10">
               <div class="flex items-center justify-between mb-4">
                 <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
@@ -82,7 +79,9 @@
                   SHA1 哈希值
                 </label>
                 <div class="flex items-center gap-2">
-                  <UChip :text="`${sha1Hash.length} 位`" color="success" size="sm" inset />
+                  <UBadge color="success" variant="subtle" size="md">
+                    {{ sha1Hash.length }} 位
+                  </UBadge>
                 </div>
               </div>
               

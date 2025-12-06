@@ -73,12 +73,14 @@
             v-model="inputText"
             placeholder='在此输入 JSON 数据...&#10;例如: {"name": "John", "age": 30}'
             :rows="12"
-            size="lg"
+            size="xl"
             autoresize
             :maxrows="20"
             @input="handleInput"
-            class="font-mono text-sm leading-relaxed"
-            :ui="{ base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 font-ligatures-none' }"
+            class="font-mono text-sm leading-relaxed block w-full"
+            :ui="{ 
+              base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 font-ligatures-none min-h-[300px] p-4 w-full' 
+            }"
           />
           
           <!-- 底部操作栏 -->
@@ -113,7 +115,6 @@
           
           <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 relative overflow-hidden">
             <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-              <UIcon name="i-heroicons-document-text" class="w-24 h-24" />
             </div>
 
             <div class="relative z-10">
@@ -132,7 +133,9 @@
                   >
                     下载文件
                   </UButton>
-                  <UChip :text="`${outputText.length} 字符`" color="success" size="sm" inset />
+                  <UBadge color="success" variant="subtle" size="md">
+                    {{ outputText.length }} 字符
+                  </UBadge>
                 </div>
               </div>
               
@@ -141,11 +144,13 @@
                   v-model="outputText"
                   readonly
                   :rows="12"
-                  size="lg"
+                  size="xl"
                   autoresize
                   :maxrows="20"
-                  class="font-mono text-sm leading-relaxed w-full"
-                  :ui="{ base: 'bg-white dark:bg-gray-900 pr-12 font-ligatures-none' }"
+                  class="font-mono text-sm leading-relaxed w-full block"
+                  :ui="{ 
+                    base: 'bg-white dark:bg-gray-900 pr-12 font-ligatures-none min-h-[300px] p-4 w-full' 
+                  }"
                   @click="() => copyToClipboard(outputText, 'JSON 结果')"
                 />
                 <div class="absolute top-2 right-2">

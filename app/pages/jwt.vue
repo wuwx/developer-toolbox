@@ -31,12 +31,14 @@
         <UTextarea
           v-model="token"
           placeholder="在此粘贴 JWT Token (eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...)"
-          :rows="4"
-          size="lg"
+          :rows="8"
+          size="xl"
           autoresize
-          :maxrows="8"
-          class="font-mono text-sm"
-          :ui="{ base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20' }"
+          :maxrows="20"
+          class="font-mono text-sm block w-full"
+          :ui="{ 
+            base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 min-h-[200px] p-4 w-full' 
+          }"
         />
         <div v-if="error" class="animate-fade-in">
           <UAlert

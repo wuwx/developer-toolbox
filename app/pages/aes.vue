@@ -1,52 +1,54 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">AES 加密/解密</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        使用 AES-256-GCM 对称加密算法，安全加密和解密文本
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <!-- Hero 标题 -->
+    <UPageHeader
+      title="AES 加密/解密"
+      description="使用 AES-256-GCM 对称加密算法，安全加密和解密文本，完全本地运行"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-lock-closed" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
-    <!-- 模式切换 -->
-    <div class="mb-6 flex items-center gap-4">
-      <UButton
-        :color="mode === 'encrypt' ? 'primary' : 'neutral'"
-        :variant="mode === 'encrypt' ? 'solid' : 'soft'"
-        icon="i-heroicons-lock-closed"
-        @click="mode = 'encrypt'"
-      >
-        加密
-      </UButton>
-      <UButton
-        :color="mode === 'decrypt' ? 'primary' : 'neutral'"
-        :variant="mode === 'decrypt' ? 'solid' : 'soft'"
-        icon="i-heroicons-lock-open"
-        @click="mode = 'decrypt'"
-      >
-        解密
-      </UButton>
-    </div>
+    <!-- 主内容卡片 -->
+    <ToolCard>
+      <!-- 模式切换 -->
+      <div class="mb-8 flex justify-center">
+        <div class="bg-gray-100 dark:bg-gray-800 p-1 rounded-lg inline-flex">
+          <UButton
+            :color="mode === 'encrypt' ? 'primary' : 'neutral'"
+            :variant="mode === 'encrypt' ? 'solid' : 'ghost'"
+            size="md"
+            icon="i-heroicons-lock-closed"
+            class="px-6"
+            @click="mode = 'encrypt'"
+          >
+            加密
+          </UButton>
+          <UButton
+            :color="mode === 'decrypt' ? 'primary' : 'neutral'"
+            :variant="mode === 'decrypt' ? 'solid' : 'ghost'"
+            size="md"
+            icon="i-heroicons-lock-open"
+            class="px-6"
+            @click="mode = 'decrypt'"
+          >
+            解密
+          </UButton>
+        </div>
+      </div>
 
-    <div class="space-y-6">
-      <!-- 密钥输入 -->
-      <UCard>
-        <template #header>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-key" class="w-5 h-5" />
-            <h3 class="font-semibold">密钥 (Key)</h3>
-          </div>
-        </template>
-
-        <div class="space-y-4">
-          <UInput
-            v-model="secretKey"
-            placeholder="输入密钥（至少 16 个字符）"
-            size="lg"
-            class="font-mono"
-            :type="showKey ? 'text' : 'password'"
-          />
-          <div class="flex items-center gap-2">
-            <UCheckbox v-model="showKey" label="显示密钥" size="sm" />
+      <div class="space-y-8">
+        <!-- 密钥设置 -->
+        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50">
+          <div class="flex items-center justify-between mb-4">
+            <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
+              <UIcon name="i-heroicons-key" class="w-4 h-4 text-emerald-500" />
+              密钥 (Key)
+            </label>
             <UButton
               color="neutral"
               variant="soft"
@@ -54,124 +56,139 @@
               icon="i-heroicons-sparkles"
               @click="generateKey"
             >
-              生成随机密钥
+              随机生成
             </UButton>
           </div>
-          <div v-if="keyError" class="text-sm text-red-600 dark:text-red-400">
-            {{ keyError }}
-          </div>
-        </div>
-      </UCard>
-
-      <!-- 输入文本 -->
-      <UCard>
-        <template #header>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <UIcon name="i-heroicons-document-text" class="w-5 h-5" />
-              <h3 class="font-semibold">{{ mode === 'encrypt' ? '明文' : '密文' }}</h3>
-            </div>
-            <div class="flex items-center gap-2">
-              <UBadge v-if="inputText" color="neutral" variant="subtle" size="sm">
-                {{ inputText.length }} 字符
-              </UBadge>
-              <UButton
-                v-if="inputText"
-                color="neutral"
-                variant="ghost"
-                size="xs"
-                icon="i-heroicons-x-mark"
-                @click="clearAll"
-              >
-                清空
-              </UButton>
-            </div>
-          </div>
-        </template>
-
-        <UTextarea
-          v-model="inputText"
-          :placeholder="mode === 'encrypt' ? '输入要加密的文本...' : '输入要解密的密文...'"
-          :rows="8"
-          autoresize
-          :maxrows="15"
-          size="lg"
-          class="font-mono text-sm"
-        />
-      </UCard>
-
-      <!-- 操作按钮 -->
-      <div class="flex justify-center">
-        <UButton
-          color="primary"
-          size="lg"
-          :icon="mode === 'encrypt' ? 'i-heroicons-lock-closed' : 'i-heroicons-lock-open'"
-          :disabled="!inputText || !secretKey"
-          @click="process"
-        >
-          {{ mode === 'encrypt' ? '加密' : '解密' }}
-        </UButton>
-      </div>
-
-      <!-- 结果 -->
-      <UCard v-if="outputText || error">
-        <template #header>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <UIcon name="i-heroicons-document-check" class="w-5 h-5" />
-              <h3 class="font-semibold">{{ mode === 'encrypt' ? '密文' : '明文' }}</h3>
-            </div>
-            <UButton
-              v-if="outputText"
-              color="primary"
-              variant="soft"
-              size="sm"
-              icon="i-heroicons-clipboard-document"
-              @click="copyToClipboard(outputText, mode === 'encrypt' ? '密文' : '明文')"
+          <div class="relative">
+            <UInput
+              v-model="secretKey"
+              placeholder="请输入至少 16 位的安全密钥"
+              size="xl"
+              class="font-mono w-full"
+              :type="showKey ? 'text' : 'password'"
+              :ui="{ base: 'pl-4 pr-12 py-3' }"
             >
-              复制
-            </UButton>
-          </div>
-        </template>
-
-        <div v-if="error" class="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-          <div class="flex items-start gap-2 text-sm text-red-600 dark:text-red-400">
-            <UIcon name="i-heroicons-exclamation-circle" class="w-4 h-4 mt-0.5 shrink-0" />
-            <span>{{ error }}</span>
+              <template #trailing>
+                <UButton
+                  color="neutral"
+                  variant="link"
+                  size="sm"
+                  :icon="showKey ? 'i-heroicons-eye-slash' : 'i-heroicons-eye'"
+                  :padded="false"
+                  @click="showKey = !showKey"
+                />
+              </template>
+            </UInput>
+            <div v-if="keyError" class="absolute -bottom-6 left-0 text-xs text-red-500 flex items-center gap-1">
+              <UIcon name="i-heroicons-exclamation-circle" class="w-3 h-3" />
+              {{ keyError }}
+            </div>
           </div>
         </div>
 
-        <div v-else class="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
-          <div class="font-mono text-sm break-all text-gray-900 dark:text-white">
-            {{ outputText }}
+        <!-- 输入输出区域 -->
+        <div class="grid gap-8 lg:grid-cols-2">
+          <!-- 输入区域 -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                <UIcon name="i-heroicons-document-text" class="w-4 h-4" />
+                {{ mode === 'encrypt' ? '明文' : '密文' }}
+              </label>
+              <div class="flex items-center gap-2">
+                <UButton
+                  v-if="inputText"
+                  color="neutral"
+                  variant="ghost"
+                  size="xs"
+                  icon="i-heroicons-x-mark"
+                  @click="clearAll"
+                >
+                  清空
+                </UButton>
+                <UBadge color="neutral" variant="subtle" size="sm">
+                  {{ inputText.length }} 字符
+                </UBadge>
+              </div>
+            </div>
+            <UTextarea
+              v-model="inputText"
+              :placeholder="mode === 'encrypt' ? '在此输入需要加密的文本内容...' : '在此输入需要解密的密文内容...'"
+              :rows="12"
+              autoresize
+              :maxrows="20"
+              size="xl"
+              class="font-mono text-sm block w-full"
+              :ui="{ 
+                base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 min-h-[300px] p-4 w-full' 
+              }"
+            />
+          </div>
+
+          <!-- 输出区域 -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                <UIcon :name="mode === 'encrypt' ? 'i-heroicons-lock-closed' : 'i-heroicons-lock-open'" class="w-4 h-4 text-primary-500" />
+                {{ mode === 'encrypt' ? '加密结果' : '解密结果' }}
+              </label>
+              <div class="flex items-center gap-2">
+                <UButton
+                  v-if="outputText"
+                  color="neutral"
+                  variant="soft"
+                  size="xs"
+                  icon="i-heroicons-clipboard-document"
+                  @click="() => copyToClipboard(outputText, '结果')"
+                >
+                  复制结果
+                </UButton>
+              </div>
+            </div>
+            
+            <div class="relative h-full">
+              <UTextarea
+                v-model="outputText"
+                readonly
+                :placeholder="error || '等待处理...'"
+                :rows="12"
+                size="xl"
+                autoresize
+                :maxrows="20"
+                class="font-mono text-sm block w-full h-full"
+                :ui="{ 
+                  base: `bg-gray-50 dark:bg-gray-800/50 min-h-[300px] p-4 w-full ${error ? 'text-red-500 dark:text-red-400' : ''}`
+                }"
+                @click="() => outputText && copyToClipboard(outputText, '结果')"
+              />
+            </div>
           </div>
         </div>
-      </UCard>
 
-      <!-- 说明 -->
-      <UCard>
-        <template #header>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-information-circle" class="w-5 h-5" />
-            <h3 class="font-semibold">使用说明</h3>
-          </div>
-        </template>
-
-        <div class="prose prose-sm dark:prose-invert max-w-none">
-          <ul>
-            <li>使用 <strong>AES-256-GCM</strong> 加密算法，安全可靠</li>
-            <li>密钥至少需要 <strong>16 个字符</strong>，建议使用随机生成的密钥</li>
-            <li>加密后的密文包含 IV（初始化向量），可以直接用于解密</li>
-            <li>解密时需要使用<strong>相同的密钥</strong>，否则会失败</li>
-            <li>所有操作在浏览器本地完成，数据不会上传到服务器</li>
-          </ul>
+        <!-- 执行按钮 (移动端更显眼) -->
+        <div class="flex justify-center pt-4">
+          <UButton
+            size="xl"
+            color="primary"
+            class="w-full sm:w-auto min-w-[200px] justify-center font-bold shadow-lg shadow-primary-500/20 transition-all hover:scale-105"
+            :icon="mode === 'encrypt' ? 'i-heroicons-lock-closed' : 'i-heroicons-lock-open'"
+            :disabled="!inputText || !secretKey || !!keyError"
+            @click="process"
+          >
+            执行{{ mode === 'encrypt' ? '加密' : '解密' }}
+          </UButton>
         </div>
-      </UCard>
-    </div>
-  </div>
+      </div>
+    </ToolCard>
+
+    <!-- 说明信息 -->
+    <ToolInfo title="关于 AES 加密" :items="accordionItems" />
+  </UContainer>
 </template>
 
 <script setup lang="ts">
+import type { AccordionItem } from '~/types'
+
 const { copyToClipboard } = useToolClipboard()
 
 const mode = ref<'encrypt' | 'decrypt'>('encrypt')
@@ -181,6 +198,10 @@ const outputText = ref('')
 const error = ref('')
 const showKey = ref(false)
 const keyError = ref('')
+
+definePageMeta({
+  layout: 'default'
+})
 
 watch(secretKey, () => {
   if (secretKey.value.length > 0 && secretKey.value.length < 16) {
@@ -204,7 +225,7 @@ async function process() {
   outputText.value = ''
 
   if (!secretKey.value || secretKey.value.length < 16) {
-    error.value = '密钥至少需要 16 个字符'
+    keyError.value = '密钥至少需要 16 个字符'
     return
   }
 
@@ -309,6 +330,27 @@ function clearAll() {
 watch(mode, () => {
   clearAll()
 })
+
+const accordionItems: AccordionItem[] = [
+  {
+    slot: 'what',
+    label: '什么是 AES-GCM？',
+    icon: 'i-heroicons-question-mark-circle',
+    content: 'AES（高级加密标准）是目前最流行的对称加密算法。GCM（Galois/Counter Mode）是一种认证加密模式，它不仅提供数据保密性，还提供数据完整性验证。这意味着如果密文被篡改，解密过程会立即失败，而不会输出乱码。'
+  },
+  {
+    slot: 'security',
+    label: '安全性说明',
+    icon: 'i-heroicons-shield-check',
+    content: 'AES-256 被认为是目前最安全的加密标准之一，被广泛用于政府和金融领域。本工具使用 PBKDF2 进行密钥派生（10万次迭代），每次加密都会生成随机的盐（Salt）和初始化向量（IV），确保即使相同的明文和密钥，每次加密结果也完全不同。'
+  },
+  {
+    slot: 'tips',
+    label: '使用提示',
+    icon: 'i-heroicons-light-bulb',
+    content: '密钥长度建议至少 16 位，越长越安全。加密后的结果是 Base64 编码的字符串，其中已经包含了 Salt 和 IV，因此你只需要保存这个字符串和你的密钥即可。请妥善保管你的密钥，一旦丢失将无法解密数据。'
+  }
+]
 
 // SEO
 useHead({

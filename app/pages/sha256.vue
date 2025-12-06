@@ -1,21 +1,28 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">SHA256 哈希</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        生成文本的 SHA256 和 SHA512 哈希值，安全性更高
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <!-- Hero 标题 -->
+    <UPageHeader
+      title="SHA256 哈希生成器"
+      description="生成文本的 SHA256 和 SHA512 哈希值，安全性更高，完全本地运行"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-shield-check" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
-    <div class="space-y-6">
-      <!-- 输入区域 -->
-      <UCard>
-        <template #header>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <UIcon name="i-heroicons-document-text" class="w-5 h-5" />
-              <h3 class="font-semibold">输入文本</h3>
-            </div>
+    <!-- 主内容卡片 -->
+    <ToolCard>
+      <div class="space-y-8">
+        <!-- 输入区域 -->
+        <div class="relative group">
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
+              <UIcon name="i-heroicons-document-text" class="w-4 h-4" />
+              输入原文
+            </label>
             <div class="flex items-center gap-2">
               <UButton
                 v-if="inputText"
@@ -32,107 +39,118 @@
               </UBadge>
             </div>
           </div>
-        </template>
+          <UTextarea
+            v-model="inputText"
+            placeholder="在此输入要生成哈希的文本..."
+            :rows="8"
+            autoresize
+            :maxrows="20"
+            size="xl"
+            class="font-mono text-base block w-full"
+            :ui="{ 
+              base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 min-h-[200px] p-4 w-full'
+            }"
+            @input="generateHash"
+          />
+        </div>
 
-        <UTextarea
-          v-model="inputText"
-          placeholder="在此输入要生成哈希的文本..."
-          :rows="8"
-          autoresize
-          :maxrows="15"
-          size="lg"
-          class="font-mono"
-          @input="generateHash"
-        />
-      </UCard>
+        <!-- 结果展示区域 -->
+        <div v-if="sha256Hash || sha512Hash" class="space-y-6 animate-fade-in">
+          <USeparator icon="i-heroicons-arrow-down" />
 
-      <!-- SHA256 结果 -->
-      <UCard v-if="sha256Hash">
-        <template #header>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-lock-closed" class="w-5 h-5 text-blue-500" />
-            <h3 class="font-semibold">SHA256</h3>
-            <UBadge color="primary" variant="subtle" size="sm">256 位</UBadge>
-          </div>
-        </template>
-
-        <div class="relative group">
-          <div class="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
-            <div class="font-mono text-sm break-all text-gray-900 dark:text-white leading-relaxed">
-              {{ sha256Hash }}
+          <!-- SHA256 结果 -->
+          <div v-if="sha256Hash">
+            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 relative overflow-hidden">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-4">
+                  <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                    <UIcon name="i-heroicons-lock-closed" class="w-4 h-4 text-blue-500" />
+                    SHA256 哈希值
+                  </label>
+                  <UBadge color="primary" variant="subtle" size="md">256 位</UBadge>
+                </div>
+                
+                <div class="flex gap-2">
+                  <UInput
+                    v-model="sha256Hash"
+                    readonly
+                    size="lg"
+                    class="font-mono text-lg flex-1"
+                    :ui="{ base: 'bg-white dark:bg-gray-900' }"
+                    @click="() => copyToClipboard(sha256Hash, 'SHA256')"
+                  />
+                  <UButton
+                    color="neutral"
+                    variant="soft"
+                    size="lg"
+                    icon="i-heroicons-clipboard-document"
+                    @click="() => copyToClipboard(sha256Hash, 'SHA256')"
+                  >
+                    复制
+                  </UButton>
+                </div>
+              </div>
             </div>
           </div>
-          <UButton
-            color="primary"
-            variant="soft"
-            icon="i-heroicons-clipboard-document"
-            size="sm"
-            class="absolute top-2 right-2"
-            @click="copyToClipboard(sha256Hash, 'SHA256')"
-          >
-            复制
-          </UButton>
-        </div>
-      </UCard>
 
-      <!-- SHA512 结果 -->
-      <UCard v-if="sha512Hash">
-        <template #header>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-shield-check" class="w-5 h-5 text-purple-500" />
-            <h3 class="font-semibold">SHA512</h3>
-            <UBadge color="primary" variant="subtle" size="sm">512 位</UBadge>
-          </div>
-        </template>
-
-        <div class="relative group">
-          <div class="p-4 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg border border-purple-100 dark:border-purple-800">
-            <div class="font-mono text-sm break-all text-gray-900 dark:text-white leading-relaxed">
-              {{ sha512Hash }}
+          <!-- SHA512 结果 -->
+          <div v-if="sha512Hash">
+            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 relative overflow-hidden">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-4">
+                  <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                    <UIcon name="i-heroicons-shield-check" class="w-4 h-4 text-purple-500" />
+                    SHA512 哈希值
+                  </label>
+                  <UBadge color="neutral" variant="subtle" size="md">512 位</UBadge>
+                </div>
+                
+                <div class="flex gap-2">
+                  <UTextarea
+                    v-model="sha512Hash"
+                    readonly
+                    :rows="3"
+                    autoresize
+                    size="lg"
+                    class="font-mono text-lg flex-1"
+                    :ui="{ base: 'bg-white dark:bg-gray-900 resize-none' }"
+                    @click="() => copyToClipboard(sha512Hash, 'SHA512')"
+                  />
+                  <UButton
+                    color="neutral"
+                    variant="soft"
+                    size="lg"
+                    class="h-fit"
+                    icon="i-heroicons-clipboard-document"
+                    @click="() => copyToClipboard(sha512Hash, 'SHA512')"
+                  >
+                    复制
+                  </UButton>
+                </div>
+              </div>
             </div>
           </div>
-          <UButton
-            color="primary"
-            variant="soft"
-            icon="i-heroicons-clipboard-document"
-            size="sm"
-            class="absolute top-2 right-2"
-            @click="copyToClipboard(sha512Hash, 'SHA512')"
-          >
-            复制
-          </UButton>
         </div>
-      </UCard>
+      </div>
+    </ToolCard>
 
-      <!-- 使用说明 -->
-      <UCard v-if="!inputText">
-        <template #header>
-          <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-information-circle" class="w-5 h-5" />
-            <h3 class="font-semibold">关于 SHA256/SHA512</h3>
-          </div>
-        </template>
-
-        <div class="prose prose-sm dark:prose-invert max-w-none">
-          <ul>
-            <li><strong>SHA256</strong>：生成 256 位（64 字符）哈希值，广泛用于密码存储、数字签名等</li>
-            <li><strong>SHA512</strong>：生成 512 位（128 字符）哈希值，安全性更高</li>
-            <li>这些算法是单向的，无法从哈希值反推原文</li>
-            <li>相同输入总是产生相同输出，微小变化会导致完全不同的哈希值</li>
-            <li>适用于文件校验、密码存储、数据完整性验证等场景</li>
-          </ul>
-        </div>
-      </UCard>
-    </div>
-  </div>
+    <!-- 说明信息 -->
+    <ToolInfo title="关于 SHA2 算法" :items="accordionItems" />
+  </UContainer>
 </template>
 
 <script setup lang="ts">
+import type { AccordionItem } from '~/types'
+
 const { copyToClipboard } = useToolClipboard()
 
 const inputText = ref('')
 const sha256Hash = ref('')
 const sha512Hash = ref('')
+
+definePageMeta({
+  layout: 'default'
+})
 
 async function generateHash() {
   if (!inputText.value) {
@@ -162,6 +180,27 @@ function clearAll() {
   sha256Hash.value = ''
   sha512Hash.value = ''
 }
+
+const accordionItems: AccordionItem[] = [
+  {
+    slot: 'what',
+    label: '什么是 SHA-256/SHA-512？',
+    icon: 'i-heroicons-question-mark-circle',
+    content: 'SHA-2（Secure Hash Algorithm 2）是一组密码散列函数，包括 SHA-224、SHA-256、SHA-384、SHA-512 等。它们由美国国家安全局（NSA）设计，相比 SHA-1 提供了更高的安全性。SHA-256 生成 256 位（32 字节）哈希值，SHA-512 生成 512 位（64 字节）哈希值。'
+  },
+  {
+    slot: 'usage',
+    label: '主要用途',
+    icon: 'i-heroicons-rocket-launch',
+    content: 'SHA-256 是比特币等加密货币的核心算法，也广泛用于 SSL/TLS 证书、数字签名、密码存储（通常配合加盐）、文件完整性校验等。它是目前最流行的安全哈希算法标准之一。'
+  },
+  {
+    slot: 'security',
+    label: '安全性说明',
+    icon: 'i-heroicons-shield-check',
+    content: '目前尚未发现对 SHA-256 和 SHA-512 的有效攻击方法。它们被认为是加密安全的，广泛推荐用于新系统的开发。相比之下，MD5 和 SHA-1 已经被证明不再安全。'
+  }
+]
 
 // SEO
 useHead({

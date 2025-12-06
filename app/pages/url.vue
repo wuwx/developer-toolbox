@@ -65,13 +65,15 @@
           <UTextarea
             v-model="inputText"
             :placeholder="mode === 'encode' ? '在此输入需要编码的文本...' : '在此输入需要解码的 URL...'"
-            :rows="6"
-            size="lg"
+            :rows="8"
+            size="xl"
             autoresize
-            :maxrows="15"
+            :maxrows="20"
             @input="handleInput"
-            class="font-mono text-base"
-            :ui="{ base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20' }"
+            class="font-mono text-base block w-full"
+            :ui="{ 
+              base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 min-h-[200px] p-4 w-full'
+            }"
           />
           
           <div class="mt-4 flex justify-end">
@@ -105,7 +107,6 @@
           
           <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 relative overflow-hidden">
             <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-              <UIcon name="i-heroicons-link" class="w-24 h-24" />
             </div>
 
             <div class="relative z-10">
@@ -115,7 +116,9 @@
                   {{ mode === 'encode' ? 'URL 编码结果' : '解码结果' }}
                 </label>
                 <div class="flex items-center gap-2">
-                  <UChip :text="`${outputText.length} 字符`" color="success" size="sm" inset />
+                  <UBadge color="success" variant="subtle" size="md">
+                    {{ outputText.length }} 字符
+                  </UBadge>
                 </div>
               </div>
               
@@ -123,12 +126,14 @@
                 <UTextarea
                   v-model="outputText"
                   readonly
-                  :rows="6"
-                  size="lg"
+                  :rows="8"
+                  size="xl"
                   autoresize
-                  :maxrows="15"
-                  class="font-mono text-base w-full"
-                  :ui="{ base: 'bg-white dark:bg-gray-900 pr-12' }"
+                  :maxrows="20"
+                  class="font-mono text-base w-full block"
+                  :ui="{ 
+                    base: 'bg-white dark:bg-gray-900 pr-12 min-h-[200px] p-4 w-full'
+                  }"
                   @click="() => copyToClipboard(outputText, '转换结果')"
                 />
                 <div class="absolute top-2 right-2">
