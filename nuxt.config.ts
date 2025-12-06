@@ -18,7 +18,9 @@ export default defineNuxtConfig({
   // Nuxt UI 4 的图标配置
   icon: {
     clientBundle: {
-      scan: true
+      scan: true,
+      // 预加载常用图标，减少外部请求
+      sizeLimitKb: 512
     }
   },
 
@@ -42,11 +44,8 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'format-detection', content: 'telephone=no' },
-        // 严格的 CSP，阻止第三方脚本
-        { 
-          'http-equiv': 'Content-Security-Policy', 
-          content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self';" 
-        },
+        // 暂时移除 CSP，先确保功能正常，后续可根据需要重新添加
+        // 保留基本安全配置
         // 阻止第三方嵌入
         { 'http-equiv': 'X-Frame-Options', content: 'DENY' },
         // 阻止 MIME 类型嗅探
