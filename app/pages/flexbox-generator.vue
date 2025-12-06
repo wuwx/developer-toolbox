@@ -20,7 +20,7 @@
                 {label: 'row-reverse', value: 'row-reverse'},
                 {label: 'column', value: 'column'},
                 {label: 'column-reverse', value: 'column-reverse'}
-              ]" />
+              ]" class="w-full" />
             </div>
             <div>
               <label class="text-sm font-medium mb-2 block">justify-content</label>
@@ -31,7 +31,7 @@
                 {label: 'space-between', value: 'space-between'},
                 {label: 'space-around', value: 'space-around'},
                 {label: 'space-evenly', value: 'space-evenly'}
-              ]" />
+              ]" class="w-full" />
             </div>
             <div>
               <label class="text-sm font-medium mb-2 block">align-items</label>
@@ -41,7 +41,7 @@
                 {label: 'center', value: 'center'},
                 {label: 'flex-end', value: 'flex-end'},
                 {label: 'baseline', value: 'baseline'}
-              ]" />
+              ]" class="w-full" />
             </div>
             <UCheckbox v-model="flexWrap" label="flex-wrap: wrap" />
           </div>

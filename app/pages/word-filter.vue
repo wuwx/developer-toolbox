@@ -10,7 +10,7 @@
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
         <template #header><h3 class="font-semibold">输入文本</h3></template>
-        <UTextarea v-model="input" placeholder="输入文本..." :rows="15" @input="filter" />
+        <UTextarea v-model="input" placeholder="输入文本..." :rows="15" class="w-full" @input="filter" />
       </UCard>
       <UCard>
         <template #header>
@@ -19,7 +19,7 @@
             <UBadge v-if="count" color="error">检测到 {{ count }} 个敏感词</UBadge>
           </div>
         </template>
-        <UTextarea v-model="output" :rows="15" readonly />
+        <UTextarea v-model="output" :rows="15" class="w-full" readonly />
       </UCard>
     </div>
   </UContainer>

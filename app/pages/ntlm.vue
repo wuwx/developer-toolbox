@@ -37,9 +37,9 @@
             v-model="inputText"
             placeholder="在此输入密码..."
             size="xl"
-            class="font-mono text-base block w-full"
+            class="w-full font-mono text-base block"
             :ui="{ 
-              base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 py-3 pl-4 w-full'
+              base: 'transition-shadow duration-200 focus:ring-2 focus:ring-primary-500/20 py-3 pl-4'
             }"
             @input="generateHash"
           />

@@ -12,7 +12,7 @@
       <UCard>
         <template #header><h3 class="font-semibold">生成哈希</h3></template>
         <div class="space-y-4">
-          <UInput v-model="password" type="password" placeholder="输入密码..." size="xl" />
+          <UInput v-model="password" type="password" placeholder="输入密码..." size="xl" class="w-full" />
           <div>
             <label class="text-sm font-medium mb-2 block">Cost Factor (轮数): {{ rounds }}</label>
             <URange v-model="rounds" :min="4" :max="12" />
@@ -32,8 +32,8 @@
       <UCard>
         <template #header><h3 class="font-semibold">验证哈希</h3></template>
         <div class="space-y-4">
-          <UInput v-model="verifyPassword" type="password" placeholder="输入密码..." size="xl" />
-          <UTextarea v-model="verifyHash" placeholder="输入 Bcrypt 哈希..." :rows="3" class="font-mono text-sm" />
+          <UInput v-model="verifyPassword" type="password" placeholder="输入密码..." size="xl" class="w-full" />
+          <UTextarea v-model="verifyHash" placeholder="输入 Bcrypt 哈希..." :rows="3" class="font-mono text-sm w-full" />
           <UButton block color="primary" size="lg" @click="verify" :loading="verifying">验证</UButton>
           <div v-if="verifyResult !== null" class="p-4 rounded-lg" :class="verifyResult ? 'bg-success-50 dark:bg-success-950/30' : 'bg-error-50 dark:bg-error-950/30'">
             <div class="flex items-center gap-2" :class="verifyResult ? 'text-success-600' : 'text-error-600'">

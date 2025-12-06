@@ -12,16 +12,16 @@
         <div class="space-y-6">
           <div>
             <label class="text-sm font-medium mb-2 block">金额</label>
-            <UInput v-model="amount" type="number" size="xl" placeholder="100" />
+            <UInput v-model="amount" type="number" size="xl" placeholder="100" class="w-full" />
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="text-sm font-medium mb-2 block">从</label>
-              <USelect v-model="from" :options="currencies" />
+              <USelect v-model="from" :options="currencies" class="w-full" />
             </div>
             <div>
               <label class="text-sm font-medium mb-2 block">到</label>
-              <USelect v-model="to" :options="currencies" />
+              <USelect v-model="to" :options="currencies" class="w-full" />
             </div>
           </div>
           <UButton block color="primary" size="lg" @click="convert">转换</UButton>

@@ -15,7 +15,7 @@
             <UButton color="primary" @click="run" icon="i-heroicons-play">运行</UButton>
           </div>
         </template>
-        <UTextarea v-model="code" placeholder="console.log('Hello World')" :rows="20" class="font-mono text-sm" />
+        <UTextarea v-model="code" placeholder="console.log('Hello World')" :rows="20" class="font-mono text-sm w-full" />
       </UCard>
       <UCard>
         <template #header><h3 class="font-semibold">输出</h3></template>

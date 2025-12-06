@@ -13,7 +13,7 @@
           <input type="color" v-model="baseColor" class="w-16 h-16 rounded-lg cursor-pointer" />
           <div class="flex-1">
             <label class="text-sm font-medium mb-2 block">基础颜色</label>
-            <UInput v-model="baseColor" size="xl" />
+            <UInput v-model="baseColor" size="xl" class="w-full" />
           </div>
           <UButton color="primary" @click="generate">生成配色</UButton>
         </div>

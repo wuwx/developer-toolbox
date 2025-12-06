@@ -113,7 +113,7 @@
               </div>
               <div v-else>
                 <label class="text-sm font-medium mb-2 block">形状</label>
-                <USelect v-model="shape" :options="['circle', 'ellipse']" />
+                <USelect v-model="shape" :options="[{label: 'circle', value: 'circle'}, {label: 'ellipse', value: 'ellipse'}]" class="w-full" />
               </div>
             </div>
 

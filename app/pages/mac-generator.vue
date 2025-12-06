@@ -19,15 +19,15 @@
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
               <label class="block text-sm font-medium mb-2">分隔符</label>
-              <USelect v-model="separator" :options="[{label: '冒号 (:)', value: ':'}, {label: '短横线 (-)', value: '-'}, {label: '无', value: ''}]" />
+              <USelect v-model="separator" :options="[{label: '冒号 (:)', value: ':'}, {label: '短横线 (-)', value: '-'}, {label: '无', value: ''}]" class="w-full" />
             </div>
             <div>
               <label class="block text-sm font-medium mb-2">大小写</label>
-              <USelect v-model="casing" :options="[{label: '大写', value: 'upper'}, {label: '小写', value: 'lower'}]" />
+              <USelect v-model="casing" :options="[{label: '大写', value: 'upper'}, {label: '小写', value: 'lower'}]" class="w-full" />
             </div>
             <div>
               <label class="block text-sm font-medium mb-2">生成数量</label>
-              <UInput type="number" v-model="count" min="1" max="100" />
+              <UInput type="number" v-model="count" min="1" max="100" class="w-full" />
             </div>
           </div>
           

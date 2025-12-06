@@ -19,7 +19,7 @@
           <div class="flex items-center gap-4">
             <label class="text-sm font-medium">生成数量</label>
             <div class="w-32">
-              <UInput type="number" v-model="count" min="1" max="50" />
+              <UInput type="number" v-model="count" min="1" max="50" class="w-full" />
             </div>
           </div>
           

@@ -18,25 +18,25 @@
           <!-- IP Address -->
           <div>
             <label class="block text-sm font-medium mb-1">IP 地址 (Dot-decimal)</label>
-            <UInput v-model="ip" placeholder="192.168.1.1" @input="updateFromIP" />
+            <UInput v-model="ip" placeholder="192.168.1.1" @input="updateFromIP" class="w-full" />
           </div>
 
           <!-- Integer -->
           <div>
             <label class="block text-sm font-medium mb-1">十进制整数 (Integer)</label>
-            <UInput v-model="intVal" placeholder="3232235777" @input="updateFromInt" />
+            <UInput v-model="intVal" placeholder="3232235777" @input="updateFromInt" class="w-full" />
           </div>
 
           <!-- Hex -->
           <div>
             <label class="block text-sm font-medium mb-1">十六进制 (Hex)</label>
-            <UInput v-model="hexVal" placeholder="C0A80101" @input="updateFromHex" />
+            <UInput v-model="hexVal" placeholder="C0A80101" @input="updateFromHex" class="w-full" />
           </div>
 
           <!-- Binary -->
           <div>
             <label class="block text-sm font-medium mb-1">二进制 (Binary)</label>
-            <UInput v-model="binVal" placeholder="11000000.10101000.00000001.00000001" @input="updateFromBin" />
+            <UInput v-model="binVal" placeholder="11000000.10101000.00000001.00000001" @input="updateFromBin" class="w-full" />
           </div>
         </div>
       </div>

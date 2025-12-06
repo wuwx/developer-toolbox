@@ -10,7 +10,7 @@
     <div class="space-y-6">
       <UCard>
         <div class="space-y-4">
-          <UInput v-model="text" placeholder="输入预览文本..." size="xl" />
+          <UInput v-model="text" placeholder="输入预览文本..." size="xl" class="w-full" />
           <div>
             <label class="text-sm font-medium mb-2 block">字体大小: {{ fontSize }}px</label>
             <URange v-model="fontSize" :min="12" :max="120" />

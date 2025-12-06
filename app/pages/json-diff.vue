@@ -10,11 +10,11 @@
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
         <template #header><h3 class="font-semibold">JSON 1</h3></template>
-        <UTextarea v-model="json1" placeholder='{"name":"张三"}' :rows="15" class="font-mono text-sm"/>
+        <UTextarea v-model="json1" placeholder='{"name":"张三"}' :rows="15" class="font-mono text-sm w-full"/>
       </UCard>
       <UCard>
         <template #header><h3 class="font-semibold">JSON 2</h3></template>
-        <UTextarea v-model="json2" placeholder='{"name":"李四"}' :rows="15" class="font-mono text-sm"/>
+        <UTextarea v-model="json2" placeholder='{"name":"李四"}' :rows="15" class="font-mono text-sm w-full"/>
       </UCard>
     </div>
     <UCard class="mt-8">

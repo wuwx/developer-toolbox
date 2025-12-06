@@ -30,7 +30,7 @@
               <label class="block text-sm font-medium mb-2">输入</label>
               <div class="flex gap-2">
                 <UInput v-model="inputValue" type="number" size="xl" class="flex-1" />
-                <USelect v-model="fromUnit" :options="currentUnits" size="xl" class="w-32" />
+                <USelect v-model="fromUnit" :options="currentUnits" size="xl" class="w-32 flex-shrink-0" />
               </div>
             </div>
             <div class="text-center text-2xl text-gray-400 hidden sm:block">

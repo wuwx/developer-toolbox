@@ -75,15 +75,15 @@
             <!-- 排序 -->
             <div class="space-y-2">
               <label class="text-sm font-medium text-gray-700 dark:text-gray-300">排序方式</label>
-              <USelect v-model="options.sort" :options="sortOptions" />
+              <USelect v-model="options.sort" :options="sortOptions" class="w-full" />
             </div>
 
             <!-- 装饰 -->
             <div class="space-y-2">
               <label class="text-sm font-medium text-gray-700 dark:text-gray-300">添加内容</label>
               <div class="grid grid-cols-2 gap-2">
-                <UInput v-model="options.prefix" placeholder="前缀..." size="sm" />
-                <UInput v-model="options.suffix" placeholder="后缀..." size="sm" />
+                <UInput v-model="options.prefix" placeholder="前缀..." size="sm" class="w-full" />
+                <UInput v-model="options.suffix" placeholder="后缀..." size="sm" class="w-full" />
               </div>
             </div>
 

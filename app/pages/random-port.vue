@@ -18,13 +18,13 @@
         <div class="flex justify-center gap-8">
           <div class="flex items-center gap-2">
             <label class="text-sm font-medium">范围</label>
-            <UInput type="number" v-model="min" class="w-24" />
+            <UInput type="number" v-model="min" class="w-24 flex-shrink-0" />
             <span>-</span>
-            <UInput type="number" v-model="max" class="w-24" />
+            <UInput type="number" v-model="max" class="w-24 flex-shrink-0" />
           </div>
           <div class="flex items-center gap-2">
             <label class="text-sm font-medium">数量</label>
-            <UInput type="number" v-model="count" class="w-20" min="1" max="50" />
+            <UInput type="number" v-model="count" class="w-20 flex-shrink-0" min="1" max="50" />
           </div>
         </div>
 

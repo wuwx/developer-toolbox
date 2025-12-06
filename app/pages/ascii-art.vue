@@ -11,10 +11,10 @@
     <div class="grid lg:grid-cols-3 gap-6">
       <UCard>
         <template #header><h3 class="font-semibold">输入文本</h3></template>
-        <UInput v-model="inputText" placeholder="输入文字..." size="xl" maxlength="20" />
+        <UInput v-model="inputText" placeholder="输入文字..." size="xl" maxlength="20" class="w-full" />
         <div class="mt-4">
           <label class="text-sm font-medium mb-2 block">字体样式</label>
-          <USelect v-model="selectedFont" :options="fonts" size="lg" />
+          <USelect v-model="selectedFont" :options="fonts" size="lg" class="w-full" />
         </div>
       </UCard>
 

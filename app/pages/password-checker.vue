@@ -10,7 +10,7 @@
     <div class="max-w-2xl mx-auto space-y-6">
       <UCard>
         <div class="space-y-4">
-          <UInput v-model="password" type="password" placeholder="输入密码..." size="xl" @input="check"/>
+          <UInput v-model="password" type="password" placeholder="输入密码..." size="xl" class="w-full" @input="check"/>
           <div v-if="score>=0" class="space-y-3">
             <div class="flex items-center gap-2">
               <div class="flex-1 h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">

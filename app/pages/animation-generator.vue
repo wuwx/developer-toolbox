@@ -14,7 +14,7 @@
           <div class="space-y-4">
             <div>
               <label class="text-sm font-medium mb-2 block">动画名称</label>
-              <UInput v-model="animationName" placeholder="myAnimation" />
+              <UInput v-model="animationName" placeholder="myAnimation" class="w-full" />
             </div>
             <div>
               <label class="text-sm font-medium mb-2 block">持续时间: {{ duration }}s</label>
@@ -26,7 +26,7 @@
             </div>
             <div>
               <label class="text-sm font-medium mb-2 block">缓动函数</label>
-              <USelect v-model="timing" :options="['linear','ease','ease-in','ease-out','ease-in-out'].map(t => ({label:t,value:t}))" />
+              <USelect v-model="timing" :options="['linear','ease','ease-in','ease-out','ease-in-out'].map(t => ({label:t,value:t}))" class="w-full" />
             </div>
             <UCheckbox v-model="infinite" label="无限循环" />
           </div>

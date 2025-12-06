@@ -20,7 +20,7 @@
               {label: '地址', value: 'address'},
               {label: '公司', value: 'company'},
               {label: 'URL', value: 'url'}
-            ]" />
+            ]" class="w-full" />
           </div>
           <div>
             <label class="text-sm font-medium mb-2 block">数量: {{ count }}</label>

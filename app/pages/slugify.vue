@@ -46,7 +46,7 @@
           <div class="flex gap-4">
             <div class="flex-1">
               <label class="block text-sm font-medium mb-1">分隔符</label>
-              <UInput v-model="separator" placeholder="-" />
+              <UInput v-model="separator" placeholder="-" class="w-full" />
             </div>
             <div class="flex items-end mb-1">
               <UCheckbox v-model="lowercase" label="转小写" />

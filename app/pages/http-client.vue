@@ -11,7 +11,7 @@
       <UCard>
         <template #header><h3 class="font-semibold">请求配置</h3></template>
         <div class="space-y-4">
-          <USelect v-model="method" :options="['GET','POST','PUT','DELETE','PATCH'].map(m => ({label:m,value:m}))"/>
+          <USelect v-model="method" :options="['GET','POST','PUT','DELETE','PATCH'].map(m => ({label:m,value:m}))" class="w-full" />
           <UInput v-model="url" placeholder="https://api.example.com/users" size="xl"/>
           <UTextarea v-model="headers" placeholder="Headers (每行一个)&#10;Content-Type: application/json&#10;Authorization: Bearer token" :rows="4"/>
           <UTextarea v-model="body" placeholder="Request Body (JSON)" :rows="6"/>

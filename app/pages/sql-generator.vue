@@ -11,9 +11,9 @@
       <UCard>
         <template #header><h3 class="font-semibold">配置</h3></template>
         <div class="space-y-4">
-          <USelect v-model="type" :options="['SELECT','INSERT','UPDATE','DELETE'].map(t=>({label:t,value:t}))"/>
-          <UInput v-model="table" placeholder="表名" size="xl"/>
-          <UTextarea v-model="fields" placeholder="字段（每行一个）" :rows="6"/>
+          <USelect v-model="type" :options="['SELECT','INSERT','UPDATE','DELETE'].map(t=>({label:t,value:t}))" class="w-full" />
+          <UInput v-model="table" placeholder="表名" size="xl" class="w-full" />
+          <UTextarea v-model="fields" placeholder="字段（每行一个）" :rows="6" class="w-full" />
           <UButton block color="primary" size="lg" @click="generate">生成 SQL</UButton>
         </div>
       </UCard>

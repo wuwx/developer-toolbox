@@ -59,25 +59,26 @@
               <label class="text-xs font-medium text-gray-500">Protocol</label>
               <USelect
                 v-model="components.protocol"
-                :options="['https:', 'http:', 'ftp:', 'ws:', 'wss:']"
+                :options="[{label: 'https:', value: 'https:'}, {label: 'http:', value: 'http:'}, {label: 'ftp:', value: 'ftp:'}, {label: 'ws:', value: 'ws:'}, {label: 'wss:', value: 'wss:'}]"
                 size="sm"
+                class="w-full"
               />
             </div>
             <div>
               <label class="text-xs font-medium text-gray-500">Hostname</label>
-              <UInput v-model="components.hostname" size="sm" class="font-mono" />
+              <UInput v-model="components.hostname" size="sm" class="font-mono w-full" />
             </div>
             <div>
               <label class="text-xs font-medium text-gray-500">Port</label>
-              <UInput v-model="components.port" size="sm" class="font-mono" placeholder="Default" />
+              <UInput v-model="components.port" size="sm" class="font-mono w-full" placeholder="Default" />
             </div>
             <div>
               <label class="text-xs font-medium text-gray-500">Pathname</label>
-              <UInput v-model="components.pathname" size="sm" class="font-mono" />
+              <UInput v-model="components.pathname" size="sm" class="font-mono w-full" />
             </div>
             <div>
               <label class="text-xs font-medium text-gray-500">Hash</label>
-              <UInput v-model="components.hash" size="sm" class="font-mono" />
+              <UInput v-model="components.hash" size="sm" class="font-mono w-full" />
             </div>
           </div>
         </UCard>

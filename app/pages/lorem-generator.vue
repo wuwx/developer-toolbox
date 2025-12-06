@@ -11,7 +11,7 @@
       <UCard>
         <template #header><h3 class="font-semibold">配置</h3></template>
         <div class="space-y-4">
-          <USelect v-model="type" :options="[{label:'段落',value:'p'},{label:'句子',value:'s'},{label:'单词',value:'w'}]"/>
+          <USelect v-model="type" :options="[{label:'段落',value:'p'},{label:'句子',value:'s'},{label:'单词',value:'w'}]" class="w-full" />
           <div>
             <label class="text-sm font-medium mb-2 block">数量: {{ count }}</label>
             <URange v-model="count" :min="1" :max="20"/>
@@ -26,7 +26,7 @@
             <UButton v-if="result" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(result,'Lorem')">复制</UButton>
           </div>
         </template>
-        <UTextarea v-model="result" :rows="15" readonly/>
+        <UTextarea v-model="result" :rows="15" class="w-full" readonly/>
       </UCard>
     </div>
   </UContainer>

@@ -10,8 +10,8 @@
     <div class="max-w-3xl mx-auto space-y-8">
       <UCard>
         <div class="space-y-4">
-          <UInput v-model="eventName" placeholder="事件名称" size="xl" />
-          <UInput v-model="targetDate" type="datetime-local" size="xl" />
+          <UInput v-model="eventName" placeholder="事件名称" size="xl" class="w-full" />
+          <UInput v-model="targetDate" type="datetime-local" size="xl" class="w-full" />
           <UButton block color="primary" size="lg" @click="start">开始倒计时</UButton>
         </div>
       </UCard>

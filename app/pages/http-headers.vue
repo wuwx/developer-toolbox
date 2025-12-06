@@ -10,7 +10,7 @@
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
         <template #header><h3 class="font-semibold">输入 Headers</h3></template>
-        <UTextarea v-model="input" placeholder="Content-Type: application/json&#10;Authorization: Bearer token..." :rows="15" @input="parse" />
+        <UTextarea v-model="input" placeholder="Content-Type: application/json&#10;Authorization: Bearer token..." :rows="15" class="w-full" @input="parse" />
       </UCard>
       <UCard>
         <template #header><h3 class="font-semibold">解析结果</h3></template>

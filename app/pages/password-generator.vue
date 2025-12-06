@@ -45,7 +45,7 @@
             <!-- 数量 -->
             <div>
               <label class="text-sm font-medium mb-2 block">生成数量</label>
-              <UInput v-model="count" type="number" :min="1" :max="50" />
+              <UInput v-model="count" type="number" :min="1" :max="50" class="w-full" />
             </div>
 
             <UButton

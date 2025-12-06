@@ -35,7 +35,7 @@
       <div class="grid sm:grid-cols-3 gap-4">
         <div>
           <label class="text-sm font-medium mb-2 block">分隔符</label>
-          <USelect v-model="delimiter" :options="[{label: '逗号 (,)', value: ','}, {label: '分号 (;)', value: ';'}, {label: '制表符', value: '\\t'}]" />
+          <USelect v-model="delimiter" :options="[{label: '逗号 (,)', value: ','}, {label: '分号 (;)', value: ';'}, {label: '制表符', value: '\\t'}]" class="w-full" />
         </div>
         <div class="flex items-end">
           <UCheckbox v-model="includeHeader" label="包含表头" />
