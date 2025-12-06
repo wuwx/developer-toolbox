@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">进制转换器</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        支持二进制、八进制、十进制、十六进制之间的相互转换
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="进制转换器"
+      description="支持二进制、八进制、十进制、十六进制之间的相互转换"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-calculator" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="space-y-6">
       <!-- 二进制 -->
@@ -159,7 +164,7 @@
         </div>
       </UCard>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

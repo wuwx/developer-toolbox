@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Pomodoro 番茄钟</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        简单实用的专注时钟，支持自定义时间、浏览器通知
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="Pomodoro 番茄钟"
+      description="简单实用的专注时钟，支持自定义时间、浏览器通知"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-clock" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="grid lg:grid-cols-3 gap-6">
       <!-- 主时钟区域 -->
@@ -123,7 +128,7 @@
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

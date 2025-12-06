@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">密码强度检测</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        评估密码安全性，提供改进建议
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="密码强度检测"
+      description="评估密码安全性，提供改进建议"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-shield-check" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="space-y-6">
       <!-- 密码输入 -->
@@ -169,7 +174,7 @@
         </div>
       </UCard>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

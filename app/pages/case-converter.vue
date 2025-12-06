@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">文本大小写转换</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        支持 Camel、Snake、Kebab、Pascal 等多种命名风格互转
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="文本大小写转换"
+      description="支持 Camel、Snake、Kebab、Pascal 等多种命名风格互转"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-language" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="grid lg:grid-cols-2 gap-6">
       <!-- 输入区域 -->
@@ -38,7 +43,8 @@
             :rows="12"
             autoresize
             :maxrows="20"
-            class="font-mono text-sm"
+            class="font-mono text-sm w-full"
+            :ui="{ base: 'p-4' }"
           />
         </UCard>
       </div>
@@ -73,7 +79,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

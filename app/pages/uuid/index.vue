@@ -1,8 +1,8 @@
 <template>
   <UContainer class="py-8 sm:py-12">
     <UPageHeader
-      title="UUID 生成器"
-      description="批量生成 UUID v4，支持一键复制"
+      title="UUID v4 生成器"
+      description="批量生成随机 UUID (Version 4)，支持一键复制"
       align="center"
     >
       <template #icon>
@@ -11,6 +11,14 @@
         </div>
       </template>
     </UPageHeader>
+
+    <!-- 版本导航 -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <UButton to="/uuid" color="primary" variant="solid" size="sm">UUID v4 (随机)</UButton>
+      <UButton to="/uuid/v1" color="neutral" variant="soft" size="sm">UUID v1 (时间戳)</UButton>
+      <UButton to="/uuid/v3" color="neutral" variant="soft" size="sm">UUID v3 (MD5)</UButton>
+      <UButton to="/uuid/v5" color="neutral" variant="soft" size="sm">UUID v5 (SHA1)</UButton>
+    </div>
 
     <ToolCard>
       <!-- 配置区域 -->

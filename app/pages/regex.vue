@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">正则表达式测试器</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        实时测试正则表达式，高亮显示匹配结果，提供常用正则模板
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="正则表达式测试器"
+      description="实时测试正则表达式，高亮显示匹配结果，提供常用正则模板"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-code-bracket-square" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="grid lg:grid-cols-3 gap-6">
       <!-- 左侧主要区域 -->
@@ -85,7 +90,8 @@
             autoresize
             :maxrows="20"
             size="lg"
-            class="font-mono text-sm"
+            class="font-mono text-sm w-full"
+            :ui="{ base: 'p-4' }"
           />
 
           <!-- 高亮显示匹配结果 -->
@@ -211,7 +217,7 @@
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

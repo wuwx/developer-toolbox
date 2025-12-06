@@ -33,6 +33,23 @@
 
     <!-- 工具网格 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <!-- MD4 工具 -->
+      <NuxtLink to="/md4" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-slate-500/50 dark:hover:ring-slate-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/20 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-hashtag" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors">MD4 哈希</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                生成 MD4 哈希值，早期哈希算法，仅供研究。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
       <!-- MD5 工具 -->
       <NuxtLink to="/md5" class="group relative block">
         <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-blue-500/50 dark:hover:ring-blue-400/50">
@@ -168,6 +185,23 @@
         </UCard>
       </NuxtLink>
 
+      <!-- NTLM 工具 -->
+      <NuxtLink to="/ntlm" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-cyan-500/50 dark:hover:ring-cyan-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-window" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">NTLM 哈希</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                生成 Windows NTLM 哈希值，用于密码测试。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
       <!-- 图片 Base64 工具 -->
       <NuxtLink to="/image-base64" class="group relative block">
         <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-indigo-500/50 dark:hover:ring-indigo-400/50">
@@ -280,7 +314,58 @@
             <div>
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">SHA256 哈希</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                生成 SHA256 和 SHA512 哈希值，用于文件校验、密码存储。
+                生成 SHA256 哈希值，用于文件校验、密码存储。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- SHA512 哈希工具 -->
+      <NuxtLink to="/sha512" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-purple-500/50 dark:hover:ring-purple-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-shield-check" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">SHA512 哈希</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                生成 512 位 SHA512 散列值，更高安全性。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- SM3 工具 -->
+      <NuxtLink to="/sm3" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-red-500/50 dark:hover:ring-red-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-shield-check" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">SM3 国密哈希</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                生成 SM3 国密哈希值，中国国家标准算法。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- SM4 工具 -->
+      <NuxtLink to="/sm4" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-orange-500/50 dark:hover:ring-orange-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-lock-closed" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">SM4 国密加密</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                SM4 国密对称加密/解密，支持自定义密钥。
               </p>
             </div>
           </div>
@@ -672,6 +757,261 @@
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">番茄钟</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                 在线专注时钟，支持自定义工作/休息时长和桌面通知。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- Chmod 计算器 -->
+      <NuxtLink to="/chmod" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-amber-500/50 dark:hover:ring-amber-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-command-line" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Chmod 计算器</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                Linux 文件权限计算工具，可视化生成 755/644 权限码。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- CIDR 计算器 -->
+      <NuxtLink to="/cidr" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-blue-500/50 dark:hover:ring-blue-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-server-stack" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">CIDR 计算器</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                计算 IP 子网掩码、广播地址和可用 IP 范围。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- HTML 实体编码 -->
+      <NuxtLink to="/html-entity" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-orange-500/50 dark:hover:ring-orange-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-code-bracket" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">HTML 实体编码</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                HTML 特殊字符编码解码，防止 XSS 攻击。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- XML 格式化 -->
+      <NuxtLink to="/xml-formatter" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-amber-500/50 dark:hover:ring-amber-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-code-bracket" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">XML 格式化</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                在线美化和压缩 XML 数据，提高可读性。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- Curl 构建器 -->
+      <NuxtLink to="/curl-builder" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-gray-500/50 dark:hover:ring-gray-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-command-line" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">Curl 构建器</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                图形化配置 HTTP 请求，自动生成 Curl 命令。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- Docker 转 Compose -->
+      <NuxtLink to="/docker-run-to-compose" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-sky-500/50 dark:hover:ring-sky-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-cube" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">Docker 转 Compose</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                将 docker run 命令转换为 Docker Compose YAML。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- ULID 生成器 -->
+      <NuxtLink to="/ulid" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-violet-500/50 dark:hover:ring-violet-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-bars-arrow-down" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">ULID 生成器</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                可排序的唯一标识符，UUID 的现代替代方案。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- 列表转换器 -->
+      <NuxtLink to="/list-converter" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-teal-500/50 dark:hover:ring-teal-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-list-bullet" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">列表转换器</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                将文本列表转换为 JSON、SQL、CSV 等格式。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- JSON 路径提取 -->
+      <NuxtLink to="/json-path" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-yellow-500/50 dark:hover:ring-yellow-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-magnifying-glass-circle" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">JSON 路径提取</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                使用路径语法快速提取 JSON 数据中的特定值。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- IPv4 转换器 -->
+      <NuxtLink to="/ipv4-converter" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-sky-500/50 dark:hover:ring-sky-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-globe-alt" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">IPv4 转换器</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                IP 地址在十进制、二进制、十六进制间相互转换。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- 单位换算器 -->
+      <NuxtLink to="/unit-converter" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-slate-500/50 dark:hover:ring-slate-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/20 text-slate-600 dark:text-slate-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-scale" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors">单位换算器</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                数据存储、长度、重量等常用单位快速转换。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- Slugify 转换 -->
+      <NuxtLink to="/slugify" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-green-500/50 dark:hover:ring-green-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-link" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Slugify 转换</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                将文本转换为 URL 友好的 Slug 格式。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- MAC 地址生成 -->
+      <NuxtLink to="/mac-generator" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-gray-500/50 dark:hover:ring-gray-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-cpu-chip" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">MAC 地址生成</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                随机生成 MAC 地址，支持自定义分隔符。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- 随机端口 -->
+      <NuxtLink to="/random-port" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-cyan-500/50 dark:hover:ring-cyan-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-arrows-right-left" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">随机端口生成</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                生成随机可用端口号，避免开发测试冲突。
+              </p>
+            </div>
+          </div>
+        </UCard>
+      </NuxtLink>
+
+      <!-- CSS 单位转换 -->
+      <NuxtLink to="/css-unit" class="group relative block">
+        <UCard class="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:ring-2 hover:ring-pink-500/50 dark:hover:ring-pink-400/50">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-xl bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-pink-400 group-hover:scale-110 transition-transform duration-300">
+              <UIcon name="i-heroicons-arrows-right-left" class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">CSS 单位转换</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                PX、REM、EM、百分比等 CSS 单位互相转换。
               </p>
             </div>
           </div>

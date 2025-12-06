@@ -24,10 +24,12 @@
               <UTextarea
                 v-model="content"
                 placeholder="输入网址或文本..."
-                :rows="4"
-                size="lg"
+                :rows="8"
+                size="xl"
                 autoresize
-                class="font-mono text-sm"
+                :maxrows="20"
+                class="font-mono text-sm block w-full"
+                :ui="{ base: 'p-4' }"
               />
             </div>
 

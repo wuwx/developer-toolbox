@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-7xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">文本差异对比</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        对比两段文本的差异，高亮显示新增、删除和修改的内容
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="文本差异对比"
+      description="对比两段文本的差异，高亮显示新增、删除和修改的内容"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-scale" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <!-- 选项 -->
     <div class="mb-6 flex flex-wrap gap-4">
@@ -83,7 +88,8 @@
             :rows="20"
             autoresize
             :maxrows="30"
-            class="font-mono text-sm"
+            class="font-mono text-sm w-full"
+            :ui="{ base: 'p-4' }"
           />
         </div>
         <div v-else class="font-mono text-sm max-h-[600px] overflow-y-auto border border-gray-200 dark:border-gray-800 rounded-lg">
@@ -140,7 +146,8 @@
             :rows="20"
             autoresize
             :maxrows="30"
-            class="font-mono text-sm"
+            class="font-mono text-sm w-full"
+            :ui="{ base: 'p-4' }"
           />
         </div>
         <div v-else class="font-mono text-sm max-h-[600px] overflow-y-auto border border-gray-200 dark:border-gray-800 rounded-lg">
@@ -164,7 +171,7 @@
         </div>
       </UCard>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">文本去重与排序</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        强大的列表处理工具，支持去重、排序、过滤、随机打乱
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="文本去重与排序"
+      description="强大的列表处理工具，支持去重、排序、过滤、随机打乱"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-funnel" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="grid lg:grid-cols-3 gap-6">
       <!-- 左侧：输入 -->
@@ -40,7 +45,7 @@
               v-model="inputText"
               placeholder="每行一个项目..."
               class="absolute inset-0 h-full w-full font-mono text-sm"
-              :ui="{ base: 'h-full' }"
+              :ui="{ base: 'h-full p-4' }"
             />
           </div>
         </UCard>
@@ -138,13 +143,13 @@
               readonly
               placeholder="结果将显示在这里..."
               class="absolute inset-0 h-full w-full font-mono text-sm"
-              :ui="{ base: 'h-full' }"
+              :ui="{ base: 'h-full p-4' }"
             />
           </div>
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

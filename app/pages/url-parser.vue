@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-5xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">URL 解析器</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        解析、编辑和构建 URL，支持查询参数单独编辑
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="URL 解析器"
+      description="解析、编辑和构建 URL，支持查询参数单独编辑"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-link" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="space-y-6">
       <!-- 输入 -->
@@ -117,7 +122,7 @@
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

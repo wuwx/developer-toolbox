@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Unicode 转换</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        字符与 Unicode 编码互转，支持多种常见格式
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="Unicode 转换"
+      description="字符与 Unicode 编码互转，支持多种常见格式"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-language" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <!-- 模式切换 -->
     <div class="mb-6 flex items-center gap-4">
@@ -55,7 +60,8 @@
           :rows="12"
           autoresize
           :maxrows="20"
-          class="font-mono text-sm"
+          class="font-mono text-sm w-full"
+          :ui="{ base: 'p-4' }"
         />
       </UCard>
 
@@ -88,7 +94,8 @@
             :rows="12"
             autoresize
             :maxrows="20"
-            class="font-mono text-sm"
+            class="font-mono text-sm w-full"
+            :ui="{ base: 'p-4' }"
           />
         </UCard>
 
@@ -108,7 +115,7 @@
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

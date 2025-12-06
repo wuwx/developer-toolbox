@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">JSON 转 TypeScript</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        将 JSON 对象自动转换为 TypeScript 接口定义
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="JSON 转 TypeScript"
+      description="将 JSON 对象自动转换为 TypeScript 接口定义"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-code-bracket" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="grid lg:grid-cols-2 gap-6">
       <!-- 输入 -->
@@ -32,8 +37,10 @@
             v-model="inputJSON"
             placeholder='{"name": "John", "age": 30}'
             :rows="20"
-            class="font-mono text-sm h-full"
-            :ui="{ base: 'h-full' }"
+            autoresize
+            :maxrows="30"
+            class="font-mono text-sm w-full"
+            :ui="{ base: 'p-4' }"
           />
         </UCard>
       </div>
@@ -68,13 +75,15 @@
             v-model="outputTS"
             readonly
             :rows="20"
-            class="font-mono text-sm h-full"
-            :ui="{ base: 'h-full text-blue-600 dark:text-blue-400' }"
+            autoresize
+            :maxrows="30"
+            class="font-mono text-sm w-full"
+            :ui="{ base: 'text-blue-600 dark:text-blue-400 p-4' }"
           />
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

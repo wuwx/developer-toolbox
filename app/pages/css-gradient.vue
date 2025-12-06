@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">CSS 渐变生成器</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        可视化配置线性渐变，生成精美的 CSS 背景代码
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="CSS 渐变生成器"
+      description="可视化配置线性渐变，生成精美的 CSS 背景代码"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-swatch" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="grid lg:grid-cols-2 gap-6">
       <!-- 预览区域 -->
@@ -180,7 +185,7 @@
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

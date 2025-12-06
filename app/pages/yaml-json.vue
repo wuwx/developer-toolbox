@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">YAML ↔ JSON 转换</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        YAML 和 JSON 配置文件格式互转
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="YAML ↔ JSON 转换"
+      description="YAML 和 JSON 配置文件格式互转"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-arrows-right-left" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <!-- 模式切换 -->
     <div class="mb-6 flex items-center gap-4">
@@ -49,8 +54,10 @@
           v-model="input"
           :placeholder="mode === 'yaml-to-json' ? yamlPlaceholder : jsonPlaceholder"
           :rows="20"
-          class="font-mono text-sm h-full"
-          :ui="{ base: 'h-full' }"
+          autoresize
+          :maxrows="30"
+          class="font-mono text-sm w-full"
+          :ui="{ base: 'p-4' }"
           @input="convert"
         />
       </UCard>
@@ -81,12 +88,14 @@
           v-model="output"
           readonly
           :rows="20"
-          class="font-mono text-sm h-full"
-          :ui="{ base: 'h-full text-blue-600 dark:text-blue-400' }"
+          autoresize
+          :maxrows="30"
+          class="font-mono text-sm w-full"
+          :ui="{ base: 'text-blue-600 dark:text-blue-400 p-4' }"
         />
       </UCard>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

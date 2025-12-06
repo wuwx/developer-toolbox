@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">键盘键位码查询</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        按下键盘任意键，获取 KeyCode, Code, Key 等信息
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="键盘键位码查询"
+      description="按下键盘任意键，获取 KeyCode, Code, Key 等信息"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-900 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-command-line" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <!-- 主显示区 -->
     <div class="space-y-8">
@@ -105,7 +110,7 @@
         </div>
       </UCard>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

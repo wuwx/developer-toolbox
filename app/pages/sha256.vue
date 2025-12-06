@@ -3,7 +3,7 @@
     <!-- Hero 标题 -->
     <UPageHeader
       title="SHA256 哈希生成器"
-      description="生成文本的 SHA256 和 SHA512 哈希值，安全性更高，完全本地运行"
+      description="生成文本的 SHA256 哈希值，安全性更高，完全本地运行"
       align="center"
     >
       <template #icon>
@@ -55,78 +55,38 @@
         </div>
 
         <!-- 结果展示区域 -->
-        <div v-if="sha256Hash || sha512Hash" class="space-y-6 animate-fade-in">
+        <div v-if="sha256Hash" class="space-y-6 animate-fade-in">
           <USeparator icon="i-heroicons-arrow-down" />
 
           <!-- SHA256 结果 -->
-          <div v-if="sha256Hash">
-            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 relative overflow-hidden">
-              <div class="relative z-10">
-                <div class="flex items-center justify-between mb-4">
-                  <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
-                    <UIcon name="i-heroicons-lock-closed" class="w-4 h-4 text-blue-500" />
-                    SHA256 哈希值
-                  </label>
-                  <UBadge color="primary" variant="subtle" size="md">256 位</UBadge>
-                </div>
-                
-                <div class="flex gap-2">
-                  <UInput
-                    v-model="sha256Hash"
-                    readonly
-                    size="lg"
-                    class="font-mono text-lg flex-1"
-                    :ui="{ base: 'bg-white dark:bg-gray-900' }"
-                    @click="() => copyToClipboard(sha256Hash, 'SHA256')"
-                  />
-                  <UButton
-                    color="neutral"
-                    variant="soft"
-                    size="lg"
-                    icon="i-heroicons-clipboard-document"
-                    @click="() => copyToClipboard(sha256Hash, 'SHA256')"
-                  >
-                    复制
-                  </UButton>
-                </div>
+          <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 relative overflow-hidden">
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-4">
+                <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                  <UIcon name="i-heroicons-lock-closed" class="w-4 h-4 text-blue-500" />
+                  SHA256 哈希值
+                </label>
+                <UBadge color="primary" variant="subtle" size="md">256 位</UBadge>
               </div>
-            </div>
-          </div>
-
-          <!-- SHA512 结果 -->
-          <div v-if="sha512Hash">
-            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 relative overflow-hidden">
-              <div class="relative z-10">
-                <div class="flex items-center justify-between mb-4">
-                  <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
-                    <UIcon name="i-heroicons-shield-check" class="w-4 h-4 text-purple-500" />
-                    SHA512 哈希值
-                  </label>
-                  <UBadge color="neutral" variant="subtle" size="md">512 位</UBadge>
-                </div>
-                
-                <div class="flex gap-2">
-                  <UTextarea
-                    v-model="sha512Hash"
-                    readonly
-                    :rows="3"
-                    autoresize
-                    size="lg"
-                    class="font-mono text-lg flex-1"
-                    :ui="{ base: 'bg-white dark:bg-gray-900 resize-none' }"
-                    @click="() => copyToClipboard(sha512Hash, 'SHA512')"
-                  />
-                  <UButton
-                    color="neutral"
-                    variant="soft"
-                    size="lg"
-                    class="h-fit"
-                    icon="i-heroicons-clipboard-document"
-                    @click="() => copyToClipboard(sha512Hash, 'SHA512')"
-                  >
-                    复制
-                  </UButton>
-                </div>
+              
+              <div class="flex gap-2">
+                <UInput
+                  v-model="sha256Hash"
+                  readonly
+                  size="lg"
+                  class="font-mono text-lg flex-1"
+                  :ui="{ base: 'bg-white dark:bg-gray-900' }"
+                  @click="() => copyToClipboard(sha256Hash, 'SHA256')"
+                />
+                <UButton
+                  color="neutral"
+                  variant="soft"
+                  size="lg"
+                  icon="i-heroicons-clipboard-document"
+                  @click="() => copyToClipboard(sha256Hash, 'SHA256')"
+                >
+                  复制
+                </UButton>
               </div>
             </div>
           </div>
@@ -135,7 +95,7 @@
     </ToolCard>
 
     <!-- 说明信息 -->
-    <ToolInfo title="关于 SHA2 算法" :items="accordionItems" />
+    <ToolInfo title="关于 SHA256 算法" :items="accordionItems" />
   </UContainer>
 </template>
 
@@ -146,7 +106,6 @@ const { copyToClipboard } = useToolClipboard()
 
 const inputText = ref('')
 const sha256Hash = ref('')
-const sha512Hash = ref('')
 
 definePageMeta({
   layout: 'default'
@@ -155,7 +114,6 @@ definePageMeta({
 async function generateHash() {
   if (!inputText.value) {
     sha256Hash.value = ''
-    sha512Hash.value = ''
     return
   }
 
@@ -167,46 +125,39 @@ async function generateHash() {
   sha256Hash.value = Array.from(new Uint8Array(sha256Buffer))
     .map(b => b.toString(16).padStart(2, '0'))
     .join('')
-
-  // SHA-512
-  const sha512Buffer = await crypto.subtle.digest('SHA-512', data)
-  sha512Hash.value = Array.from(new Uint8Array(sha512Buffer))
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('')
 }
 
 function clearAll() {
   inputText.value = ''
   sha256Hash.value = ''
-  sha512Hash.value = ''
 }
 
 const accordionItems: AccordionItem[] = [
   {
     slot: 'what',
-    label: '什么是 SHA-256/SHA-512？',
+    label: '什么是 SHA-256？',
     icon: 'i-heroicons-question-mark-circle',
-    content: 'SHA-2（Secure Hash Algorithm 2）是一组密码散列函数，包括 SHA-224、SHA-256、SHA-384、SHA-512 等。它们由美国国家安全局（NSA）设计，相比 SHA-1 提供了更高的安全性。SHA-256 生成 256 位（32 字节）哈希值，SHA-512 生成 512 位（64 字节）哈希值。'
+    content: 'SHA-256 是 SHA-2 家族中的一种加密哈希函数，生成 256 位（32 字节）的哈希值。它是目前应用最广泛的安全哈希算法之一。'
   },
   {
     slot: 'usage',
     label: '主要用途',
     icon: 'i-heroicons-rocket-launch',
-    content: 'SHA-256 是比特币等加密货币的核心算法，也广泛用于 SSL/TLS 证书、数字签名、密码存储（通常配合加盐）、文件完整性校验等。它是目前最流行的安全哈希算法标准之一。'
+    content: 'SHA-256 是比特币等加密货币的核心算法，也广泛用于 SSL/TLS 证书、数字签名、密码存储（通常配合加盐）、文件完整性校验等。'
   },
   {
     slot: 'security',
     label: '安全性说明',
     icon: 'i-heroicons-shield-check',
-    content: '目前尚未发现对 SHA-256 和 SHA-512 的有效攻击方法。它们被认为是加密安全的，广泛推荐用于新系统的开发。相比之下，MD5 和 SHA-1 已经被证明不再安全。'
+    content: '目前尚未发现对 SHA-256 的有效攻击方法。它们被认为是加密安全的，广泛推荐用于新系统的开发。'
   }
 ]
 
 // SEO
 useHead({
-  title: 'SHA256 SHA512 哈希工具 - 在线 Hash 生成 | 开发者工具箱',
+  title: 'SHA256 哈希工具 - 在线 Hash 生成 | 开发者工具箱',
   meta: [
-    { name: 'description', content: '在线 SHA256 和 SHA512 哈希生成工具，用于密码存储、文件校验、数据完整性验证。安全可靠的哈希计算器。' }
+    { name: 'description', content: '在线 SHA256 哈希生成工具，用于密码存储、文件校验、数据完整性验证。安全可靠的哈希计算器。' }
   ]
 })
 </script>

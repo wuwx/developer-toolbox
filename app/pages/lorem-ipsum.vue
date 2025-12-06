@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-5xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Lorem Ipsum 生成器</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        生成用于设计和排版的占位文本
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="Lorem Ipsum 生成器"
+      description="生成用于设计和排版的占位文本"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-500 to-gray-700 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-document-text" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="grid lg:grid-cols-3 gap-6">
       <!-- 配置区域 -->
@@ -87,13 +92,13 @@
               readonly
               :rows="20"
               class="absolute inset-0 h-full w-full font-serif text-lg leading-relaxed"
-              :ui="{ base: 'h-full' }"
+              :ui="{ base: 'h-full p-4' }"
             />
           </div>
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

@@ -136,10 +136,12 @@
             <UTextarea
               :model-value="formattedOutput"
               readonly
-              :rows="6"
-              size="lg"
-              class="font-mono text-xs text-gray-500"
-              :ui="{ base: 'bg-gray-50 dark:bg-gray-900 pr-12' }"
+              :rows="10"
+              size="xl"
+              autoresize
+              :maxrows="30"
+              class="font-mono text-xs text-gray-500 block w-full"
+              :ui="{ base: 'bg-gray-50 dark:bg-gray-900 pr-12 p-4' }"
               @click="copyResult"
             />
             <div class="absolute top-2 right-2">

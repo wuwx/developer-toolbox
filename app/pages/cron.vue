@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-5xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Cron 表达式生成器</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        可视化配置定时任务，生成标准 Cron 表达式
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="Cron 表达式生成器"
+      description="可视化配置定时任务，生成标准 Cron 表达式"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-clock" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <div class="grid lg:grid-cols-3 gap-6">
       <!-- 配置区域 -->
@@ -269,7 +274,7 @@
         </UCard>
       </div>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">CSV ↔️ JSON 转换</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        CSV 和 JSON 格式互转，支持自定义分隔符
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="CSV ↔️ JSON 转换"
+      description="CSV 和 JSON 格式互转，支持自定义分隔符"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-arrows-right-left" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <!-- 模式切换 -->
     <div class="mb-6 flex items-center gap-4">
@@ -70,7 +75,8 @@
           :rows="20"
           autoresize
           :maxrows="30"
-          class="font-mono text-sm"
+          class="font-mono text-sm w-full"
+          :ui="{ base: 'p-4' }"
           @input="convert"
         />
       </UCard>
@@ -126,7 +132,8 @@
           readonly
           autoresize
           :maxrows="30"
-          class="font-mono text-sm"
+          class="font-mono text-sm w-full"
+          :ui="{ base: 'p-4' }"
         />
       </UCard>
     </div>
@@ -167,7 +174,7 @@ Charlie,35,London</pre>
         </div>
       </UCard>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">

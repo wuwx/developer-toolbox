@@ -1,11 +1,16 @@
 <template>
-  <div class="max-w-5xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">HTTP 状态码查询</h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        快速查找 HTTP 状态码含义和解决方案
-      </p>
-    </div>
+  <UContainer class="py-8 sm:py-12">
+    <UPageHeader
+      title="HTTP 状态码查询"
+      description="快速查找 HTTP 状态码含义和解决方案"
+      align="center"
+    >
+      <template #icon>
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 mb-6 shadow-xl">
+          <UIcon name="i-heroicons-signal" class="w-10 h-10 text-white" />
+        </div>
+      </template>
+    </UPageHeader>
 
     <!-- 搜索和筛选 -->
     <div class="mb-8 flex flex-wrap gap-4">
@@ -86,7 +91,7 @@
         </div>
       </div>
     </UModal>
-  </div>
+  </UContainer>
 </template>
 
 <script setup lang="ts">
