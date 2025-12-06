@@ -10,7 +10,7 @@
     <div class="space-y-6">
       <UCard>
         <template #header><h3 class="font-semibold">测试代码</h3></template>
-        <UTextarea v-model="code" placeholder="// 输入要测试的代码&#10;for(let i=0; i<1000; i++) {}" :rows="10" class="font-mono text-sm" />
+        <UTextarea v-model="code" placeholder="// 输入要测试的代码&#10;for(let i=0; i<1000; i++) {}" :rows="10" class="font-mono text-sm w-full" />
         <div class="mt-4 grid grid-cols-2 gap-4">
           <div>
             <label class="text-sm font-medium mb-2 block">运行次数: {{ iterations }}</label>

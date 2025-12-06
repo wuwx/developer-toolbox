@@ -17,7 +17,7 @@
         <template #header>
           <h3 class="font-semibold">原始 JavaScript</h3>
         </template>
-        <UTextarea v-model="inputJs" placeholder="粘贴 JavaScript 代码..." :rows="20" class="font-mono text-sm" />
+        <UTextarea v-model="inputJs" placeholder="粘贴 JavaScript 代码..." :rows="20" class="font-mono text-sm w-full" />
         <div class="mt-4 text-sm text-gray-500">大小: {{ originalSize }}</div>
       </UCard>
 
@@ -28,7 +28,7 @@
             <UButton v-if="outputJs" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(outputJs, 'JavaScript')">复制</UButton>
           </div>
         </template>
-        <UTextarea v-model="outputJs" :rows="20" readonly class="font-mono text-sm" />
+        <UTextarea v-model="outputJs" :rows="20" readonly class="font-mono text-sm w-full" />
         <div class="mt-4 flex items-center justify-between text-sm">
           <span class="text-gray-500">大小: {{ compressedSize }}</span>
           <UBadge v-if="compressionRatio" color="success" variant="subtle">减少 {{ compressionRatio }}%</UBadge>

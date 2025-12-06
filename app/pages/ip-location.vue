@@ -12,7 +12,7 @@
       <UCard>
         <template #header><h3 class="font-semibold">查询 IP</h3></template>
         <div class="space-y-4">
-          <UInput v-model="ipAddress" placeholder="输入 IP 地址，留空查询本机" size="xl" />
+          <UInput v-model="ipAddress" placeholder="输入 IP 地址，留空查询本机" size="xl" class="w-full" />
           <UButton block color="primary" size="lg" @click="query" :loading="loading">查询</UButton>
         </div>
       </UCard>

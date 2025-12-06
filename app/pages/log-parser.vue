@@ -11,7 +11,7 @@
       <UCard>
         <template #header><h3 class="font-semibold">过滤</h3></template>
         <div class="space-y-4">
-          <UInput v-model="filter" placeholder="搜索关键词..." />
+          <UInput v-model="filter" placeholder="搜索关键词..." class="w-full" />
           <div class="space-y-2">
             <UCheckbox v-model="showError" label="ERROR" />
             <UCheckbox v-model="showWarn" label="WARN" />
@@ -27,7 +27,7 @@
               <UBadge>{{ filteredLogs.length }} 条</UBadge>
             </div>
           </template>
-          <UTextarea v-model="logs" placeholder="粘贴日志内容..." :rows="20" class="font-mono text-xs" />
+          <UTextarea v-model="logs" placeholder="粘贴日志内容..." :rows="20" class="font-mono text-xs w-full" />
         </UCard>
       </div>
     </div>

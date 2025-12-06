@@ -66,7 +66,7 @@
             </div>
           </template>
 
-          <UInput v-model="previewText" placeholder="输入预览文字" size="xl" />
+          <UInput v-model="previewText" placeholder="输入预览文字" size="xl" class="w-full" />
           
           <div class="mt-4">
             <label class="text-sm font-medium mb-2 block">文字颜色</label>

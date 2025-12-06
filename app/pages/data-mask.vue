@@ -21,7 +21,7 @@
               {label: '姓名', value: 'name'}
             ]" />
           </div>
-          <UTextarea v-model="input" placeholder="输入需要脱敏的数据..." :rows="10" />
+          <UTextarea v-model="input" placeholder="输入需要脱敏的数据..." :rows="10" class="w-full" />
           <UButton block color="primary" size="lg" @click="mask">脱敏</UButton>
         </div>
       </UCard>
@@ -32,7 +32,7 @@
             <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, '脱敏数据')">复制</UButton>
           </div>
         </template>
-        <UTextarea v-model="output" :rows="10" readonly />
+        <UTextarea v-model="output" :rows="10" readonly class="w-full" />
       </UCard>
     </div>
   </UContainer>

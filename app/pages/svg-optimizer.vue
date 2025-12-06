@@ -26,7 +26,7 @@
           v-model="inputSvg"
           placeholder="粘贴 SVG 代码..."
           :rows="15"
-          class="font-mono text-sm"
+          class="font-mono text-sm w-full"
         />
 
         <div class="mt-4 flex items-center justify-between text-sm">
@@ -59,7 +59,7 @@
           v-model="outputSvg"
           :rows="15"
           readonly
-          class="font-mono text-sm"
+          class="font-mono text-sm w-full"
         />
 
         <div class="mt-4 space-y-2">

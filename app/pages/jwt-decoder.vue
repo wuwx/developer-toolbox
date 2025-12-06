@@ -26,7 +26,7 @@
           v-model="jwtInput"
           placeholder="粘贴 JWT Token..."
           :rows="10"
-          class="font-mono text-sm"
+          class="font-mono text-sm w-full"
         />
 
         <div v-if="error" class="mt-4 p-3 bg-error-50 dark:bg-error-950/30 rounded-lg">

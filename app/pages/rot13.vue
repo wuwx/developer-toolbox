@@ -10,7 +10,7 @@
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
         <template #header><h3 class="font-semibold">输入</h3></template>
-        <UTextarea v-model="input" placeholder="输入文本..." :rows="15" @input="transform" />
+        <UTextarea v-model="input" placeholder="输入文本..." :rows="15" class="w-full" @input="transform" />
       </UCard>
       <UCard>
         <template #header>
@@ -19,7 +19,7 @@
             <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, 'ROT13')">复制</UButton>
           </div>
         </template>
-        <UTextarea v-model="output" :rows="15" readonly />
+        <UTextarea v-model="output" :rows="15" readonly class="w-full" />
       </UCard>
     </div>
   </UContainer>

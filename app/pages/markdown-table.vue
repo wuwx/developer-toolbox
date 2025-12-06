@@ -31,7 +31,7 @@
             <UButton v-if="markdown" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(markdown,'Markdown')">复制</UButton>
           </div>
         </template>
-        <UTextarea v-model="markdown" :rows="15" readonly class="font-mono text-sm"/>
+        <UTextarea v-model="markdown" :rows="15" readonly class="font-mono text-sm w-full"/>
       </UCard>
     </div>
   </UContainer>

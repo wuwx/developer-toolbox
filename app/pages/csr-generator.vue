@@ -26,36 +26,36 @@
           <div class="space-y-4">
             <div>
               <label class="block text-sm font-medium mb-1">通用名称 (Common Name) <span class="text-red-500">*</span></label>
-              <UInput v-model="form.cn" placeholder="例如：example.com" />
+              <UInput v-model="form.cn" placeholder="例如：example.com" class="w-full" />
               <div class="text-xs text-gray-500 mt-1">域名，如 www.google.com 或 *.google.com</div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium mb-1">组织 (Organization)</label>
-                <UInput v-model="form.o" placeholder="例如：Google LLC" />
+                <UInput v-model="form.o" placeholder="例如：Google LLC" class="w-full" />
               </div>
               <div>
                 <label class="block text-sm font-medium mb-1">部门 (Organizational Unit)</label>
-                <UInput v-model="form.ou" placeholder="例如：IT Dept" />
+                <UInput v-model="form.ou" placeholder="例如：IT Dept" class="w-full" />
               </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium mb-1">城市 (Locality)</label>
-                <UInput v-model="form.l" placeholder="例如：Mountain View" />
+                <UInput v-model="form.l" placeholder="例如：Mountain View" class="w-full" />
               </div>
               <div>
                 <label class="block text-sm font-medium mb-1">省份 (State/Province)</label>
-                <UInput v-model="form.st" placeholder="例如：California" />
+                <UInput v-model="form.st" placeholder="例如：California" class="w-full" />
               </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium mb-1">国家代码 (Country) <span class="text-red-500">*</span></label>
-                <UInput v-model="form.c" placeholder="CN" maxlength="2" />
+                <UInput v-model="form.c" placeholder="CN" maxlength="2" class="w-full" />
               </div>
               <div>
                 <label class="block text-sm font-medium mb-1">加密位数</label>

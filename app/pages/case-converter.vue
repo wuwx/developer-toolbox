@@ -73,7 +73,7 @@
               :model-value="convert(inputText, converter.id)"
               readonly
               size="md"
-              class="font-mono"
+              class="font-mono w-full"
             />
           </div>
         </div>

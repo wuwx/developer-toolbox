@@ -11,7 +11,7 @@
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
         <template #header><h3 class="font-semibold">输入 JSON</h3></template>
-        <UTextarea v-model="input" placeholder='{"name":"张三","age":25}' :rows="20" class="font-mono text-sm" />
+        <UTextarea v-model="input" placeholder='{"name":"张三","age":25}' :rows="20" class="font-mono text-sm w-full" />
       </UCard>
 
       <UCard>
@@ -21,7 +21,7 @@
             <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, 'JSON')">复制</UButton>
           </div>
         </template>
-        <UTextarea v-model="output" :rows="20" readonly class="font-mono text-sm" />
+        <UTextarea v-model="output" :rows="20" readonly class="font-mono text-sm w-full" />
       </UCard>
     </div>
 

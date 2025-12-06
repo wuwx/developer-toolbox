@@ -16,7 +16,7 @@
             <UButton color="primary" variant="soft" size="sm" @click="jsonToCsv">转为 CSV →</UButton>
           </div>
         </template>
-        <UTextarea v-model="jsonInput" placeholder='[{"name":"张三","age":25},{"name":"李四","age":30}]' :rows="20" class="font-mono text-sm" />
+        <UTextarea v-model="jsonInput" placeholder='[{"name":"张三","age":25},{"name":"李四","age":30}]' :rows="20" class="font-mono text-sm w-full" />
       </UCard>
 
       <UCard>
@@ -26,7 +26,7 @@
             <h3 class="font-semibold">CSV</h3>
           </div>
         </template>
-        <UTextarea v-model="csvOutput" placeholder="name,age&#10;张三,25&#10;李四,30" :rows="20" class="font-mono text-sm" />
+        <UTextarea v-model="csvOutput" placeholder="name,age&#10;张三,25&#10;李四,30" :rows="20" class="font-mono text-sm w-full" />
       </UCard>
     </div>
 

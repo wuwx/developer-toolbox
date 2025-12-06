@@ -11,8 +11,8 @@
       <UCard>
         <template #header><h3 class="font-semibold">输入</h3></template>
         <div class="space-y-4">
-          <UInput v-model="password" type="password" placeholder="密码" size="xl" />
-          <UTextarea v-model="input" placeholder="输入文本..." :rows="12" />
+          <UInput v-model="password" type="password" placeholder="密码" size="xl" class="w-full" />
+          <UTextarea v-model="input" placeholder="输入文本..." :rows="12" class="w-full" />
           <div class="grid grid-cols-2 gap-4">
             <UButton block color="primary" @click="encrypt">加密</UButton>
             <UButton block color="primary" @click="decrypt">解密</UButton>
@@ -26,7 +26,7 @@
             <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, '结果')">复制</UButton>
           </div>
         </template>
-        <UTextarea v-model="output" :rows="15" readonly />
+        <UTextarea v-model="output" :rows="15" readonly class="w-full" />
       </UCard>
     </div>
   </UContainer>

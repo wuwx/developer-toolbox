@@ -22,7 +22,7 @@
           </div>
           <div class="lg:col-span-9">
             <label class="block text-sm font-medium mb-1">URL</label>
-            <UInput v-model="url" placeholder="https://api.example.com/v1/users" />
+            <UInput v-model="url" placeholder="https://api.example.com/v1/users" class="w-full" />
           </div>
         </div>
 

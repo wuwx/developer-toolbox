@@ -26,7 +26,7 @@
             v-model="oldText"
             placeholder="输入原始文本..."
             :rows="15"
-            class="font-mono"
+            class="font-mono w-full"
           />
         </UCard>
 
@@ -41,7 +41,7 @@
             v-model="newText"
             placeholder="输入新文本..."
             :rows="15"
-            class="font-mono"
+            class="font-mono w-full"
           />
         </UCard>
       </div>

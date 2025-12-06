@@ -10,7 +10,7 @@
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
         <template #header><h3 class="font-semibold">输入</h3></template>
-        <UTextarea v-model="input" placeholder="输入文本..." :rows="15"/>
+        <UTextarea v-model="input" placeholder="输入文本..." :rows="15" class="w-full"/>
         <div class="mt-4 grid grid-cols-2 gap-4">
           <UButton block color="primary" @click="compress">压缩</UButton>
           <UButton block color="primary" @click="decompress">解压</UButton>
@@ -23,7 +23,7 @@
             <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, 'Gzip')">复制</UButton>
           </div>
         </template>
-        <UTextarea v-model="output" :rows="15" readonly/>
+        <UTextarea v-model="output" :rows="15" readonly class="w-full"/>
         <div v-if="ratio" class="mt-4 text-sm text-gray-500">压缩率: {{ ratio }}%</div>
       </UCard>
     </div>

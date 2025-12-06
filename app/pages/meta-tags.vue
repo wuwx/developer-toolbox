@@ -11,11 +11,11 @@
       <UCard>
         <template #header><h3 class="font-semibold">网站信息</h3></template>
         <div class="space-y-4">
-          <UInput v-model="title" placeholder="网站标题" size="xl"/>
-          <UTextarea v-model="description" placeholder="网站描述" :rows="3"/>
-          <UInput v-model="keywords" placeholder="关键词（逗号分隔）" size="xl"/>
-          <UInput v-model="author" placeholder="作者" size="xl"/>
-          <UInput v-model="image" placeholder="图片 URL" size="xl"/>
+          <UInput v-model="title" placeholder="网站标题" size="xl" class="w-full"/>
+          <UTextarea v-model="description" placeholder="网站描述" :rows="3" class="w-full"/>
+          <UInput v-model="keywords" placeholder="关键词（逗号分隔）" size="xl" class="w-full"/>
+          <UInput v-model="author" placeholder="作者" size="xl" class="w-full"/>
+          <UInput v-model="image" placeholder="图片 URL" size="xl" class="w-full"/>
           <UButton block color="primary" @click="generate">生成 Meta 标签</UButton>
         </div>
       </UCard>

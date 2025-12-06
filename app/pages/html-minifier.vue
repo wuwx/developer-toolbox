@@ -26,7 +26,7 @@
           v-model="inputHtml"
           placeholder="粘贴 HTML 代码..."
           :rows="20"
-          class="font-mono text-sm"
+          class="font-mono text-sm w-full"
         />
 
         <div class="mt-4 text-sm text-gray-500">
@@ -59,7 +59,7 @@
           v-model="outputHtml"
           :rows="20"
           readonly
-          class="font-mono text-sm"
+          class="font-mono text-sm w-full"
         />
 
         <div class="mt-4 flex items-center justify-between text-sm">

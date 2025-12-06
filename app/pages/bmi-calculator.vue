@@ -12,11 +12,11 @@
         <div class="space-y-6">
           <div>
             <label class="text-sm font-medium mb-2 block">身高 (cm)</label>
-            <UInput v-model="height" type="number" size="xl" placeholder="170" />
+            <UInput v-model="height" type="number" size="xl" placeholder="170" class="w-full" />
           </div>
           <div>
             <label class="text-sm font-medium mb-2 block">体重 (kg)</label>
-            <UInput v-model="weight" type="number" size="xl" placeholder="65" />
+            <UInput v-model="weight" type="number" size="xl" placeholder="65" class="w-full" />
           </div>
           <UButton block color="primary" size="lg" @click="calculate">计算 BMI</UButton>
           <div v-if="bmi" class="p-6 bg-gray-50 dark:bg-gray-900 rounded-lg text-center">
