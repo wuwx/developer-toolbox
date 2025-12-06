@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="密码强度检测"
-      description="评估密码安全性，提供改进建议"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.passwordStrength.title')" :description="$t('pages.passwordStrength.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-shield-check" class="w-10 h-10 text-white" />
@@ -13,26 +9,16 @@
     </UPageHeader>
 
     <div class="space-y-6">
-      <!-- 密码输入 -->
       <UCard>
         <template #header>
           <div class="flex items-center gap-2">
             <UIcon name="i-heroicons-key" class="w-5 h-5" />
-            <h3 class="font-semibold">输入密码</h3>
+            <h3 class="font-semibold">{{ $t('ui.inputPassword') }}</h3>
           </div>
         </template>
-
         <div class="space-y-4">
-          <div class="relative">
-            <UInput
-              v-model="password"
-              :type="showPassword ? 'text' : 'password'"
-              placeholder="输入要检测的密码..."
-              size="lg"
-              class="font-mono"
-            />
-          </div>
-          <UCheckbox v-model="showPassword" label="显示密码" size="sm" />
+          <UInput v-model="password" :type="showPassword ? 'text' : 'password'" :placeholder="$t('ui.inputPlaceholder')" size="lg" class="font-mono" />
+          <UCheckbox v-model="showPassword" :label="$t('ui.showPassword')" size="sm" />
         </div>
       </UCard>
 
@@ -178,6 +164,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const password = ref('')
 const showPassword = ref(false)
 
@@ -277,11 +266,5 @@ const suggestions = computed(() => {
   return tips
 })
 
-// SEO
-useHead({
-  title: '密码强度检测 - 在线密码安全评估 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线密码强度检测工具，评估密码安全性，提供改进建议。检测常见弱密码，保护账户安全。' }
-  ]
-})
+useHead({ title: t('pages.passwordStrength.title'), meta: [{ name: 'description', content: t('pages.passwordStrength.description') }] })
 </script>

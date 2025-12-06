@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="数据脱敏" description="敏感数据脱敏工具" align="center">
+    <UPageHeader :title="$t('pages.dataMask.title')" :description="$t('pages.dataMask.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-red-500 to-pink-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-eye-slash" class="w-10 h-10 text-white" />
@@ -39,6 +39,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const maskType = ref('phone')
 const input = ref('')
@@ -64,5 +67,5 @@ function mask() {
   }).join('\n')
 }
 
-useHead({ title: '数据脱敏 | 开发者工具箱' })
+useHead({ title: t('pages.dataMask.title') })
 </script>

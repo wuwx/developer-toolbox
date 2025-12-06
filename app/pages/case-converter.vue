@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="文本大小写转换"
-      description="支持 Camel、Snake、Kebab、Pascal 等多种命名风格互转"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.caseConverter.title')" :description="$t('pages.caseConverter.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-language" class="w-10 h-10 text-white" />
@@ -13,43 +9,21 @@
     </UPageHeader>
 
     <div class="grid lg:grid-cols-2 gap-6">
-      <!-- 输入区域 -->
       <div class="space-y-6">
         <UCard>
           <template #header>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <UIcon name="i-heroicons-document-text" class="w-5 h-5" />
-                <h3 class="font-semibold">输入文本</h3>
+                <h3 class="font-semibold">{{ $t('ui.inputText') }}</h3>
               </div>
-              <div class="flex gap-2">
-                <UButton
-                  v-if="inputText"
-                  color="neutral"
-                  variant="ghost"
-                  size="xs"
-                  icon="i-heroicons-x-mark"
-                  @click="inputText = ''"
-                >
-                  清空
-                </UButton>
-              </div>
+              <UButton v-if="inputText" color="neutral" variant="ghost" size="xs" icon="i-heroicons-x-mark" @click="inputText = ''">{{ $t('ui.clear') }}</UButton>
             </div>
           </template>
-
-          <UTextarea
-            v-model="inputText"
-            placeholder="在此输入要转换的文本..."
-            :rows="12"
-            autoresize
-            :maxrows="20"
-            class="font-mono text-sm w-full"
-            :ui="{ base: 'p-4' }"
-          />
+          <UTextarea v-model="inputText" :placeholder="$t('ui.inputPlaceholder')" :rows="12" autoresize :maxrows="20" class="font-mono text-sm w-full" :ui="{ base: 'p-4' }" />
         </UCard>
       </div>
 
-      <!-- 转换结果 -->
       <div class="space-y-4">
         <div v-for="converter in converters" :key="converter.id">
           <div class="flex items-center justify-between mb-1">
@@ -57,25 +31,9 @@
               {{ converter.name }}
               <span class="text-xs text-gray-500 font-normal ml-2">{{ converter.desc }}</span>
             </label>
-            <UButton
-              v-if="inputText"
-              color="neutral"
-              variant="ghost"
-              size="xs"
-              icon="i-heroicons-clipboard-document"
-              @click="copyToClipboard(convert(inputText, converter.id), converter.name)"
-            >
-              复制
-            </UButton>
+            <UButton v-if="inputText" color="neutral" variant="ghost" size="xs" icon="i-heroicons-clipboard-document" @click="copyToClipboard(convert(inputText, converter.id), converter.name)">{{ $t('ui.copy') }}</UButton>
           </div>
-          <div class="relative">
-            <UInput
-              :model-value="convert(inputText, converter.id)"
-              readonly
-              size="md"
-              class="font-mono w-full"
-            />
-          </div>
+          <UInput :model-value="convert(inputText, converter.id)" readonly size="md" class="font-mono w-full" />
         </div>
       </div>
     </div>
@@ -83,23 +41,26 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const inputText = ref('hello world example text')
 
-const converters = [
-  { id: 'lowercase', name: 'lower case', desc: '全小写' },
-  { id: 'uppercase', name: 'UPPER CASE', desc: '全大写' },
-  { id: 'camel', name: 'camelCase', desc: '驼峰式 (小)' },
-  { id: 'pascal', name: 'PascalCase', desc: '驼峰式 (大)' },
-  { id: 'snake', name: 'snake_case', desc: '下划线' },
-  { id: 'kebab', name: 'kebab-case', desc: '短横线' },
-  { id: 'constant', name: 'CONSTANT_CASE', desc: '常量式' },
-  { id: 'dot', name: 'dot.case', desc: '点号分隔' },
-  { id: 'path', name: 'path/case', desc: '路径分隔' },
-  { id: 'sentence', name: 'Sentence case', desc: '句首大写' },
-  { id: 'title', name: 'Title Case', desc: '标题式' },
-  { id: 'alternating', name: 'aLtErNaTiNg cAsE', desc: '交替大小写' }
-]
+const converters = computed(() => [
+  { id: 'lowercase', name: 'lower case', desc: t('ui.lowercase') },
+  { id: 'uppercase', name: 'UPPER CASE', desc: t('ui.uppercase') },
+  { id: 'camel', name: 'camelCase', desc: t('ui.camelCase') },
+  { id: 'pascal', name: 'PascalCase', desc: t('ui.pascalCase') },
+  { id: 'snake', name: 'snake_case', desc: t('ui.snakeCase') },
+  { id: 'kebab', name: 'kebab-case', desc: t('ui.kebabCase') },
+  { id: 'constant', name: 'CONSTANT_CASE', desc: t('ui.constantCase') },
+  { id: 'dot', name: 'dot.case', desc: t('ui.dotCase') },
+  { id: 'path', name: 'path/case', desc: t('ui.pathCase') },
+  { id: 'sentence', name: 'Sentence case', desc: t('ui.sentenceCase') },
+  { id: 'title', name: 'Title Case', desc: t('ui.titleCase') },
+  { id: 'alternating', name: 'aLtErNaTiNg cAsE', desc: t('ui.alternatingCase') }
+])
 
 function convert(text: string, type: string): string {
   if (!text) return ''
@@ -175,11 +136,5 @@ function capitalize(word: string): string {
   return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 }
 
-// SEO
-useHead({
-  title: '大小写转换工具 - Camel Snake Pascal Kebab | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线文本大小写转换工具，支持 CamelCase, Snake_case, Kebab-case, PascalCase 等多种命名规范互转。程序员必备变量名转换器。' }
-  ]
-})
+useHead({ title: t('pages.caseConverter.title'), meta: [{ name: 'description', content: t('pages.caseConverter.description') }] })
 </script>

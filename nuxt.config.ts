@@ -1,3 +1,5 @@
+import { defineNuxtConfig } from "nuxt/config";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -12,8 +14,39 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/ui',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@nuxtjs/i18n'
   ],
+
+  i18n: {
+    locales: [
+      {
+        code: 'zh-CN',
+        name: '简体中文',
+        file: 'zh-CN.ts'
+      },
+      {
+        code: 'en-US',
+        name: 'English',
+        file: 'en-US.ts'
+      }
+    ],
+    lazy: true,
+    defaultLocale: 'zh-CN',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: false,
+      fallbackLocale: 'zh-CN'
+    }
+  },
+  
+  // 禁用 fonts 功能
+  fonts: {
+    enabled: false
+  },
 
   // Nuxt UI 4 的图标配置
   icon: {
@@ -29,10 +62,7 @@ export default defineNuxtConfig({
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
       // 强制标准模式，解决怪异模式问题
-      htmlAttrs: {
-        lang: 'zh-CN'
-      },
-      // 强制添加 DOCTYPE
+      // lang 属性将由 i18n 模块自动设置
       title: '开发者工具箱',
       titleTemplate: '%s | 开发者工具箱',
       link: [

@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="Lorem 生成器+" description="生成占位文本" align="center">
+    <UPageHeader :title="$t('pages.loremGenerator.title')" :description="$t('pages.loremGenerator.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-document-text" class="w-10 h-10 text-white" />
@@ -33,8 +33,11 @@
 </template>
 
 <script setup lang="ts">
-const {copyToClipboard}=useToolClipboard()
-const type=ref('p')
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
+const { copyToClipboard } = useToolClipboard()
+const type = ref('p')
 const count=ref(3)
 const result=ref('')
 const lorem='Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -50,6 +53,6 @@ function generate(){
   }
 }
 
-onMounted(()=>generate())
-useHead({title:'Lorem 生成器+ | 开发者工具箱'})
+onMounted(() => generate())
+useHead({ title: t('pages.loremGenerator.title') })
 </script>

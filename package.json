@@ -16,7 +16,9 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^1.11.0",
+    "@nuxt/fonts": "^0.12.1",
     "@nuxt/ui": "^4.2.1",
+    "@nuxtjs/i18n": "^10.2.1",
     "@types/qrcode": "^1.5.6",
     "crypto-js": "^4.2.0",
     "js-md4": "^0.3.2",

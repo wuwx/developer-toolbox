@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="Border Radius 生成器"
-      description="可视化调整圆角，支持生成复杂的 8 值圆角形状"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.borderRadius.title')" :description="$t('pages.borderRadius.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-stop" class="w-10 h-10 text-white" />
@@ -171,6 +167,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 
 const advanced = ref(false)
@@ -211,11 +210,5 @@ function applyShape(shape: typeof shapes[0]) {
   Object.assign(radii, shape.radii)
 }
 
-// SEO
-useHead({
-  title: 'Border Radius 生成器 - CSS 圆角工具 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线 CSS Border Radius 生成器，可视化配置圆角属性，支持 8 值复杂圆角生成，轻松制作不规则形状。' }
-  ]
-})
+useHead({ title: t('pages.borderRadius.title'), meta: [{ name: 'description', content: t('pages.borderRadius.description') }] })
 </script>

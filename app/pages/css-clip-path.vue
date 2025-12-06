@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="CSS Clip Path" description="CSS 裁剪路径生成器" align="center">
+    <UPageHeader :title="$t('pages.cssClipPath.title')" :description="$t('pages.cssClipPath.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-scissors" class="w-10 h-10 text-white" />
@@ -9,17 +9,17 @@
     </UPageHeader>
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
-        <template #header><h3 class="font-semibold">形状</h3></template>
+        <template #header><h3 class="font-semibold">{{ $t('ui.shape') }}</h3></template>
         <div class="space-y-4">
-          <USelect v-model="shape" :options="shapes.map(s=>({label:s.name,value:s.value}))"/>
+          <USelect v-model="shape" :options="shapes"/>
           <div class="p-4 bg-gray-900 rounded-lg">
             <pre class="text-xs text-green-400">clip-path: {{currentShape}};</pre>
           </div>
-          <UButton block color="primary" variant="soft" @click="copyToClipboard('clip-path: '+currentShape+';','CSS')">复制 CSS</UButton>
+          <UButton block color="primary" variant="soft" @click="copyToClipboard('clip-path: '+currentShape+';','CSS')">{{ $t('ui.copyCss') }}</UButton>
         </div>
       </UCard>
       <UCard>
-        <template #header><h3 class="font-semibold">预览</h3></template>
+        <template #header><h3 class="font-semibold">{{ $t('ui.preview') }}</h3></template>
         <div class="flex items-center justify-center p-12 bg-gray-50 dark:bg-gray-900 rounded-lg">
           <div class="w-48 h-48 bg-gradient-to-br from-primary-500 to-purple-600" :style="{clipPath:currentShape}"></div>
         </div>
@@ -29,15 +29,17 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const {copyToClipboard}=useToolClipboard()
 const shape=ref('circle')
-const shapes=[
-  {name:'圆形',value:'circle'},
-  {name:'椭圆',value:'ellipse'},
-  {name:'三角形',value:'triangle'},
-  {name:'菱形',value:'rhombus'},
-  {name:'五角星',value:'star'}
-]
+const shapes=computed(()=>[
+  {label:t('ui.circle'),value:'circle'},
+  {label:t('ui.ellipse'),value:'ellipse'},
+  {label:t('ui.triangle'),value:'triangle'},
+  {label:t('ui.rhombus'),value:'rhombus'},
+  {label:t('ui.star'),value:'star'}
+])
 
 const shapeValues:Record<string,string>={
   circle:'circle(50%)',
@@ -49,5 +51,5 @@ const shapeValues:Record<string,string>={
 
 const currentShape=computed(()=>shapeValues[shape.value])
 
-useHead({title:'CSS Clip Path | 开发者工具箱'})
+useHead({title:t('pages.cssClipPath.title'),meta:[{name:'description',content:t('pages.cssClipPath.description')}]})
 </script>

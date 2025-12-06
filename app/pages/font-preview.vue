@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="字体预览" description="Web 字体预览工具" align="center">
+    <UPageHeader :title="$t('pages.fontPreview.title')" :description="$t('pages.fontPreview.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-language" class="w-10 h-10 text-white" />
@@ -10,9 +10,9 @@
     <div class="space-y-6">
       <UCard>
         <div class="space-y-4">
-          <UInput v-model="text" placeholder="输入预览文本..." size="xl" class="w-full" />
+          <UInput v-model="text" :placeholder="$t('ui.enterPreviewText')" size="xl" class="w-full" />
           <div>
-            <label class="text-sm font-medium mb-2 block">字体大小: {{ fontSize }}px</label>
+            <label class="text-sm font-medium mb-2 block">{{ $t('ui.fontSize') }}: {{ fontSize }}px</label>
             <URange v-model="fontSize" :min="12" :max="120" />
           </div>
         </div>
@@ -30,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const text = ref('')
 const fontSize = ref(32)
 const fonts = [
@@ -45,5 +47,5 @@ const fonts = [
   '-apple-system, BlinkMacSystemFont'
 ]
 
-useHead({ title: '字体预览 | 开发者工具箱' })
+useHead({ title: t('pages.fontPreview.title'), meta: [{ name: 'description', content: t('pages.fontPreview.description') }] })
 </script>

@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="单位换算器"
-      description="常用单位换算工具，支持数据存储、长度、重量等"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.unitConverter.title')" :description="$t('pages.unitConverter.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-500 to-slate-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-scale" class="w-10 h-10 text-white" />
@@ -53,10 +49,9 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({ layout: 'default' })
 
+const { t } = useI18n()
 const type = ref<'data' | 'length' | 'weight'>('data')
 const inputValue = ref(1)
 const fromUnit = ref('MB')
@@ -115,10 +110,5 @@ const convert = (val: number | string, from: string, to: string) => {
   return parseFloat(result.toFixed(6))
 }
 
-useHead({
-  title: '单位换算器 - 数据长度重量转换 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线单位换算工具，支持数据存储、长度、重量等常用单位。' }
-  ]
-})
+useHead({ title: t('pages.unitConverter.title'), meta: [{ name: 'description', content: t('pages.unitConverter.description') }] })
 </script>

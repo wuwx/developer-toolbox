@@ -8,7 +8,7 @@
             <!-- Logo -->
             <NuxtLink to="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <div class="text-3xl">🛠️</div>
-              <div class="font-bold text-lg text-gray-900 dark:text-white">开发者工具箱</div>
+              <div class="font-bold text-lg text-gray-900 dark:text-white">{{ $t('hero.title') }}</div>
             </NuxtLink>
 
             <!-- 导航链接 -->
@@ -18,7 +18,7 @@
                 class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 transition-all"
                 exact-active-class="text-primary-600 dark:text-primary-400 bg-gray-50 dark:bg-gray-800/50"
               >
-                首页
+                {{ $t('common.home') }}
               </NuxtLink>
 
               <!-- 自定义 hover 下拉，每个分组一个相对容器 -->
@@ -35,7 +35,7 @@
                   trailing-icon="i-heroicons-chevron-down"
                   size="sm"
                 >
-                  {{ group.label }}
+                  {{ getCategoryLabel(group.label) }}
                 </UButton>
 
                 <!-- 连接桥梁：消除按钮和面板之间的空隙 -->
@@ -67,10 +67,10 @@
                         </div>
                         <div class="min-w-0">
                           <div class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 truncate">
-                            {{ item.label }}
+                            {{ getToolLabel(item.to) }}
                           </div>
                           <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
-                            {{ item.desc }}
+                            {{ getToolDesc(item.to) }}
                           </div>
                         </div>
                       </NuxtLink>
@@ -95,10 +95,10 @@
                           </div>
                           <div class="min-w-0 flex-1">
                             <div class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 truncate">
-                              {{ section.label }}
+                              {{ getSectionLabel(section.label) }}
                             </div>
                             <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
-                              文本代码相关工具
+                              {{ getCategoryLabel(group.label) }}
                             </div>
                           </div>
                           <!-- 展开箭头图标 -->
@@ -126,10 +126,10 @@
                             </div>
                             <div class="min-w-0">
                               <div class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 truncate">
-                                {{ item.label }}
+                                {{ getToolLabel(item.to) }}
                               </div>
                               <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
-                                {{ item.desc }}
+                                {{ getToolDesc(item.to) }}
                               </div>
                             </div>
                           </NuxtLink>
@@ -154,10 +154,10 @@
                       </div>
                       <div class="min-w-0">
                         <div class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 truncate">
-                          {{ item.label }}
+                          {{ getToolLabel(item.to) }}
                         </div>
                         <div class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
-                          {{ item.desc }}
+                          {{ getToolDesc(item.to) }}
                         </div>
                       </div>
                     </NuxtLink>
@@ -176,7 +176,7 @@
               class="hidden sm:flex lg:w-48 justify-between"
               @click="isOpen = true"
             >
-              <span class="hidden lg:inline">搜索工具...</span>
+              <span class="hidden lg:inline">{{ $t('common.search') }}</span>
               <div class="flex items-center gap-1 text-xs text-gray-500">
                 <UKbd>{{ metaSymbol }}</UKbd>
                 <UKbd>K</UKbd>
@@ -189,6 +189,17 @@
               class="sm:hidden"
               @click="isOpen = true"
             />
+
+            <!-- 语言切换按钮 -->
+            <UButton
+              color="neutral"
+              variant="ghost"
+              :icon="locale === 'zh-CN' ? 'i-heroicons-language' : 'i-heroicons-language'"
+              @click="toggleLocale"
+              :title="locale === 'zh-CN' ? 'Switch to English' : '切换到中文'"
+            >
+              <span class="hidden sm:inline">{{ locale === 'zh-CN' ? 'EN' : '中' }}</span>
+            </UButton>
 
             <!-- 主题切换按钮 -->
             <UColorModeButton />
@@ -205,7 +216,7 @@
     <!-- 全局页脚 -->
     <footer class="border-t border-gray-200 dark:border-gray-800 py-8 mt-auto bg-white dark:bg-gray-900">
       <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-        <p> 2025 开发者工具箱. All rights reserved.</p>
+        <p>{{ $t('footer.copyright') }}</p>
       </div>
     </footer>
 
@@ -221,8 +232,8 @@
           @click.stop
         >
           <UCommandPalette
-            :groups="[{ id: 'tools', label: '工具列表', commands: flatTools }]"
-            placeholder="搜索工具..."
+            :groups="[{ id: 'tools', label: $t('common.toolList'), commands: flatTools }]"
+            :placeholder="$t('common.searchPlaceholder')"
             icon="i-heroicons-magnifying-glass"
             :ui="{ 
               root: 'rounded-xl shadow-2xl overflow-hidden',
@@ -238,6 +249,9 @@
 
 <script setup lang="ts">
 import { tools as toolGroups, flatTools } from '~/utils/tools'
+
+const { locale, setLocale } = useI18n()
+const { getToolLabel, getToolDesc, getCategoryLabel, getSectionLabel } = useToolsI18n()
 
 const navGroups = computed(() => {
   return toolGroups.map(group => {
@@ -255,6 +269,12 @@ const openGroup = ref<string | null>(null)
 
 const isOpen = ref(false)
 const router = useRouter()
+
+// 切换语言
+const toggleLocale = () => {
+  const newLocale = locale.value === 'zh-CN' ? 'en-US' : 'zh-CN'
+  setLocale(newLocale)
+}
 
 // 检测操作系统，显示正确的快捷键符号
 const isMac = computed(() => {

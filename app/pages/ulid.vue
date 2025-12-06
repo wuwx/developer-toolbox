@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="ULID 生成器"
-      description="生成 ULID (Universally Unique Lexicographically Sortable Identifier)，一种可排序的 UUID 替代方案"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.ulid.title')" :description="$t('pages.ulid.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-bars-arrow-down" class="w-10 h-10 text-white" />
@@ -14,38 +10,18 @@
 
     <ToolCard>
       <div class="space-y-6">
-        <!-- 配置 -->
         <div class="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700/50 flex items-center justify-between">
           <div class="flex items-center gap-4">
-            <label class="text-sm font-medium">生成数量</label>
-            <div class="w-32">
-              <UInput type="number" v-model="count" min="1" max="50" class="w-full" />
-            </div>
+            <label class="text-sm font-medium">{{ $t('ui.count') }}</label>
+            <div class="w-32"><UInput type="number" v-model="count" min="1" max="50" class="w-full" /></div>
           </div>
-          
-          <UButton
-            size="lg"
-            color="primary"
-            icon="i-heroicons-arrow-path"
-            @click="generate"
-          >
-            重新生成
-          </UButton>
+          <UButton size="lg" color="primary" icon="i-heroicons-arrow-path" @click="generate">{{ $t('ui.regenerate') }}</UButton>
         </div>
 
-        <!-- 结果 -->
         <div v-if="ulids.length > 0" class="space-y-4 animate-fade-in">
           <div class="flex items-center justify-between">
-            <h3 class="font-semibold">生成结果</h3>
-            <UButton
-              color="neutral"
-              variant="soft"
-              size="sm"
-              icon="i-heroicons-clipboard-document-list"
-              @click="copyAll"
-            >
-              复制全部
-            </UButton>
+            <h3 class="font-semibold">{{ $t('ui.results') }}</h3>
+            <UButton color="neutral" variant="soft" size="sm" icon="i-heroicons-clipboard-document-list" @click="copyAll">{{ $t('ui.copyAll') }}</UButton>
           </div>
 
           <div class="grid gap-2">
@@ -71,18 +47,17 @@
       </div>
     </ToolCard>
 
-    <ToolInfo title="关于 ULID" :items="accordionItems" />
+    <ToolInfo :title="$t('ui.aboutUlid')" :items="accordionItems" />
   </UContainer>
 </template>
 
 <script setup lang="ts">
 import type { AccordionItem } from '~/types'
 
-const { copyToClipboard } = useToolClipboard()
+definePageMeta({ layout: 'default' })
 
-definePageMeta({
-  layout: 'default'
-})
+const { t } = useI18n()
+const { copyToClipboard } = useToolClipboard()
 
 const count = ref(5)
 const ulids = ref<string[]>([])
@@ -144,32 +119,27 @@ const generate = () => {
 }
 
 const copyAll = () => {
-  copyToClipboard(ulids.value.join('\n'), '所有 ULID')
+  copyToClipboard(ulids.value.join('\n'), t('ui.allUlid'))
 }
 
 onMounted(() => {
   generate()
 })
 
-const accordionItems: AccordionItem[] = [
+const accordionItems = computed<AccordionItem[]>(() => [
   {
     slot: 'what',
-    label: '什么是 ULID？',
+    label: t('ui.whatIsUlid'),
     icon: 'i-heroicons-question-mark-circle',
-    content: 'ULID (Universally Unique Lexicographically Sortable Identifier) 是一种旨在替代 UUID 的标识符。它由 26 个字符组成（Base32 编码），包含 48 位时间戳和 80 位随机数。'
+    content: t('ui.ulidDescription')
   },
   {
     slot: 'features',
-    label: 'ULID 的特点',
+    label: t('ui.ulidFeatures'),
     icon: 'i-heroicons-star',
-    content: '1. 字典序可排序（按时间顺序）。\n2. 兼容 UUID（128 位）。\n3. 不包含特殊字符（URL 安全，不区分大小写）。\n4. 毫秒级精度。'
+    content: t('ui.ulidFeaturesContent')
   }
-]
+])
 
-useHead({
-  title: 'ULID 生成器 - 可排序唯一 ID | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线 ULID 生成器，生成可排序的唯一标识符，替代 UUID。' }
-  ]
-})
+useHead({ title: t('pages.ulid.title'), meta: [{ name: 'description', content: t('pages.ulid.description') }] })
 </script>

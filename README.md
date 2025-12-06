@@ -1,114 +1,125 @@
 # 🛠️ Developer Toolbox
 
-一个专为开发者打造的现代化在线工具集合，包含 **120+** 个常用工具。
-基于 **Nuxt 4** + **Nuxt UI** 构建，采用 **100% 纯客户端** 技术实现，确保数据安全，无服务器交互。
+A modern online tool collection designed for developers, featuring **120+** commonly used tools.
+Built with **Nuxt 4** + **Nuxt UI**, using **100% pure client-side** technology to ensure data security with no server interaction.
 
 [![GitHub stars](https://img.shields.io/github/stars/wuwx/developer-toolbox?style=social)](https://github.com/wuwx/developer-toolbox)
 [![GitHub forks](https://img.shields.io/github/forks/wuwx/developer-toolbox?style=social)](https://github.com/wuwx/developer-toolbox)
 [![License](https://img.shields.io/github/license/wuwx/developer-toolbox)](https://github.com/wuwx/developer-toolbox/blob/main/LICENSE)
 
-![工具箱预览](public/og-image.png)
+![Toolbox Preview](public/og-image.png)
 
-## ✨ 特性
+English | [简体中文](README.zh-CN.md)
 
-- **🔒 安全隐私**：所有数据处理均在浏览器本地完成，绝不上传服务器
-- **⚡️ 极速响应**：基于 Nuxt 4 和 Vue 3，加载速度极快，支持 PWA
-- **🎨 现代化 UI**：使用 Nuxt UI 和 TailwindCSS 4，支持明暗色模式自动切换
-- **🔍 全局搜索**：内置 Command Palette (`Cmd+K`)，快速跳转任意工具
-- **📱 响应式设计**：完美适配桌面、平板和移动端设备
-- **🎯 智能分组**：工具按类别分组，支持二级、三级级联菜单，快速发现和定位
+## ✨ Features
 
-## 🧰 工具列表 (120+)
+- **🔒 Secure & Private**: All data processing is done locally in your browser, never uploaded to servers
+- **⚡️ Lightning Fast**: Built on Nuxt 4 and Vue 3, extremely fast loading with PWA support
+- **🎨 Modern UI**: Using Nuxt UI and TailwindCSS 4, with automatic dark/light mode switching
+- **🔍 Global Search**: Built-in Command Palette (`Cmd+K`) for quick access to any tool
+- **📱 Responsive Design**: Perfect adaptation for desktop, tablet, and mobile devices
+- **🎯 Smart Grouping**: Tools organized by category with 2-3 level cascading menus for quick discovery
+- **🌍 Internationalization**: Support for Chinese and English with automatic browser language detection
 
-### 🔐 编码加密 (21 个工具)
-**常用工具**：MD5、Base64、URL编码、JWT解码、AES加密
+## 🧰 Tool List (120+)
 
-**哈希算法**：MD4、SHA1、SHA256、SHA512、NTLM、Bcrypt、文件哈希
+### 🔐 Encoding & Encryption (21 tools)
+**Common Tools**: MD5, Base64, URL Encode, JWT Decoder, AES Encrypt
 
-**国密算法**：SM3国密哈希、SM4国密加密
+**Hash Algorithms**: MD4, SHA1, SHA256, SHA512, NTLM, Bcrypt, File Hash
 
-**编码转换**：Escape、Base32、Hex编码、ROT13、Gzip、文本加密
+**Chinese Crypto**: SM3 Hash, SM4 Encrypt
 
-### 🎨 图形视觉 (18 个工具)
-**常用工具**：CSS渐变、颜色转换器、Box Shadow、Flexbox生成器、调色板
+**Encoding Conversion**: Escape, Base32, Hex Encode, ROT13, Gzip, Text Encrypt
 
-**CSS效果**：CSS滤镜、CSS阴影、Text Shadow、圆角生成、Clip Path、Transform
+### 🎨 Graphics & Visual (18 tools)
+**Common Tools**: CSS Gradient, Color Converter, Box Shadow, Flexbox Generator, Color Palette
 
-**布局动画**：Grid生成器、动画生成器、缓动函数、CSS单位转换
+**CSS Effects**: CSS Filter, CSS Shadow, Text Shadow, Border Radius, Clip Path, Transform
 
-**图片字体**：Gradient、Image to Base64、字体预览
+**Layout & Animation**: Grid Generator, Animation Generator, Easing Functions, CSS Unit Converter
 
-### 📝 文本代码 (33 个工具)
-**常用工具**：JSON格式化、正则测试、Markdown、文本对比、文本统计
+**Image & Font**: Gradient, Image to Base64, Font Preview
 
-**格式转换**：JSON转TS、XML格式化、YAML转JSON、CSV转JSON、列表转换器、大小写转换
+### 📝 Text & Code (33 tools)
+**Common Tools**: JSON Formatter, Regex Tester, Markdown, Text Diff, Text Stats
 
-**SQL & 数据**：SQL格式化、SQL生成器、JSON路径提取、JSON对比、Markdown表格
+**Format Conversion**: JSON to TS, XML Formatter, YAML to JSON, CSV to JSON, List Converter, Case Converter
 
-**代码压缩**：HTML压缩、CSS压缩、JS压缩、SVG优化
+**SQL & Data**: SQL Formatter, SQL Generator, JSON Path, JSON Diff, Markdown Table
 
-**文本处理**：HTML实体编码、Slugify转换、文本去重、敏感词过滤、ASCII Art、Lorem+
+**Code Minify**: HTML Minifier, CSS Minifier, JS Minifier, SVG Optimizer
 
-**正则工具**：正则速查、Regex Tester、Text Diff、Meta标签
+**Text Processing**: HTML Entity, Slugify, Text Deduplicate, Word Filter, ASCII Art, Lorem+
 
-**中文处理**：拼音转换、繁简转换、摩斯电码
+**Regex & Tools**: Regex Cheatsheet, Regex Tester, Text Diff, Meta Tags
 
-### 🔄 格式转换 (10 个工具)
-**时间日期**：时间戳转换
+**Chinese Processing**: Pinyin Converter, Traditional/Simplified, Morse Code
 
-**数值转换**：单位换算、进制转换、数字转金额、IPv4转换
+### 🔄 Format Converter (10 tools)
+**Time & Date**: Timestamp Converter
 
-**编码转换**：Unicode转换、颜色转换
+**Number Conversion**: Unit Converter, Base Converter, Number to Words, IPv4 Converter
 
-**图片处理**：图片Base64、图片压缩、JSON↔CSV
+**Encoding Conversion**: Unicode Converter, Color Converter
 
-### 🖥️ 运维网络 (8 个工具)
-**容器运维**：Curl构建器、Docker转Compose、Chmod计算器、CIDR计算器
+**Image Processing**: Image Base64, Image Compress, JSON↔CSV
 
-**网络调试**：HTTP Headers、日志解析
+### 🖥️ DevOps & Network (8 tools)
+**Container & DevOps**: Curl Builder, Docker to Compose, Chmod Calculator, CIDR Calculator
 
-**代码运行**：代码沙箱、性能测试
+**Network Debug**: HTTP Headers, Log Parser
 
-### 🎲 数据生成 (13 个工具)
-**常用工具**：UUID v4、随机密码、二维码生成、Lorem Ipsum、数据生成器
+**Code Execution**: Code Sandbox, Benchmark
 
-**UUID & ID**：UUID v1、UUID v3、UUID v5、ULID生成、Nano ID
+### 🎲 Data Generator (13 tools)
+**Common Tools**: UUID v4, Password Generator, QR Code, Lorem Ipsum, Data Generator
 
-**其他生成器**：MAC地址生成、随机端口、Cron表达式
+**UUID & ID**: UUID v1, UUID v3, UUID v5, ULID, Nano ID
 
-### 🔍 查询辅助 (17 个工具)
-**常用工具**：HTTP状态码、URL解析、密码强度、二维码识别、科学计算器
+**Other Generators**: MAC Generator, Random Port, Cron Expression
 
-**Web & 网络**：SSL证书解码、CSR生成器、User-Agent、MIME Types、键盘键位
+### 🔍 Query & Helper (17 tools)
+**Common Tools**: HTTP Status, URL Parser, Password Strength, QR Scanner, Calculator
 
-**安全数据**：密码检测、数据脱敏
+**Web & Network**: SSL Cert Decoder, CSR Generator, User-Agent, MIME Types, Keycode
 
-**生活工具**：番茄钟、BMI计算器、世界时钟、倒计时、汇率换算
+**Security & Data**: Password Checker, Data Mask
 
-## 🚀 本地开发
+**Life Tools**: Pomodoro, BMI Calculator, World Clock, Countdown, Currency Converter
+
+## 🚀 Local Development
 
 ```bash
-# 1. 克隆项目
+# 1. Clone the project
 git clone https://github.com/wuwx/developer-toolbox.git
 
-# 2. 安装依赖
+# 2. Install dependencies
 pnpm install
 
-# 3. 启动开发服务器
+# 3. Start development server
 pnpm dev
 ```
 
-访问 http://localhost:3000 即可看到效果。
+Visit http://localhost:3000 to see the result.
 
-## 📦 部署
+## 📦 Deployment
 
-本项目配置为静态站点生成 (`nuxt generate`)，可以部署到任何静态托管服务（GitHub Pages, Vercel, Netlify 等）。
+This project is configured for static site generation (`nuxt generate`) and can be deployed to any static hosting service (GitHub Pages, Vercel, Netlify, etc.).
 
-### GitHub Pages 部署
+### GitHub Pages Deployment
 
-项目包含自动部署 Workflow。只需将代码推送到 `main` 分支，GitHub Actions 会自动构建并部署到 `gh-pages` 分支。
+The project includes an automatic deployment workflow. Simply push code to the `main` branch, and GitHub Actions will automatically build and deploy to the `gh-pages` branch.
 
-请在 GitHub 仓库设置中将 Pages Source 设置为 `gh-pages` 分支。
+Please set the Pages Source to the `gh-pages` branch in your GitHub repository settings.
+
+## 🌍 Internationalization
+
+The project supports Chinese (Simplified) and English:
+
+- **Automatic Detection**: Automatically detects browser language and switches accordingly
+- **Manual Switch**: Users can manually switch languages using the language toggle button in the header
+- **Language Persistence**: Selected language is saved in cookies for future visits
 
 ## 📄 License
 

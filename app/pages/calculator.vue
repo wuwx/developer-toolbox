@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="科学计算器" description="在线科学计算器" align="center">
+    <UPageHeader :title="$t('pages.calculator.title')" :description="$t('pages.calculator.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-calculator" class="w-10 h-10 text-white" />
@@ -23,6 +23,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const display = ref('')
 const buttons = ['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+','C','√','²','%']
 
@@ -51,5 +54,5 @@ function getColor(btn: string) {
   return 'neutral'
 }
 
-useHead({ title: '科学计算器 | 开发者工具箱' })
+useHead({ title: t('pages.calculator.title') })
 </script>

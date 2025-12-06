@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="HTTP 请求构建器" description="构建和预览 HTTP 请求" align="center">
+    <UPageHeader :title="$t('pages.httpClient.title')" :description="$t('pages.httpClient.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-bolt" class="w-10 h-10 text-white" />
@@ -9,7 +9,7 @@
     </UPageHeader>
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
-        <template #header><h3 class="font-semibold">请求配置</h3></template>
+        <template #header><h3 class="font-semibold">{{ $t('ui.requestConfig') }}</h3></template>
         <div class="space-y-4">
           <USelect v-model="method" :options="['GET','POST','PUT','DELETE','PATCH'].map(m => ({label:m,value:m}))" class="w-full" />
           <UInput v-model="url" placeholder="https://api.example.com/users" size="xl" class="w-full"/>
@@ -20,8 +20,8 @@
       <UCard>
         <template #header>
           <div class="flex justify-between items-center">
-            <h3 class="font-semibold">生成的请求</h3>
-            <UButton color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(generatedCode,'HTTP请求')">复制</UButton>
+            <h3 class="font-semibold">{{ $t('ui.generatedRequest') }}</h3>
+            <UButton color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(generatedCode,'HTTP')">{{ $t('ui.copy') }}</UButton>
           </div>
         </template>
         <div class="p-4 bg-gray-900 rounded-lg">
@@ -33,6 +33,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const {copyToClipboard}=useToolClipboard()
 const method=ref('GET')
 const url=ref('https://api.example.com/users')
@@ -66,5 +68,5 @@ ${headerObj}
 })`
 })
 
-useHead({title:'HTTP 请求构建器 | 开发者工具箱'})
+useHead({title:t('pages.httpClient.title'),meta:[{name:'description',content:t('pages.httpClient.description')}]})
 </script>

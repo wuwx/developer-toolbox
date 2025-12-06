@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="Pomodoro 番茄钟"
-      description="简单实用的专注时钟，支持自定义时间、浏览器通知"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.pomodoro.title')" :description="$t('pages.pomodoro.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-clock" class="w-10 h-10 text-white" />
@@ -132,6 +128,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
+
 type Mode = 'work' | 'shortBreak' | 'longBreak'
 type Status = 'idle' | 'running' | 'paused'
 
@@ -261,11 +261,5 @@ onUnmounted(() => {
   if (timer.value) clearInterval(timer.value)
 })
 
-// SEO
-useHead({
-  title: 'Pomodoro 番茄钟 - 在线专注时钟 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线番茄钟工具，基于 Pomodoro 工作法，帮助开发者保持专注。支持自定义时长、桌面通知、统计功能。' }
-  ]
-})
+useHead({ title: t('pages.pomodoro.title'), meta: [{ name: 'description', content: t('pages.pomodoro.description') }] })
 </script>

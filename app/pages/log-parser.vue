@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="日志解析器" description="解析和过滤日志文件" align="center">
+    <UPageHeader :title="$t('pages.logParser.title')" :description="$t('pages.logParser.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-500 to-slate-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-document-magnifying-glass" class="w-10 h-10 text-white" />
@@ -9,9 +9,9 @@
     </UPageHeader>
     <div class="grid lg:grid-cols-3 gap-6">
       <UCard>
-        <template #header><h3 class="font-semibold">过滤</h3></template>
+        <template #header><h3 class="font-semibold">{{ $t('ui.filter') }}</h3></template>
         <div class="space-y-4">
-          <UInput v-model="filter" placeholder="搜索关键词..." class="w-full" />
+          <UInput v-model="filter" :placeholder="$t('ui.searchKeyword')" class="w-full" />
           <div class="space-y-2">
             <UCheckbox v-model="showError" label="ERROR" />
             <UCheckbox v-model="showWarn" label="WARN" />
@@ -23,11 +23,11 @@
         <UCard>
           <template #header>
             <div class="flex justify-between items-center">
-              <h3 class="font-semibold">日志内容</h3>
-              <UBadge>{{ filteredLogs.length }} 条</UBadge>
+              <h3 class="font-semibold">{{ $t('ui.logContent') }}</h3>
+              <UBadge>{{ filteredLogs.length }} {{ $t('ui.entries') }}</UBadge>
             </div>
           </template>
-          <UTextarea v-model="logs" placeholder="粘贴日志内容..." :rows="20" class="font-mono text-xs w-full" />
+          <UTextarea v-model="logs" :placeholder="$t('ui.pasteLogContent')" :rows="20" class="font-mono text-xs w-full" />
         </UCard>
       </div>
     </div>
@@ -35,6 +35,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const logs = ref('')
 const filter = ref('')
 const showError = ref(true)
@@ -51,5 +53,5 @@ const filteredLogs = computed(() => {
   })
 })
 
-useHead({ title: '日志解析器 | 开发者工具箱' })
+useHead({ title: t('pages.logParser.title'), meta: [{ name: 'description', content: t('pages.logParser.description') }] })
 </script>

@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="MIME Types 查询" description="常用文件 MIME 类型速查表" align="center">
+    <UPageHeader :title="$t('pages.mimeTypes.title')" :description="$t('pages.mimeTypes.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-document" class="w-10 h-10 text-white" />
@@ -11,7 +11,7 @@
     <UCard>
       <template #header>
         <div class="flex items-center gap-4">
-          <UInput v-model="search" placeholder="搜索扩展名或 MIME 类型..." size="xl" class="flex-1" icon="i-heroicons-magnifying-glass" />
+          <UInput v-model="search" :placeholder="$t('ui.searchMime')" size="xl" class="flex-1" icon="i-heroicons-magnifying-glass" />
         </div>
       </template>
 
@@ -19,10 +19,10 @@
         <table class="w-full text-sm">
           <thead class="bg-gray-50 dark:bg-gray-900">
             <tr>
-              <th class="px-4 py-3 text-left font-semibold">扩展名</th>
+              <th class="px-4 py-3 text-left font-semibold">{{ $t('ui.extension') }}</th>
               <th class="px-4 py-3 text-left font-semibold">MIME Type</th>
-              <th class="px-4 py-3 text-left font-semibold">描述</th>
-              <th class="px-4 py-3 text-center font-semibold">操作</th>
+              <th class="px-4 py-3 text-left font-semibold">{{ $t('ui.description') }}</th>
+              <th class="px-4 py-3 text-center font-semibold">{{ $t('ui.action') }}</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
@@ -42,6 +42,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const search = ref('')
 
@@ -87,7 +89,7 @@ const filteredMimes = computed(() => {
 })
 
 useHead({
-  title: 'MIME Types 查询表 | 开发者工具箱',
-  meta: [{ name: 'description', content: '常用文件 MIME 类型速查工具' }]
+  title: t('pages.mimeTypes.title'),
+  meta: [{ name: 'description', content: t('pages.mimeTypes.description') }]
 })
 </script>

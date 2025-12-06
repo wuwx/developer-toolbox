@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="文本去重与排序"
-      description="强大的列表处理工具，支持去重、排序、过滤、随机打乱"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.textDeduplicate.title')" :description="$t('pages.textDeduplicate.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-funnel" class="w-10 h-10 text-white" />
@@ -13,138 +9,83 @@
     </UPageHeader>
 
     <div class="grid lg:grid-cols-3 gap-6">
-      <!-- 左侧：输入 -->
       <div class="lg:col-span-1 space-y-4">
         <UCard class="h-full flex flex-col">
           <template #header>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <UIcon name="i-heroicons-document-text" class="w-5 h-5" />
-                <h3 class="font-semibold">输入列表</h3>
+                <h3 class="font-semibold">{{ $t('ui.inputText') }}</h3>
               </div>
               <div class="flex gap-2">
-                <UBadge color="neutral" variant="subtle" size="sm">
-                  {{ inputLines.length }} 行
-                </UBadge>
-                <UButton
-                  v-if="inputText"
-                  color="neutral"
-                  variant="ghost"
-                  size="xs"
-                  icon="i-heroicons-x-mark"
-                  @click="inputText = ''"
-                >
-                  清空
-                </UButton>
+                <UBadge color="neutral" variant="subtle" size="sm">{{ inputLines.length }} {{ $t('ui.lines') }}</UBadge>
+                <UButton v-if="inputText" color="neutral" variant="ghost" size="xs" icon="i-heroicons-x-mark" @click="inputText = ''">{{ $t('ui.clear') }}</UButton>
               </div>
             </div>
           </template>
-
           <div class="flex-1 relative min-h-[400px]">
-            <UTextarea
-              v-model="inputText"
-              placeholder="每行一个项目..."
-              class="absolute inset-0 h-full w-full font-mono text-sm"
-              :ui="{ base: 'h-full p-4' }"
-            />
+            <UTextarea v-model="inputText" :placeholder="$t('ui.onePerLine')" class="absolute inset-0 h-full w-full font-mono text-sm" :ui="{ base: 'h-full p-4' }" />
           </div>
         </UCard>
       </div>
 
-      <!-- 中间：操作 -->
       <div class="lg:col-span-1 space-y-6">
         <UCard>
           <template #header>
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-adjustments-horizontal" class="w-5 h-5" />
-              <h3 class="font-semibold">处理选项</h3>
+              <h3 class="font-semibold">{{ $t('ui.options') }}</h3>
             </div>
           </template>
-
           <div class="space-y-6">
-            <!-- 基础清理 -->
             <div class="space-y-2">
-              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">基础清理</label>
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $t('ui.basicClean') }}</label>
               <div class="space-y-2">
-                <UCheckbox v-model="options.trim" label="去除首尾空格" />
-                <UCheckbox v-model="options.removeEmpty" label="移除空行" />
-                <UCheckbox v-model="options.unique" label="去除重复行 (去重)" />
+                <UCheckbox v-model="options.trim" :label="$t('ui.trimSpaces')" />
+                <UCheckbox v-model="options.removeEmpty" :label="$t('ui.removeEmpty')" />
+                <UCheckbox v-model="options.unique" :label="$t('ui.removeDuplicates')" />
               </div>
             </div>
-
-            <!-- 排序 -->
             <div class="space-y-2">
-              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">排序方式</label>
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $t('ui.sortMethod') }}</label>
               <USelect v-model="options.sort" :options="sortOptions" class="w-full" />
             </div>
-
-            <!-- 装饰 -->
             <div class="space-y-2">
-              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">添加内容</label>
+              <label class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $t('ui.addContent') }}</label>
               <div class="grid grid-cols-2 gap-2">
-                <UInput v-model="options.prefix" placeholder="前缀..." size="sm" class="w-full" />
-                <UInput v-model="options.suffix" placeholder="后缀..." size="sm" class="w-full" />
+                <UInput v-model="options.prefix" :placeholder="$t('ui.prefix')" size="sm" class="w-full" />
+                <UInput v-model="options.suffix" :placeholder="$t('ui.suffix')" size="sm" class="w-full" />
               </div>
             </div>
-
-            <UButton
-              block
-              color="primary"
-              size="lg"
-              icon="i-heroicons-arrow-right"
-              class="mt-4"
-              @click="process"
-            >
-              执行处理
-            </UButton>
+            <UButton block color="primary" size="lg" icon="i-heroicons-arrow-right" class="mt-4" @click="process">{{ $t('ui.process') }}</UButton>
           </div>
         </UCard>
 
-        <!-- 统计 -->
         <div v-if="inputText" class="grid grid-cols-2 gap-4">
           <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg text-center">
             <div class="text-2xl font-bold">{{ inputLines.length }}</div>
-            <div class="text-xs text-gray-500">原始行数</div>
+            <div class="text-xs text-gray-500">{{ $t('ui.originalLines') }}</div>
           </div>
           <div class="p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-center">
             <div class="text-2xl font-bold text-primary-600">{{ resultLines.length }}</div>
-            <div class="text-xs text-primary-600 dark:text-primary-400">处理后行数</div>
+            <div class="text-xs text-primary-600 dark:text-primary-400">{{ $t('ui.processedLines') }}</div>
           </div>
         </div>
       </div>
 
-      <!-- 右侧：结果 -->
       <div class="lg:col-span-1 space-y-4">
         <UCard class="h-full flex flex-col">
           <template #header>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <UIcon name="i-heroicons-document-check" class="w-5 h-5" />
-                <h3 class="font-semibold">处理结果</h3>
+                <h3 class="font-semibold">{{ $t('ui.result') }}</h3>
               </div>
-              <div class="flex gap-2">
-                <UButton
-                  v-if="resultText"
-                  color="primary"
-                  variant="soft"
-                  size="sm"
-                  icon="i-heroicons-clipboard-document"
-                  @click="copyToClipboard(resultText, '结果')"
-                >
-                  复制
-                </UButton>
-              </div>
+              <UButton v-if="resultText" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(resultText, t('ui.result'))">{{ $t('ui.copy') }}</UButton>
             </div>
           </template>
-
           <div class="flex-1 relative min-h-[400px]">
-            <UTextarea
-              v-model="resultText"
-              readonly
-              placeholder="结果将显示在这里..."
-              class="absolute inset-0 h-full w-full font-mono text-sm"
-              :ui="{ base: 'h-full p-4' }"
-            />
+            <UTextarea v-model="resultText" readonly :placeholder="$t('ui.resultPlaceholder')" class="absolute inset-0 h-full w-full font-mono text-sm" :ui="{ base: 'h-full p-4' }" />
           </div>
         </UCard>
       </div>
@@ -153,6 +94,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 
 const inputText = ref('')
@@ -167,17 +111,17 @@ const options = reactive({
   suffix: ''
 })
 
-const sortOptions = [
-  { label: '不排序', value: 'none' },
-  { label: 'A-Z 升序', value: 'az' },
-  { label: 'Z-A 降序', value: 'za' },
-  { label: '长度 (短到长)', value: 'length_asc' },
-  { label: '长度 (长到短)', value: 'length_desc' },
-  { label: '数值 (小到大)', value: 'num_asc' },
-  { label: '数值 (大到小)', value: 'num_desc' },
-  { label: '随机打乱', value: 'random' },
-  { label: '反转列表', value: 'reverse' }
-]
+const sortOptions = computed(() => [
+  { label: t('ui.noSort'), value: 'none' },
+  { label: 'A-Z', value: 'az' },
+  { label: 'Z-A', value: 'za' },
+  { label: t('ui.lengthAsc'), value: 'length_asc' },
+  { label: t('ui.lengthDesc'), value: 'length_desc' },
+  { label: t('ui.numAsc'), value: 'num_asc' },
+  { label: t('ui.numDesc'), value: 'num_desc' },
+  { label: t('ui.random'), value: 'random' },
+  { label: t('ui.reverse'), value: 'reverse' }
+])
 
 const inputLines = computed(() => inputText.value ? inputText.value.split('\n') : [])
 const resultLines = computed(() => resultText.value ? resultText.value.split('\n') : [])
@@ -246,11 +190,5 @@ watch(inputText, () => {
   // 这里不做实时处理，避免性能问题
 })
 
-// SEO
-useHead({
-  title: '文本去重排序工具 - List Deduplication | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线文本列表去重、排序、过滤工具。支持 A-Z 排序、数值排序、随机打乱、去除空行等功能。' }
-  ]
-})
+useHead({ title: t('pages.textDeduplicate.title'), meta: [{ name: 'description', content: t('pages.textDeduplicate.description') }] })
 </script>

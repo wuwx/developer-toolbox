@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="Box Shadow 生成器"
-      description="可视化调整盒子阴影效果，支持多层阴影"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.boxShadow.title')" :description="$t('pages.boxShadow.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-square-3-stack-3d" class="w-10 h-10 text-white" />
@@ -144,6 +140,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 
 const offsetX = ref(0)
@@ -184,10 +183,5 @@ function applyPreset(preset: typeof presets[0]) {
   Object.assign({ offsetX, offsetY, blur, spread, opacity }, preset.values)
 }
 
-useHead({
-  title: 'Box Shadow 生成器 - CSS 阴影工具 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线 CSS Box Shadow 生成器，可视化配置盒子阴影效果，支持多种预设样式。' }
-  ]
-})
+useHead({ title: t('pages.boxShadow.title'), meta: [{ name: 'description', content: t('pages.boxShadow.description') }] })
 </script>

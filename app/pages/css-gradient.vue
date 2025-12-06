@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="CSS 渐变生成器"
-      description="可视化配置线性渐变，生成精美的 CSS 背景代码"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.cssGradient.title')" :description="$t('pages.cssGradient.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-swatch" class="w-10 h-10 text-white" />
@@ -189,6 +185,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 
 const type = ref<'linear' | 'radial'>('linear')
@@ -254,11 +253,5 @@ function applyPreset(preset: string) {
   randomize()
 }
 
-// SEO
-useHead({
-  title: 'CSS 渐变生成器 - Linear/Radial Gradient | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线 CSS 渐变生成器，可视化配置线性渐变和径向渐变，支持多颜色节点，实时预览并生成 CSS 代码。' }
-  ]
-})
+useHead({ title: t('pages.cssGradient.title'), meta: [{ name: 'description', content: t('pages.cssGradient.description') }] })
 </script>

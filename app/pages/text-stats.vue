@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="文本统计分析"
-      description="全方位的文本分析工具，支持字数统计、词频分析、阅读时间预估"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.textStats.title')" :description="$t('pages.textStats.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-chart-pie" class="w-10 h-10 text-white" />
@@ -13,56 +9,29 @@
     </UPageHeader>
 
     <div class="grid lg:grid-cols-3 gap-6">
-      <!-- 输入区域 -->
       <div class="lg:col-span-2 space-y-6">
         <UCard>
           <template #header>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <UIcon name="i-heroicons-document-text" class="w-5 h-5" />
-                <h3 class="font-semibold">输入文本</h3>
+                <h3 class="font-semibold">{{ $t('ui.inputText') }}</h3>
               </div>
-              <div class="flex gap-2">
-                <UButton
-                  v-if="inputText"
-                  color="neutral"
-                  variant="ghost"
-                  size="xs"
-                  icon="i-heroicons-x-mark"
-                  @click="inputText = ''"
-                >
-                  清空
-                </UButton>
-              </div>
+              <UButton v-if="inputText" color="neutral" variant="ghost" size="xs" icon="i-heroicons-x-mark" @click="inputText = ''">{{ $t('ui.clear') }}</UButton>
             </div>
           </template>
-
-          <UTextarea
-            v-model="inputText"
-            placeholder="在此输入要统计的文本..."
-            :rows="15"
-            autoresize
-            :maxrows="25"
-            class="font-mono text-sm leading-relaxed w-full"
-            :ui="{ base: 'p-4' }"
-          />
+          <UTextarea v-model="inputText" :placeholder="$t('ui.inputPlaceholder')" :rows="15" autoresize :maxrows="25" class="font-mono text-sm leading-relaxed w-full" :ui="{ base: 'p-4' }" />
         </UCard>
 
-        <!-- 词频分析 -->
         <UCard v-if="wordFrequency.length > 0">
           <template #header>
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-chart-bar" class="w-5 h-5" />
-              <h3 class="font-semibold">高频词汇 (Top 20)</h3>
+              <h3 class="font-semibold">{{ $t('ui.topWords') }} (Top 20)</h3>
             </div>
           </template>
-
           <div class="flex flex-wrap gap-2">
-            <div
-              v-for="(item, index) in wordFrequency"
-              :key="index"
-              class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm flex items-center gap-2"
-            >
+            <div v-for="(item, index) in wordFrequency" :key="index" class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm flex items-center gap-2">
               <span class="text-gray-700 dark:text-gray-300">{{ item.word }}</span>
               <span class="bg-primary-500 text-white text-xs px-1.5 rounded-full">{{ item.count }}</span>
             </div>
@@ -70,85 +39,79 @@
         </UCard>
       </div>
 
-      <!-- 统计结果 -->
       <div class="space-y-6">
-        <!-- 核心指标 -->
         <div class="grid grid-cols-2 gap-4">
           <div class="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-lg text-center">
             <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">{{ stats.chars }}</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">总字符数</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">{{ $t('ui.totalChars') }}</div>
           </div>
           <div class="p-4 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800 rounded-lg text-center">
             <div class="text-3xl font-bold text-green-600 dark:text-green-400">{{ stats.words }}</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">单词/词语</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">{{ $t('ui.words') }}</div>
           </div>
           <div class="p-4 bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800 rounded-lg text-center">
             <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">{{ stats.lines }}</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">总行数</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">{{ $t('ui.lines') }}</div>
           </div>
           <div class="p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-100 dark:border-orange-800 rounded-lg text-center">
             <div class="text-3xl font-bold text-orange-600 dark:text-orange-400">{{ stats.paragraphs }}</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">段落数</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">{{ $t('ui.paragraphs') }}</div>
           </div>
         </div>
 
-        <!-- 详细统计 -->
         <UCard>
           <template #header>
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-calculator" class="w-5 h-5" />
-              <h3 class="font-semibold">详细统计</h3>
+              <h3 class="font-semibold">{{ $t('ui.detailedStats') }}</h3>
             </div>
           </template>
-
           <div class="space-y-3 text-sm">
             <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-800">
-              <span class="text-gray-600 dark:text-gray-400">中文字符</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ $t('ui.chineseChars') }}</span>
               <span class="font-mono font-bold">{{ stats.chinese }}</span>
             </div>
             <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-800">
-              <span class="text-gray-600 dark:text-gray-400">英文字符</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ $t('ui.englishChars') }}</span>
               <span class="font-mono font-bold">{{ stats.english }}</span>
             </div>
             <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-800">
-              <span class="text-gray-600 dark:text-gray-400">数字</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ $t('ui.numbers') }}</span>
               <span class="font-mono font-bold">{{ stats.numbers }}</span>
             </div>
             <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-800">
-              <span class="text-gray-600 dark:text-gray-400">标点符号</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ $t('ui.punctuation') }}</span>
               <span class="font-mono font-bold">{{ stats.punctuation }}</span>
             </div>
             <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-800">
-              <span class="text-gray-600 dark:text-gray-400">空白字符</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ $t('ui.whitespace') }}</span>
               <span class="font-mono font-bold">{{ stats.whitespace }}</span>
             </div>
             <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-800">
-              <span class="text-gray-600 dark:text-gray-400">非空字符</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ $t('ui.nonWhitespace') }}</span>
               <span class="font-mono font-bold">{{ stats.nonWhitespace }}</span>
             </div>
             <div class="flex justify-between py-2">
-              <span class="text-gray-600 dark:text-gray-400">字节大小 (UTF-8)</span>
+              <span class="text-gray-600 dark:text-gray-400">{{ $t('ui.byteSize') }} (UTF-8)</span>
               <span class="font-mono font-bold">{{ stats.bytes }}</span>
             </div>
           </div>
         </UCard>
 
-        <!-- 阅读预估 -->
         <UCard>
           <template #header>
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-clock" class="w-5 h-5" />
-              <h3 class="font-semibold">阅读预估</h3>
+              <h3 class="font-semibold">{{ $t('ui.readingEstimate') }}</h3>
             </div>
           </template>
-
           <div class="space-y-4">
             <div>
-              <div class="text-xs text-gray-500 mb-1">阅读时间</div>
+              <div class="text-xs text-gray-500 mb-1">{{ $t('ui.readingTime') }}</div>
               <div class="text-lg font-semibold">{{ readingTime }}</div>
             </div>
             <div>
-              <div class="text-xs text-gray-500 mb-1">朗读时间</div>
+              <div class="text-xs text-gray-500 mb-1">{{ $t('ui.speakingTime') }}</div>
               <div class="text-lg font-semibold">{{ speakingTime }}</div>
             </div>
           </div>
@@ -159,6 +122,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const inputText = ref('')
 
 const stats = computed(() => {
@@ -237,18 +203,12 @@ function formatBytes(bytes: number) {
 }
 
 function formatTime(minutes: number) {
-  if (minutes < 1) return '少于 1 分钟'
-  if (minutes < 60) return `${minutes} 分钟`
+  if (minutes < 1) return t('ui.lessThanMinute')
+  if (minutes < 60) return `${minutes} ${t('ui.minutes')}`
   const hours = Math.floor(minutes / 60)
   const mins = minutes % 60
-  return `${hours} 小时 ${mins} 分钟`
+  return `${hours} ${t('ui.hours')} ${mins} ${t('ui.minutes')}`
 }
 
-// SEO
-useHead({
-  title: '文本统计分析 - 字数统计 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线文本统计工具，支持字数统计、词频分析、行数统计、阅读时间预估。支持中文和英文混合分析。' }
-  ]
-})
+useHead({ title: t('pages.textStats.title'), meta: [{ name: 'description', content: t('pages.textStats.description') }] })
 </script>

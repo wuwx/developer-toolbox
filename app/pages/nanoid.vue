@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="Nano ID 生成器" description="生成短小、安全、URL 友好的唯一 ID" align="center">
+    <UPageHeader :title="$t('pages.nanoid.title')" :description="$t('pages.nanoid.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-finger-print" class="w-10 h-10 text-white" />
@@ -10,21 +10,21 @@
 
     <div class="grid lg:grid-cols-3 gap-6">
       <UCard>
-        <template #header><h3 class="font-semibold">配置</h3></template>
+        <template #header><h3 class="font-semibold">{{ $t('ui.settings') }}</h3></template>
         <div class="space-y-4">
           <div>
-            <label class="text-sm font-medium mb-2 block">长度: {{ size }}</label>
+            <label class="text-sm font-medium mb-2 block">{{ $t('ui.length') }}: {{ size }}</label>
             <URange v-model="size" :min="8" :max="64" />
           </div>
           <div>
-            <label class="text-sm font-medium mb-2 block">数量: {{ count }}</label>
+            <label class="text-sm font-medium mb-2 block">{{ $t('ui.count') }}: {{ count }}</label>
             <URange v-model="count" :min="1" :max="100" />
           </div>
           <div>
-            <label class="text-sm font-medium mb-2 block">字符集</label>
+            <label class="text-sm font-medium mb-2 block">{{ $t('ui.charset') }}</label>
             <USelect v-model="alphabet" :options="alphabets" size="lg" />
           </div>
-          <UButton block color="primary" size="lg" icon="i-heroicons-arrow-path" @click="generate">生成</UButton>
+          <UButton block color="primary" size="lg" icon="i-heroicons-arrow-path" @click="generate">{{ $t('ui.generate') }}</UButton>
         </div>
       </UCard>
 
@@ -32,8 +32,8 @@
         <UCard>
           <template #header>
             <div class="flex justify-between items-center">
-              <h3 class="font-semibold">生成结果 ({{ ids.length }})</h3>
-              <UButton v-if="ids.length" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(ids.join('\\n'), 'Nano IDs')">全部复制</UButton>
+              <h3 class="font-semibold">{{ $t('ui.results') }} ({{ ids.length }})</h3>
+              <UButton v-if="ids.length" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(ids.join('\\n'), 'Nano IDs')">{{ $t('ui.copyAll') }}</UButton>
             </div>
           </template>
           <div v-if="ids.length" class="space-y-2 max-h-[500px] overflow-y-auto">
@@ -44,7 +44,7 @@
           </div>
           <div v-else class="text-center py-12 text-gray-400">
             <UIcon name="i-heroicons-finger-print" class="w-16 h-16 mx-auto mb-4" />
-            <p>点击生成按钮创建 Nano ID</p>
+            <p>{{ $t('ui.clickToGenerate') }}</p>
           </div>
         </UCard>
       </div>
@@ -53,6 +53,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const size = ref(21)
 const count = ref(10)
@@ -60,11 +63,11 @@ const alphabet = ref('default')
 const ids = ref<string[]>([])
 
 const alphabets = [
-  { label: '默认 (A-Za-z0-9_-)', value: 'default' },
-  { label: '数字 (0-9)', value: 'numbers' },
-  { label: '小写字母 (a-z)', value: 'lowercase' },
-  { label: '大写字母 (A-Z)', value: 'uppercase' },
-  { label: '十六进制 (0-9a-f)', value: 'hex' }
+  { label: 'Default (A-Za-z0-9_-)', value: 'default' },
+  { label: 'Numbers (0-9)', value: 'numbers' },
+  { label: 'Lowercase (a-z)', value: 'lowercase' },
+  { label: 'Uppercase (A-Z)', value: 'uppercase' },
+  { label: 'Hex (0-9a-f)', value: 'hex' }
 ]
 
 const charSets: Record<string, string> = {
@@ -90,8 +93,5 @@ function generate() {
 
 onMounted(() => generate())
 
-useHead({
-  title: 'Nano ID 生成器 | 开发者工具箱',
-  meta: [{ name: 'description', content: '在线 Nano ID 生成工具，短小安全的唯一标识符' }]
-})
+useHead({ title: t('pages.nanoid.title'), meta: [{ name: 'description', content: t('pages.nanoid.description') }] })
 </script>

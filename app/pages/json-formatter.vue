@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="JSON 格式化增强版" description="JSON 美化、压缩、排序、去重" align="center">
+    <UPageHeader :title="$t('pages.jsonFormatter.title')" :description="$t('pages.jsonFormatter.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-code-bracket-square" class="w-10 h-10 text-white" />
@@ -10,15 +10,15 @@
 
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
-        <template #header><h3 class="font-semibold">输入 JSON</h3></template>
-        <UTextarea v-model="input" placeholder='{"name":"张三","age":25}' :rows="20" class="font-mono text-sm w-full" />
+        <template #header><h3 class="font-semibold">{{ $t('ui.input') }} JSON</h3></template>
+        <UTextarea v-model="input" placeholder='{"name":"John","age":25}' :rows="20" class="font-mono text-sm w-full" />
       </UCard>
 
       <UCard>
         <template #header>
           <div class="flex justify-between items-center">
-            <h3 class="font-semibold">输出</h3>
-            <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, 'JSON')">复制</UButton>
+            <h3 class="font-semibold">{{ $t('ui.output') }}</h3>
+            <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, 'JSON')">{{ $t('ui.copy') }}</UButton>
           </div>
         </template>
         <UTextarea v-model="output" :rows="20" readonly class="font-mono text-sm w-full" />
@@ -26,29 +26,32 @@
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-      <UButton block color="primary" @click="format">格式化 (2空格)</UButton>
-      <UButton block color="primary" @click="format4">格式化 (4空格)</UButton>
-      <UButton block color="primary" @click="compress">压缩</UButton>
-      <UButton block color="primary" @click="sortKeys">排序键名</UButton>
-      <UButton block color="primary" @click="removeDuplicates">去重</UButton>
-      <UButton block color="primary" @click="escape">转义</UButton>
-      <UButton block color="primary" @click="unescape">反转义</UButton>
-      <UButton block color="primary" @click="validate">验证</UButton>
+      <UButton block color="primary" @click="formatJson">{{ $t('ui.format') }} (2)</UButton>
+      <UButton block color="primary" @click="format4">{{ $t('ui.format') }} (4)</UButton>
+      <UButton block color="primary" @click="compress">{{ $t('ui.compress') }}</UButton>
+      <UButton block color="primary" @click="sortKeys">{{ $t('ui.sortKeys') }}</UButton>
+      <UButton block color="primary" @click="removeDuplicates">{{ $t('ui.deduplicate') }}</UButton>
+      <UButton block color="primary" @click="escape">{{ $t('ui.escape') }}</UButton>
+      <UButton block color="primary" @click="unescape">{{ $t('ui.unescape') }}</UButton>
+      <UButton block color="primary" @click="validate">{{ $t('ui.validate') }}</UButton>
     </div>
   </UContainer>
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const input = ref('')
 const output = ref('')
 
-function format() {
+function formatJson() {
   try {
     const obj = JSON.parse(input.value)
     output.value = JSON.stringify(obj, null, 2)
   } catch (e) {
-    output.value = '错误: ' + (e as Error).message
+    output.value = t('ui.error') + ': ' + (e as Error).message
   }
 }
 
@@ -57,7 +60,7 @@ function format4() {
     const obj = JSON.parse(input.value)
     output.value = JSON.stringify(obj, null, 4)
   } catch (e) {
-    output.value = '错误: ' + (e as Error).message
+    output.value = t('ui.error') + ': ' + (e as Error).message
   }
 }
 
@@ -66,7 +69,7 @@ function compress() {
     const obj = JSON.parse(input.value)
     output.value = JSON.stringify(obj)
   } catch (e) {
-    output.value = '错误: ' + (e as Error).message
+    output.value = t('ui.error') + ': ' + (e as Error).message
   }
 }
 
@@ -76,7 +79,7 @@ function sortKeys() {
     const sorted = sortObjectKeys(obj)
     output.value = JSON.stringify(sorted, null, 2)
   } catch (e) {
-    output.value = '错误: ' + (e as Error).message
+    output.value = t('ui.error') + ': ' + (e as Error).message
   }
 }
 
@@ -100,10 +103,10 @@ function removeDuplicates() {
       const unique = [...new Set(obj.map(JSON.stringify))].map(JSON.parse)
       output.value = JSON.stringify(unique, null, 2)
     } else {
-      output.value = '仅支持数组去重'
+      output.value = t('ui.arrayOnly')
     }
   } catch (e) {
-    output.value = '错误: ' + (e as Error).message
+    output.value = t('ui.error') + ': ' + (e as Error).message
   }
 }
 
@@ -115,21 +118,18 @@ function unescape() {
   try {
     output.value = JSON.parse(input.value)
   } catch (e) {
-    output.value = '错误: ' + (e as Error).message
+    output.value = t('ui.error') + ': ' + (e as Error).message
   }
 }
 
 function validate() {
   try {
     JSON.parse(input.value)
-    output.value = '✓ JSON 格式正确'
+    output.value = '✓ ' + t('ui.validJson')
   } catch (e) {
-    output.value = '✗ JSON 格式错误:\n' + (e as Error).message
+    output.value = '✗ ' + t('ui.invalidJson') + ':\n' + (e as Error).message
   }
 }
 
-useHead({
-  title: 'JSON 格式化工具 | 开发者工具箱',
-  meta: [{ name: 'description', content: '在线 JSON 格式化、压缩、排序工具' }]
-})
+useHead({ title: t('pages.jsonFormatter.title'), meta: [{ name: 'description', content: t('pages.jsonFormatter.description') }] })
 </script>

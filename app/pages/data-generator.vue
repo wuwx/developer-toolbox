@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="测试数据生成器" description="生成各种测试数据" align="center">
+    <UPageHeader :title="$t('pages.dataGenerator.title')" :description="$t('pages.dataGenerator.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-teal-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-table-cells" class="w-10 h-10 text-white" />
@@ -47,6 +47,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const dataType = ref('name')
 const count = ref(10)
@@ -82,5 +85,5 @@ function generate() {
   }
 }
 
-useHead({ title: '测试数据生成器 | 开发者工具箱' })
+useHead({ title: t('pages.dataGenerator.title') })
 </script>

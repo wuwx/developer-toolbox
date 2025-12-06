@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="BMI 计算器" description="身体质量指数计算" align="center">
+    <UPageHeader :title="$t('pages.bmiCalculator.title')" :description="$t('pages.bmiCalculator.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-heart" class="w-10 h-10 text-white" />
@@ -36,6 +36,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const height = ref('')
 const weight = ref('')
 const bmi = ref('')
@@ -62,5 +65,5 @@ function calculate() {
   else status.value = '肥胖'
 }
 
-useHead({ title: 'BMI 计算器 | 开发者工具箱' })
+useHead({ title: t('pages.bmiCalculator.title') })
 </script>

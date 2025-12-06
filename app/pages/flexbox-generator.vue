@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="Flexbox 生成器" description="可视化生成 Flexbox 布局代码" align="center">
+    <UPageHeader :title="$t('pages.flexboxGenerator.title')" :description="$t('pages.flexboxGenerator.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-squares-2x2" class="w-10 h-10 text-white" />
@@ -71,6 +71,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const flexDirection = ref('row')
 const justifyContent = ref('flex-start')
@@ -94,8 +97,5 @@ const cssCode = computed(() => {
 }`
 })
 
-useHead({
-  title: 'Flexbox 生成器 | 开发者工具箱',
-  meta: [{ name: 'description', content: '可视化 Flexbox 布局生成工具' }]
-})
+useHead({ title: t('pages.flexboxGenerator.title'), meta: [{ name: 'description', content: t('pages.flexboxGenerator.description') }] })
 </script>

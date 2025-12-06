@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="倒计时" description="事件倒计时工具" align="center">
+    <UPageHeader :title="$t('pages.countdown.title')" :description="$t('pages.countdown.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-clock" class="w-10 h-10 text-white" />
@@ -31,6 +31,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const eventName = ref('')
 const targetDate = ref('')
 const counting = ref(false)
@@ -64,5 +67,5 @@ function update() {
 
 onUnmounted(() => clearInterval(timer))
 
-useHead({ title: '倒计时 | 开发者工具箱' })
+useHead({ title: t('pages.countdown.title') })
 </script>

@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="缓动函数" description="CSS 缓动函数可视化" align="center">
+    <UPageHeader :title="$t('pages.easingFunctions.title')" :description="$t('pages.easingFunctions.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-chart-bar" class="w-10 h-10 text-white" />
@@ -22,6 +22,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const selected = ref('ease')
 const easings = [
   { name: 'Linear', value: 'linear' },
@@ -32,7 +34,7 @@ const easings = [
   { name: 'Cubic Bezier', value: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)' }
 ]
 
-useHead({ title: '缓动函数 | 开发者工具箱' })
+useHead({ title: t('pages.easingFunctions.title'), meta: [{ name: 'description', content: t('pages.easingFunctions.description') }] })
 </script>
 
 <style>

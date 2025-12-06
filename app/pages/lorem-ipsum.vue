@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="Lorem Ipsum 生成器"
-      description="生成用于设计和排版的占位文本"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.loremIpsum.title')" :description="$t('pages.loremIpsum.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-500 to-gray-700 mb-6 shadow-xl">
           <UIcon name="i-heroicons-document-text" class="w-10 h-10 text-white" />
@@ -102,6 +98,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 
 const unit = ref<'paragraphs' | 'sentences' | 'words'>('paragraphs')
@@ -196,11 +195,5 @@ onMounted(() => {
   generate()
 })
 
-// SEO
-useHead({
-  title: 'Lorem Ipsum 生成器 - 占位文本生成 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线 Lorem Ipsum 生成器，快速生成占位文本，支持段落、句子、单词模式，可生成 HTML 标签。UI 设计师和开发者必备。' }
-  ]
-})
+useHead({ title: t('pages.loremIpsum.title'), meta: [{ name: 'description', content: t('pages.loremIpsum.description') }] })
 </script>

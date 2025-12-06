@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="世界时钟" description="查看全球主要城市时间" align="center">
+    <UPageHeader :title="$t('pages.worldClock.title')" :description="$t('pages.worldClock.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-globe-alt" class="w-10 h-10 text-white" />
@@ -20,6 +20,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const cities = ref([
   { name: '北京', timezone: 'Asia/Shanghai', time: '' },
   { name: '东京', timezone: 'Asia/Tokyo', time: '' },
@@ -40,5 +43,5 @@ onMounted(() => {
   setInterval(updateTimes, 1000)
 })
 
-useHead({ title: '世界时钟 | 开发者工具箱' })
+useHead({ title: t('pages.worldClock.title') })
 </script>

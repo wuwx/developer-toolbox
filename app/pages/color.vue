@@ -1,8 +1,8 @@
 <template>
   <UContainer class="py-8 sm:py-12">
     <UPageHeader
-      title="颜色转换工具"
-      description="支持 HEX、RGB、HSL 格式互转，取色器和对比度检测"
+      :title="$t('pages.color.title')"
+      :description="$t('pages.color.description')"
       align="center"
     >
       <template #icon>
@@ -13,12 +13,12 @@
     </UPageHeader>
 
     <div class="grid lg:grid-cols-2 gap-6">
-      <!-- 取色器区域 -->
+      <!-- Color Picker -->
       <UCard>
         <template #header>
           <div class="flex items-center gap-2">
             <UIcon name="i-heroicons-swatch" class="w-5 h-5" />
-            <h3 class="font-semibold">颜色选择</h3>
+            <h3 class="font-semibold">{{ $t('ui.colorPicker') }}</h3>
           </div>
         </template>
 
@@ -174,12 +174,12 @@
 
       <!-- 调色板和对比度 -->
       <div class="space-y-6">
-        <!-- 调色板 -->
+        <!-- Color Palette -->
         <UCard>
           <template #header>
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-paint-brush" class="w-5 h-5" />
-              <h3 class="font-semibold">色阶调色板</h3>
+              <h3 class="font-semibold">{{ $t('ui.colorShades') }}</h3>
             </div>
           </template>
 
@@ -201,12 +201,12 @@
           </div>
         </UCard>
 
-        <!-- 对比度检测 -->
+        <!-- Contrast Check -->
         <UCard>
           <template #header>
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-eye" class="w-5 h-5" />
-              <h3 class="font-semibold">对比度检测 (WCAG)</h3>
+              <h3 class="font-semibold">{{ $t('ui.contrastCheck') }} (WCAG)</h3>
             </div>
           </template>
 
@@ -219,15 +219,15 @@
               />
               <UInput
                 v-model="bgColor"
-                placeholder="背景色 HEX"
+                :placeholder="$t('ui.backgroundColor')"
                 class="flex-1 font-mono"
               />
             </div>
 
-            <!-- 对比度结果 -->
+            <!-- Contrast Result -->
             <div class="p-6 rounded-lg" :style="{ backgroundColor: bgColor, color: currentColor }">
-              <div class="text-2xl font-bold mb-2">示例文本 Example Text</div>
-              <div class="text-sm">小字号文本的可读性测试</div>
+              <div class="text-2xl font-bold mb-2">{{ $t('ui.sampleText') }}</div>
+              <div class="text-sm">{{ $t('ui.readabilityTest') }}</div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
@@ -235,7 +235,7 @@
                 <div class="text-2xl font-bold text-gray-900 dark:text-white mb-1">
                   {{ contrastRatioText }}
                 </div>
-                <div class="text-xs text-gray-500">对比度</div>
+                <div class="text-xs text-gray-500">{{ $t('ui.contrastRatio') }}</div>
               </div>
               <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
                 <div class="text-sm space-y-1">
@@ -264,6 +264,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 
 // 当前颜色
@@ -443,9 +445,7 @@ function updateFromHsl() {
 
 // SEO
 useHead({
-  title: '颜色转换工具 - HEX RGB HSL 互转 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线颜色转换工具，支持 HEX、RGB、HSL 格式互转，取色器，调色板生成，WCAG 对比度检测。前端开发必备工具。' }
-  ]
+  title: t('pages.color.title'),
+  meta: [{ name: 'description', content: t('pages.color.description') }]
 })
 </script>

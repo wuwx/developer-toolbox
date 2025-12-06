@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="ASCII Art 生成器" description="将文本转换为 ASCII 艺术字" align="center">
+    <UPageHeader :title="$t('pages.asciiArt.title')" :description="$t('pages.asciiArt.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-sparkles" class="w-10 h-10 text-white" />
@@ -10,10 +10,10 @@
 
     <div class="grid lg:grid-cols-3 gap-6">
       <UCard>
-        <template #header><h3 class="font-semibold">输入文本</h3></template>
-        <UInput v-model="inputText" placeholder="输入文字..." size="xl" maxlength="20" class="w-full" />
+        <template #header><h3 class="font-semibold">{{ $t('ui.inputText') }}</h3></template>
+        <UInput v-model="inputText" :placeholder="$t('ui.enterText')" size="xl" maxlength="20" class="w-full" />
         <div class="mt-4">
-          <label class="text-sm font-medium mb-2 block">字体样式</label>
+          <label class="text-sm font-medium mb-2 block">{{ $t('ui.fontStyle') }}</label>
           <USelect v-model="selectedFont" :options="fonts" size="lg" class="w-full" />
         </div>
       </UCard>
@@ -23,11 +23,11 @@
           <template #header>
             <div class="flex items-center justify-between">
               <h3 class="font-semibold">ASCII Art</h3>
-              <UButton v-if="asciiArt" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(asciiArt, 'ASCII Art')">复制</UButton>
+              <UButton v-if="asciiArt" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(asciiArt, 'ASCII Art')">{{ $t('ui.copy') }}</UButton>
             </div>
           </template>
           <div class="p-4 bg-gray-900 rounded-lg overflow-x-auto">
-            <pre class="font-mono text-xs text-green-400 whitespace-pre">{{ asciiArt || '输入文字生成 ASCII Art...' }}</pre>
+            <pre class="font-mono text-xs text-green-400 whitespace-pre">{{ asciiArt || $t('ui.enterTextToGenerate') }}</pre>
           </div>
         </UCard>
       </div>
@@ -36,16 +36,18 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const inputText = ref('HELLO')
 const selectedFont = ref('standard')
 const asciiArt = ref('')
 
-const fonts = [
-  { label: '标准', value: 'standard' },
-  { label: '大号', value: 'big' },
-  { label: '小号', value: 'small' }
-]
+const fonts = computed(() => [
+  { label: t('ui.standard'), value: 'standard' },
+  { label: t('ui.large'), value: 'big' },
+  { label: t('ui.small'), value: 'small' }
+])
 
 const fontMaps: Record<string, Record<string, string>> = {
   standard: {
@@ -97,8 +99,5 @@ function generate() {
 
 watch([inputText, selectedFont], generate, { immediate: true })
 
-useHead({
-  title: 'ASCII Art 生成器 | 开发者工具箱',
-  meta: [{ name: 'description', content: '在线 ASCII 艺术字生成工具' }]
-})
+useHead({ title: t('pages.asciiArt.title'), meta: [{ name: 'description', content: t('pages.asciiArt.description') }] })
 </script>

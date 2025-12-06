@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="进制转换器"
-      description="支持二进制、八进制、十进制、十六进制之间的相互转换"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.baseConverter.title')" :description="$t('pages.baseConverter.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-calculator" class="w-10 h-10 text-white" />
@@ -168,6 +164,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 
 const binaryValue = ref('')
@@ -244,11 +243,5 @@ function handleInput(source: Base) {
   }
 }
 
-// SEO
-useHead({
-  title: '进制转换器 - 二/八/十/十六进制互转 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线进制转换工具，支持二进制、八进制、十进制、十六进制之间的相互转换。程序员必备计算器。' }
-  ]
-})
+useHead({ title: t('pages.baseConverter.title'), meta: [{ name: 'description', content: t('pages.baseConverter.description') }] })
 </script>

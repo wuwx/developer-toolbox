@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="繁简转换" description="繁体字简体字互转" align="center">
+    <UPageHeader :title="$t('pages.traditionalSimplified.title')" :description="$t('pages.traditionalSimplified.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-language" class="w-10 h-10 text-white" />
@@ -9,18 +9,18 @@
     </UPageHeader>
     <div class="grid lg:grid-cols-2 gap-8">
       <UCard>
-        <template #header><h3 class="font-semibold">输入</h3></template>
-        <UTextarea v-model="input" placeholder="输入文本..." :rows="15" class="w-full" />
+        <template #header><h3 class="font-semibold">{{ $t('ui.input') }}</h3></template>
+        <UTextarea v-model="input" :placeholder="$t('ui.inputPlaceholder')" :rows="15" class="w-full" />
         <div class="mt-4 grid grid-cols-2 gap-4">
-          <UButton block color="primary" @click="toTraditional">转繁体</UButton>
-          <UButton block color="primary" @click="toSimplified">转简体</UButton>
+          <UButton block color="primary" @click="toTraditional">{{ $t('ui.toTraditional') }}</UButton>
+          <UButton block color="primary" @click="toSimplified">{{ $t('ui.toSimplified') }}</UButton>
         </div>
       </UCard>
       <UCard>
         <template #header>
           <div class="flex justify-between items-center">
-            <h3 class="font-semibold">输出</h3>
-            <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, '转换结果')">复制</UButton>
+            <h3 class="font-semibold">{{ $t('ui.output') }}</h3>
+            <UButton v-if="output" color="primary" variant="soft" size="sm" icon="i-heroicons-clipboard-document" @click="copyToClipboard(output, 'Result')">{{ $t('ui.copy') }}</UButton>
           </div>
         </template>
         <UTextarea v-model="output" :rows="15" readonly class="w-full" />
@@ -30,6 +30,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const { copyToClipboard } = useToolClipboard()
 const input = ref('')
 const output = ref('')
@@ -42,13 +45,8 @@ const s2t: Record<string, string> = {
 }
 const t2s = Object.fromEntries(Object.entries(s2t).map(([k, v]) => [v, k]))
 
-function toTraditional() {
-  output.value = input.value.split('').map(c => s2t[c] || c).join('')
-}
+function toTraditional() { output.value = input.value.split('').map(c => s2t[c] || c).join('') }
+function toSimplified() { output.value = input.value.split('').map(c => t2s[c] || c).join('') }
 
-function toSimplified() {
-  output.value = input.value.split('').map(c => t2s[c] || c).join('')
-}
-
-useHead({ title: '繁简转换 | 开发者工具箱' })
+useHead({ title: t('pages.traditionalSimplified.title'), meta: [{ name: 'description', content: t('pages.traditionalSimplified.description') }] })
 </script>

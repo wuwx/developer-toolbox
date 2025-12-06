@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="键盘键位码查询"
-      description="按下键盘任意键，获取 KeyCode, Code, Key 等信息"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.keycode.title')" :description="$t('pages.keycode.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-900 mb-6 shadow-xl">
           <UIcon name="i-heroicons-command-line" class="w-10 h-10 text-white" />
@@ -114,6 +110,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 const inputArea = ref<HTMLElement | null>(null)
 
 interface KeyInfo {
@@ -156,11 +155,5 @@ onMounted(() => {
   inputArea.value?.focus()
 })
 
-// SEO
-useHead({
-  title: '键盘键位码查询 - KeyCode 检测 | 开发者工具箱',
-  meta: [
-    { name: 'description', content: '在线键盘键位码查询工具，检测 event.key, event.code, keyCode。支持查看修饰键状态和历史记录。' }
-  ]
-})
+useHead({ title: t('pages.keycode.title'), meta: [{ name: 'description', content: t('pages.keycode.description') }] })
 </script>

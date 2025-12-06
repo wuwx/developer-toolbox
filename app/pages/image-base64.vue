@@ -1,10 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader
-      title="图片转 Base64"
-      description="将图片转换为 Base64 字符串，支持拖拽上传，本地处理不上传服务器"
-      align="center"
-    >
+    <UPageHeader :title="$t('pages.imageBase64.title')" :description="$t('pages.imageBase64.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-400 to-cyan-400 mb-6 shadow-xl">
           <UIcon name="i-heroicons-photo" class="w-10 h-10 text-white" />
@@ -176,9 +172,9 @@
 <script setup lang="ts">
 import type { AccordionItem } from '~/types'
 
-definePageMeta({
-  layout: 'default'
-})
+definePageMeta({ layout: 'default' })
+
+const { t } = useI18n()
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const isDragging = ref(false)
@@ -301,10 +297,5 @@ const copyResult = () => {
   copyToClipboard(formattedOutput.value, '转换内容')
 }
 
-useHead({
-  title: '图片转 Base64 - 在线图片编码工具',
-  meta: [
-    { name: 'description', content: '免费在线图片转 Base64 工具，支持拖拽上传，生成 CSS 背景或 HTML 图片标签' }
-  ]
-})
+useHead({ title: t('pages.imageBase64.title'), meta: [{ name: 'description', content: t('pages.imageBase64.description') }] })
 </script>

@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-8 sm:py-12">
-    <UPageHeader title="汇率换算" description="货币汇率转换工具" align="center">
+    <UPageHeader :title="$t('pages.currencyConverter.title')" :description="$t('pages.currencyConverter.description')" align="center">
       <template #icon>
         <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 mb-6 shadow-xl">
           <UIcon name="i-heroicons-currency-dollar" class="w-10 h-10 text-white" />
@@ -11,20 +11,20 @@
       <UCard>
         <div class="space-y-6">
           <div>
-            <label class="text-sm font-medium mb-2 block">金额</label>
+            <label class="text-sm font-medium mb-2 block">{{ $t('ui.amount') }}</label>
             <UInput v-model="amount" type="number" size="xl" placeholder="100" class="w-full" />
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="text-sm font-medium mb-2 block">从</label>
+              <label class="text-sm font-medium mb-2 block">{{ $t('ui.from') }}</label>
               <USelect v-model="from" :options="currencies" class="w-full" />
             </div>
             <div>
-              <label class="text-sm font-medium mb-2 block">到</label>
+              <label class="text-sm font-medium mb-2 block">{{ $t('ui.to') }}</label>
               <USelect v-model="to" :options="currencies" class="w-full" />
             </div>
           </div>
-          <UButton block color="primary" size="lg" @click="convert">转换</UButton>
+          <UButton block color="primary" size="lg" @click="convert">{{ $t('ui.convert') }}</UButton>
           <div v-if="result" class="p-6 bg-gray-50 dark:bg-gray-900 rounded-lg text-center">
             <div class="text-4xl font-bold text-primary-600">{{ result }}</div>
             <div class="text-sm text-gray-500 mt-2">{{ to }}</div>
@@ -36,6 +36,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { t } = useI18n()
 const amount = ref('100')
 const from = ref('CNY')
 const to = ref('USD')
@@ -65,5 +67,5 @@ function convert() {
   result.value = ((amt / fromRate) * toRate).toFixed(2)
 }
 
-useHead({ title: '汇率换算 | 开发者工具箱' })
+useHead({ title: t('pages.currencyConverter.title'), meta: [{ name: 'description', content: t('pages.currencyConverter.description') }] })
 </script>

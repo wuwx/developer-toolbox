@@ -11,22 +11,22 @@
       
       <div class="space-y-4">
         <h1 class="text-4xl sm:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 tracking-tight">
-          开发者工具箱
+          {{ $t('hero.title') }}
         </h1>
         <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
-          一站式在线开发工具集合，快速高效，安全可靠
+          {{ $t('hero.subtitle') }}
         </p>
       </div>
 
       <div class="flex flex-wrap justify-center gap-3">
         <UBadge variant="soft" size="lg" class="rounded-full px-4 py-1">
-          <UIcon name="i-heroicons-check-circle" class="mr-1" /> 完全免费
+          <UIcon name="i-heroicons-check-circle" class="mr-1" /> {{ $t('hero.badge1') }}
         </UBadge>
         <UBadge variant="soft" color="primary" size="lg" class="rounded-full px-4 py-1">
-          <UIcon name="i-heroicons-bolt" class="mr-1" /> 即开即用
+          <UIcon name="i-heroicons-bolt" class="mr-1" /> {{ $t('hero.badge2') }}
         </UBadge>
         <UBadge variant="soft" color="neutral" size="lg" class="rounded-full px-4 py-1">
-          <UIcon name="i-heroicons-lock-closed" class="mr-1" /> 本地运行
+          <UIcon name="i-heroicons-lock-closed" class="mr-1" /> {{ $t('hero.badge3') }}
         </UBadge>
       </div>
     </div>
@@ -39,7 +39,7 @@
           <div class="p-3 rounded-xl bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20">
             <UIcon :name="group.icon" class="w-7 h-7 text-primary-600 dark:text-primary-400" />
           </div>
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">{{ group.label }}</h2>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">{{ getCategoryLabel(group.label) }}</h2>
           <div class="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent dark:from-gray-800" />
         </div>
 
@@ -58,10 +58,10 @@
                 </div>
                 <div class="flex-1 min-w-0">
                   <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                    {{ item.label }}
+                    {{ getToolLabel(item.to) }}
                   </h3>
                   <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">
-                    {{ item.desc }}
+                    {{ getToolDesc(item.to) }}
                   </p>
                 </div>
               </div>
@@ -76,11 +76,10 @@
     <!-- 底部信息 -->
     <div class="bg-gradient-to-br from-primary-500/5 to-purple-500/5 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
       <div class="relative z-10">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-4">关于此工具箱</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4">{{ $t('about.title') }}</h2>
         <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-          这是一个专为开发者打造的在线工具集合。我们深知数据安全的重要性，因此所有工具均采用 
-          <span class="font-semibold text-primary-600 dark:text-primary-400">纯前端技术实现</span>，
-          您的任何数据都不会上传到服务器，完全在您的浏览器本地处理。
+          {{ $t('about.description') }}
+          <span class="font-semibold text-primary-600 dark:text-primary-400">{{ $t('about.highlight') }}</span>{{ $t('about.description2') }}
         </p>
         <div class="flex justify-center gap-4">
           <UButton
@@ -90,7 +89,7 @@
             variant="ghost"
             icon="i-simple-icons-github"
           >
-            GitHub
+            {{ $t('common.github') }}
           </UButton>
         </div>
       </div>
@@ -105,10 +104,13 @@ definePageMeta({
   layout: 'default'
 })
 
+const { t } = useI18n()
+const { getToolLabel, getToolDesc, getCategoryLabel } = useToolsI18n()
+
 useHead({
-  title: '开发者工具箱 - 在线开发工具集合',
+  title: t('hero.title') + ' - ' + t('hero.subtitle'),
   meta: [
-    { name: 'description', content: '免费的在线开发工具集合，包括编码加密、图形视觉、文本代码、格式转换、运维网络、数据生成、查询辅助等实用工具' }
+    { name: 'description', content: t('about.description') + t('about.highlight') + t('about.description2') }
   ]
 })
 

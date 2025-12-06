@@ -2,8 +2,8 @@
   <UContainer class="py-8 sm:py-12">
     <!-- Hero 标题 -->
     <UPageHeader
-      title="JSON 格式化工具"
-      description="快速格式化、压缩和验证 JSON 数据，支持语法高亮和错误提示"
+      :title="$t('pages.json.title')"
+      :description="$t('pages.json.description')"
       align="center"
     >
       <template #icon>
@@ -26,7 +26,7 @@
             class="px-6"
             @click="switchMode('format')"
           >
-            格式化
+            {{ $t('ui.format') }}
           </UButton>
           <UButton
             :color="mode === 'compress' ? 'primary' : 'neutral'"
@@ -36,7 +36,7 @@
             class="px-6"
             @click="switchMode('compress')"
           >
-            压缩
+            {{ $t('ui.compress') }}
           </UButton>
         </div>
       </div>
@@ -47,12 +47,12 @@
           <div class="flex items-center justify-between mb-2">
             <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
               <UIcon name="i-heroicons-code-bracket-square" class="w-4 h-4" />
-              输入 JSON
+              {{ $t('ui.inputJson') }}
             </label>
             <div class="flex items-center gap-2">
               <div class="flex items-center gap-1" v-if="inputText">
-                <UBadge v-if="isValid" color="success" variant="subtle" size="sm" icon="i-heroicons-check-circle">有效</UBadge>
-                <UBadge v-else-if="error" color="error" variant="subtle" size="sm" icon="i-heroicons-exclamation-circle">无效</UBadge>
+                <UBadge v-if="isValid" color="success" variant="subtle" size="sm" icon="i-heroicons-check-circle">{{ $t('ui.valid') }}</UBadge>
+                <UBadge v-else-if="error" color="error" variant="subtle" size="sm" icon="i-heroicons-exclamation-circle">{{ $t('ui.invalid') }}</UBadge>
               </div>
               <UButton
                 v-if="inputText"
@@ -62,16 +62,16 @@
                 icon="i-heroicons-x-mark"
                 @click="clearAll"
               >
-                清空
+                {{ $t('ui.clear') }}
               </UButton>
               <UBadge color="neutral" variant="subtle" size="sm">
-                {{ inputText.length }} 字符
+                {{ inputText.length }} {{ $t('ui.characters') }}
               </UBadge>
             </div>
           </div>
           <UTextarea
             v-model="inputText"
-            placeholder='在此输入 JSON 数据...&#10;例如: {"name": "John", "age": 30}'
+            :placeholder='`${$t("ui.inputJson")}...\n${t("ui.quickExamples")}: {"name": "John", "age": 30}`'
             :rows="12"
             size="xl"
             autoresize
@@ -93,7 +93,7 @@
               @click="process"
               class="px-6"
             >
-              {{ mode === 'format' ? '执行格式化' : '执行压缩' }}
+              {{ mode === 'format' ? $t('ui.executeFormat') : $t('ui.executeCompress') }}
             </UButton>
           </div>
         </div>
@@ -102,7 +102,7 @@
         <div v-if="error" class="animate-fade-in">
           <UAlert
             icon="i-heroicons-exclamation-triangle"
-            title="JSON 格式错误"
+            :title="$t('ui.jsonFormatError')"
             :description="error"
             color="error"
             variant="subtle"
@@ -121,7 +121,7 @@
               <div class="flex items-center justify-between mb-4">
                 <label class="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2">
                   <UIcon name="i-heroicons-clipboard-document-check" class="w-4 h-4 text-indigo-500" />
-                  {{ mode === 'format' ? '格式化结果' : '压缩结果' }}
+                  {{ mode === 'format' ? $t('ui.formatResult') : $t('ui.compressResult') }}
                 </label>
                 <div class="flex items-center gap-2">
                   <UButton
@@ -131,10 +131,10 @@
                     icon="i-heroicons-arrow-down-tray"
                     @click="downloadJSON"
                   >
-                    下载文件
+                    {{ $t('ui.downloadFile') }}
                   </UButton>
                   <UBadge color="success" variant="subtle" size="md">
-                    {{ outputText.length }} 字符
+                    {{ outputText.length }} {{ $t('ui.characters') }}
                   </UBadge>
                 </div>
               </div>
@@ -151,7 +151,7 @@
                   :ui="{ 
                     base: 'bg-white dark:bg-gray-900 pr-12 font-ligatures-none min-h-[300px] p-4 w-full' 
                   }"
-                  @click="() => copyToClipboard(outputText, 'JSON 结果')"
+                  @click="() => copyToClipboard(outputText, t('ui.jsonResult'))"
                 />
                 <div class="absolute top-2 right-2">
                   <UButton
@@ -159,7 +159,7 @@
                     variant="ghost"
                     size="sm"
                     icon="i-heroicons-clipboard-document"
-                    @click="() => copyToClipboard(outputText, 'JSON 结果')"
+                    @click="() => copyToClipboard(outputText, t('ui.jsonResult'))"
                   />
                 </div>
               </div>
@@ -167,15 +167,15 @@
               <!-- 统计信息 -->
               <div class="mt-6 grid grid-cols-3 gap-4">
                 <div class="text-center p-3 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div class="text-xs text-gray-500 mb-1">原始长度</div>
+                  <div class="text-xs text-gray-500 mb-1">{{ $t('ui.originalLength') }}</div>
                   <div class="font-mono font-bold text-blue-600 dark:text-blue-400">{{ inputText.length }}</div>
                 </div>
                 <div class="text-center p-3 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div class="text-xs text-gray-500 mb-1">处理后长度</div>
+                  <div class="text-xs text-gray-500 mb-1">{{ $t('ui.processedLength') }}</div>
                   <div class="font-mono font-bold text-purple-600 dark:text-purple-400">{{ outputText.length }}</div>
                 </div>
                 <div class="text-center p-3 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div class="text-xs text-gray-500 mb-1">压缩比例</div>
+                  <div class="text-xs text-gray-500 mb-1">{{ $t('ui.compressionRatio') }}</div>
                   <div class="font-mono font-bold text-green-600 dark:text-green-400">{{ compressionRatio }}</div>
                 </div>
               </div>
@@ -189,7 +189,7 @@
     <ToolExamples :examples="examples" @select="useExample" />
 
     <!-- 说明信息 -->
-    <ToolInfo title="关于 JSON 格式化" :items="accordionItems" />
+    <ToolInfo :title="$t('ui.aboutJson')" :items="accordionItems" />
   </UContainer>
 </template>
 
@@ -199,6 +199,8 @@ import type { Example, AccordionItem } from '~/types'
 definePageMeta({
   layout: 'default'
 })
+
+const { t } = useI18n()
 
 const mode = ref<'format' | 'compress'>('format')
 const inputText = ref('')
@@ -210,50 +212,50 @@ const { copyToClipboard } = useToolClipboard()
 // 示例数据
 const examples: Example[] = [
   { 
-    label: '简单对象', 
+    label: 'Simple Object', 
     text: '{"name":"John","age":30,"city":"New York"}' 
   },
   { 
-    label: '嵌套对象', 
+    label: 'Nested Object', 
     text: '{"user":{"name":"Alice","profile":{"age":25,"email":"alice@example.com"}}}' 
   },
   { 
-    label: '数组数据', 
+    label: 'Array Data', 
     text: '{"fruits":["apple","banana","orange"],"count":3}' 
   },
   { 
-    label: '复杂结构', 
+    label: 'Complex Structure', 
     text: '{"users":[{"id":1,"name":"John","active":true},{"id":2,"name":"Jane","active":false}],"total":2}' 
   }
 ]
 
 // 折叠面板数据
-const accordionItems: AccordionItem[] = [
+const accordionItems = computed<AccordionItem[]>(() => [
   {
     slot: 'what',
-    label: '什么是 JSON？',
+    label: t('ui.whatIsJson'),
     icon: 'i-heroicons-question-mark-circle',
-    content: 'JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，易于人阅读和编写，同时也易于机器解析和生成。它基于 JavaScript 的一个子集，但完全独立于编程语言。JSON 使用完全独立于语言的文本格式，广泛应用于 Web 应用程序中。'
+    content: t('ui.whatIsJsonContent')
   },
   {
     slot: 'usage',
-    label: '主要用途',
+    label: t('ui.jsonMainUsage'),
     icon: 'i-heroicons-rocket-launch',
-    content: 'JSON 广泛应用于 API 数据传输、配置文件、数据存储、前后端数据交换等场景。几乎所有现代 Web 应用都使用 JSON 作为数据交换格式。它已经成为 RESTful API 的标准数据格式。'
+    content: t('ui.jsonMainUsageContent')
   },
   {
     slot: 'features',
-    label: '格式化的好处',
+    label: t('ui.formatBenefits'),
     icon: 'i-heroicons-sparkles',
-    content: '格式化后的 JSON 具有良好的缩进和换行，使数据结构清晰可读，便于调试和维护。压缩后的 JSON 可以减小文件大小，提高网络传输效率。本工具支持实时验证 JSON 语法，帮助快速发现和定位错误。'
+    content: t('ui.formatBenefitsContent')
   },
   {
     slot: 'tips',
-    label: '使用技巧',
+    label: t('ui.jsonUsageTips'),
     icon: 'i-heroicons-light-bulb',
-    content: '在开发调试时使用格式化模式，便于查看数据结构；在生产环境中使用压缩模式，减少数据传输量。JSON 的键名必须使用双引号，字符串值也必须使用双引号。支持的数据类型包括：对象、数组、字符串、数字、布尔值和 null。'
+    content: t('ui.jsonUsageTipsContent')
   }
-]
+])
 
 // 压缩比例
 const compressionRatio = computed(() => {
@@ -278,7 +280,7 @@ const formatJSON = () => {
     outputText.value = JSON.stringify(parsed, null, 2)
     isValid.value = true
   } catch (err: any) {
-    error.value = err.message || 'JSON 格式错误'
+    error.value = err.message || t('ui.jsonFormatError')
     outputText.value = ''
     isValid.value = false
   }
@@ -292,7 +294,7 @@ const compressJSON = () => {
     outputText.value = JSON.stringify(parsed)
     isValid.value = true
   } catch (err: any) {
-    error.value = err.message || 'JSON 格式错误'
+    error.value = err.message || t('ui.jsonFormatError')
     outputText.value = ''
     isValid.value = false
   }
@@ -349,15 +351,15 @@ const downloadJSON = () => {
     URL.revokeObjectURL(url)
   } catch (err) {
     console.error('Failed to download:', err)
-    alert('下载失败，请重试')
+    alert(t('ui.downloadFailed'))
   }
 }
 
 // SEO 元信息
 useHead({
-  title: 'JSON 格式化工具 - 在线 JSON 格式化压缩',
+  title: t('pages.json.title'),
   meta: [
-    { name: 'description', content: '免费的在线 JSON 格式化和压缩工具，支持实时验证、语法检查和错误提示' }
+    { name: 'description', content: t('pages.json.description') }
   ]
 })
 </script>
