@@ -44,14 +44,11 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'format-detection', content: 'telephone=no' },
-        // 暂时移除 CSP，先确保功能正常，后续可根据需要重新添加
-        // 保留基本安全配置
-        // 阻止第三方嵌入
-        { 'http-equiv': 'X-Frame-Options', content: 'DENY' },
-        // 阻止 MIME 类型嗅探
-        { 'http-equiv': 'X-Content-Type-Options', content: 'nosniff' },
-        // 阻止引用来源泄露
+        // 引用来源策略（可以通过 meta 标签设置）
         { name: 'referrer', content: 'strict-origin-when-cross-origin' }
+        // 注意：X-Frame-Options 和 X-Content-Type-Options 等安全头
+        // 必须通过 HTTP 响应头设置，不能通过 meta 标签设置
+        // GitHub Pages 静态托管不支持自定义 HTTP 响应头
       ]
     }
   },
