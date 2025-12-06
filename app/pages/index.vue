@@ -84,7 +84,7 @@
         </p>
         <div class="flex justify-center gap-4">
           <UButton
-            to="https://github.com/yourusername/developer-toolbox"
+            to="https://github.com/wuwx/developer-toolbox"
             target="_blank"
             color="neutral"
             variant="ghost"
