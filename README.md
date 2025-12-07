@@ -156,7 +156,7 @@ pnpm generate
 
 Contributions are welcome! Whether it's:
 
-- �  Bug reports
+- 🐛 Bug reports
 - 💡 Feature requests
 - 📝 Documentation improvements
 - 🔧 New tool additions
