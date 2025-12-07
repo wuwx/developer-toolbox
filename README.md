@@ -25,7 +25,7 @@ A modern, privacy-first online tool collection designed for developers. Built wi
 <tr>
 <td width="50%">
 
-### � **sPrivacy First**
+### 🔒 **Privacy First**
 All processing happens in your browser. Your sensitive data never leaves your device - no servers, no tracking, no data collection.
 
 ### ⚡️ **Blazing Fast**
