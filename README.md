@@ -1,25 +1,54 @@
+<div align="center">
+
 # 🛠️ Developer Toolbox
 
-A modern online tool collection designed for developers, featuring **120+** commonly used tools.
-Built with **Nuxt 4** + **Nuxt UI**, using **100% pure client-side** technology to ensure data security with no server interaction.
+**Your All-in-One Developer Toolkit - 120+ Tools, Zero Server Uploads**
+
+A modern, privacy-first online tool collection designed for developers. Built with **Nuxt 4** + **Nuxt UI**, using **100% client-side** processing to keep your data safe and secure.
 
 [![GitHub stars](https://img.shields.io/github/stars/wuwx/developer-toolbox?style=social)](https://github.com/wuwx/developer-toolbox)
 [![GitHub forks](https://img.shields.io/github/forks/wuwx/developer-toolbox?style=social)](https://github.com/wuwx/developer-toolbox)
 [![License](https://img.shields.io/github/license/wuwx/developer-toolbox)](https://github.com/wuwx/developer-toolbox/blob/main/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wuwx/developer-toolbox/pulls)
+
+[🌐 Live Demo](https://wuwx.github.io/developer-toolbox) | [English](README.md) | [简体中文](README.zh-CN.md)
 
 ![Toolbox Preview](public/og-image.png)
 
-English | [简体中文](README.zh-CN.md)
+</div>
 
-## ✨ Features
+---
 
-- **🔒 Secure & Private**: All data processing is done locally in your browser, never uploaded to servers
-- **⚡️ Lightning Fast**: Built on Nuxt 4 and Vue 3, extremely fast loading with PWA support
-- **🎨 Modern UI**: Using Nuxt UI and TailwindCSS 4, with automatic dark/light mode switching
-- **🔍 Global Search**: Built-in Command Palette (`Cmd+K`) for quick access to any tool
-- **📱 Responsive Design**: Perfect adaptation for desktop, tablet, and mobile devices
-- **🎯 Smart Grouping**: Tools organized by category with 2-3 level cascading menus for quick discovery
-- **🌍 Internationalization**: Support for Chinese and English with automatic browser language detection
+## ✨ Why Developer Toolbox?
+
+<table>
+<tr>
+<td width="50%">
+
+### � **sPrivacy First**
+All processing happens in your browser. Your sensitive data never leaves your device - no servers, no tracking, no data collection.
+
+### ⚡️ **Blazing Fast**
+Built on Nuxt 4 and Vue 3 with PWA support. Instant loading, offline capable, and lightning-fast performance.
+
+### 🎨 **Beautiful & Modern**
+Sleek UI powered by Nuxt UI and TailwindCSS 4. Auto dark/light mode that adapts to your preferences.
+
+</td>
+<td width="50%">
+
+### 🔍 **Quick Access**
+Command Palette (`Cmd+K` / `Ctrl+K`) lets you find any tool in seconds. No more endless scrolling.
+
+### 📱 **Works Everywhere**
+Fully responsive design. Perfect experience on desktop, tablet, and mobile devices.
+
+### 🌍 **Multilingual**
+Built-in i18n support for English and Chinese with automatic language detection.
+
+</td>
+</tr>
+</table>
 
 ## 🧰 Tool List (120+)
 
@@ -88,39 +117,71 @@ English | [简体中文](README.zh-CN.md)
 
 **Life Tools**: Pomodoro, BMI Calculator, World Clock, Countdown, Currency Converter
 
-## 🚀 Local Development
+## 🚀 Quick Start
+
+### Online Usage
+Simply visit [https://wuwx.github.io/developer-toolbox](https://wuwx.github.io/developer-toolbox) - no installation required!
+
+### Local Development
 
 ```bash
-# 1. Clone the project
+# Clone the repository
 git clone https://github.com/wuwx/developer-toolbox.git
+cd developer-toolbox
 
-# 2. Install dependencies
+# Install dependencies (pnpm recommended)
 pnpm install
 
-# 3. Start development server
+# Start development server
 pnpm dev
 ```
 
-Visit http://localhost:3000 to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📦 Deployment
 
-This project is configured for static site generation (`nuxt generate`) and can be deployed to any static hosting service (GitHub Pages, Vercel, Netlify, etc.).
+This project uses static site generation and can be deployed to any static hosting platform:
 
-### GitHub Pages Deployment
+- **GitHub Pages**: Automatic deployment via GitHub Actions (push to `main` branch)
+- **Vercel**: One-click deployment with zero configuration
+- **Netlify**: Drag & drop or connect your repository
+- **Cloudflare Pages**: Fast global CDN deployment
 
-The project includes an automatic deployment workflow. Simply push code to the `main` branch, and GitHub Actions will automatically build and deploy to the `gh-pages` branch.
+```bash
+# Build for production
+pnpm generate
+```
 
-Please set the Pages Source to the `gh-pages` branch in your GitHub repository settings.
+## 🤝 Contributing
 
-## 🌍 Internationalization
+Contributions are welcome! Whether it's:
 
-The project supports Chinese (Simplified) and English:
+- �  Bug reports
+- 💡 Feature requests
+- 📝 Documentation improvements
+- 🔧 New tool additions
 
-- **Automatic Detection**: Automatically detects browser language and switches accordingly
-- **Manual Switch**: Users can manually switch languages using the language toggle button in the header
-- **Language Persistence**: Selected language is saved in cookies for future visits
+Please feel free to open an issue or submit a pull request.
+
+## 🌟 Show Your Support
+
+If you find this project helpful, please consider:
+
+- ⭐ Starring the repository
+- 🐛 Reporting bugs or suggesting features
+- 📢 Sharing with other developers
+- 🤝 Contributing to the codebase
 
 ## 📄 License
 
-MIT License © 2025
+MIT License © 2025 - feel free to use this project for personal or commercial purposes.
+
+---
+
+<div align="center">
+
+**Made with ❤️ for developers, by developers**
+
+[Report Bug](https://github.com/wuwx/developer-toolbox/issues) · [Request Feature](https://github.com/wuwx/developer-toolbox/issues) · [Documentation](https://github.com/wuwx/developer-toolbox/wiki)
+
+</div>

@@ -1,25 +1,54 @@
+<div align="center">
+
 # 🛠️ Developer Toolbox
 
-一个专为开发者打造的现代化在线工具集合，包含 **120+** 个常用工具。
-基于 **Nuxt 4** + **Nuxt UI** 构建，采用 **100% 纯客户端** 技术实现，确保数据安全，无服务器交互。
+**开发者的全能工具箱 - 120+ 工具，零服务器上传**
+
+一个现代化、隐私优先的在线工具集合，专为开发者打造。基于 **Nuxt 4** + **Nuxt UI** 构建，采用 **100% 客户端处理**，确保您的数据安全无忧。
 
 [![GitHub stars](https://img.shields.io/github/stars/wuwx/developer-toolbox?style=social)](https://github.com/wuwx/developer-toolbox)
 [![GitHub forks](https://img.shields.io/github/forks/wuwx/developer-toolbox?style=social)](https://github.com/wuwx/developer-toolbox)
 [![License](https://img.shields.io/github/license/wuwx/developer-toolbox)](https://github.com/wuwx/developer-toolbox/blob/main/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/wuwx/developer-toolbox/pulls)
+
+[🌐 在线体验](https://wuwx.github.io/developer-toolbox) | [English](README.md) | [简体中文](README.zh-CN.md)
 
 ![工具箱预览](public/og-image.png)
 
-[English](README.md) | 简体中文
+</div>
 
-## ✨ 特性
+---
 
-- **🔒 安全隐私**：所有数据处理均在浏览器本地完成，绝不上传服务器
-- **⚡️ 极速响应**：基于 Nuxt 4 和 Vue 3，加载速度极快，支持 PWA
-- **🎨 现代化 UI**：使用 Nuxt UI 和 TailwindCSS 4，支持明暗色模式自动切换
-- **🔍 全局搜索**：内置 Command Palette (`Cmd+K`)，快速跳转任意工具
-- **📱 响应式设计**：完美适配桌面、平板和移动端设备
-- **🎯 智能分组**：工具按类别分组，支持二级、三级级联菜单，快速发现和定位
-- **🌍 国际化支持**：支持中英文双语，自动检测浏览器语言
+## ✨ 为什么选择 Developer Toolbox？
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔒 **隐私至上**
+所有处理都在浏览器中完成。您的敏感数据永不离开设备 - 无服务器、无追踪、无数据收集。
+
+### ⚡️ **极速体验**
+基于 Nuxt 4 和 Vue 3 构建，支持 PWA。秒开加载，离线可用，性能极致。
+
+### 🎨 **精美现代**
+采用 Nuxt UI 和 TailwindCSS 4 打造的优雅界面。自动适配深色/浅色模式。
+
+</td>
+<td width="50%">
+
+### 🔍 **快速访问**
+命令面板（`Cmd+K` / `Ctrl+K`）让您秒找任何工具。告别无尽滚动。
+
+### 📱 **随处可用**
+完全响应式设计。在桌面、平板和手机上都有完美体验。
+
+### 🌍 **多语言支持**
+内置中英文国际化，自动检测浏览器语言。
+
+</td>
+</tr>
+</table>
 
 ## 🧰 工具列表 (120+)
 
@@ -88,39 +117,71 @@
 
 **生活工具**：番茄钟、BMI计算器、世界时钟、倒计时、汇率换算
 
-## 🚀 本地开发
+## 🚀 快速开始
+
+### 在线使用
+直接访问 [https://wuwx.github.io/developer-toolbox](https://wuwx.github.io/developer-toolbox) - 无需安装！
+
+### 本地开发
 
 ```bash
-# 1. 克隆项目
+# 克隆仓库
 git clone https://github.com/wuwx/developer-toolbox.git
+cd developer-toolbox
 
-# 2. 安装依赖
+# 安装依赖（推荐使用 pnpm）
 pnpm install
 
-# 3. 启动开发服务器
+# 启动开发服务器
 pnpm dev
 ```
 
-访问 http://localhost:3000 即可看到效果。
+在浏览器中打开 [http://localhost:3000](http://localhost:3000)。
 
 ## 📦 部署
 
-本项目配置为静态站点生成 (`nuxt generate`)，可以部署到任何静态托管服务（GitHub Pages, Vercel, Netlify 等）。
+本项目使用静态站点生成，可部署到任何静态托管平台：
 
-### GitHub Pages 部署
+- **GitHub Pages**：通过 GitHub Actions 自动部署（推送到 `main` 分支）
+- **Vercel**：一键部署，零配置
+- **Netlify**：拖放部署或连接仓库
+- **Cloudflare Pages**：全球 CDN 快速部署
 
-项目包含自动部署 Workflow。只需将代码推送到 `main` 分支，GitHub Actions 会自动构建并部署到 `gh-pages` 分支。
+```bash
+# 构建生产版本
+pnpm generate
+```
 
-请在 GitHub 仓库设置中将 Pages Source 设置为 `gh-pages` 分支。
+## 🤝 参与贡献
 
-## 🌍 国际化
+欢迎各种形式的贡献：
 
-项目支持简体中文和英文：
+- 🐛 提交 Bug 报告
+- 💡 提出新功能建议
+- 📝 改进文档
+- 🔧 添加新工具
 
-- **自动检测**：自动检测浏览器语言并切换
-- **手动切换**：用户可通过顶部导航栏的语言切换按钮手动切换语言
-- **语言持久化**：选择的语言会保存在 Cookie 中，下次访问时自动应用
+欢迎提交 Issue 或 Pull Request。
 
-## 📄 License
+## 🌟 支持项目
 
-MIT License © 2025
+如果这个项目对您有帮助，请考虑：
+
+- ⭐ 给项目点个 Star
+- 🐛 报告 Bug 或提出建议
+- 📢 分享给其他开发者
+- 🤝 贡献代码
+
+## 📄 开源协议
+
+MIT License © 2025 - 可自由用于个人或商业项目。
+
+---
+
+<div align="center">
+
+**用 ❤️ 为开发者打造**
+
+[报告问题](https://github.com/wuwx/developer-toolbox/issues) · [功能建议](https://github.com/wuwx/developer-toolbox/issues) · [项目文档](https://github.com/wuwx/developer-toolbox/wiki)
+
+</div>

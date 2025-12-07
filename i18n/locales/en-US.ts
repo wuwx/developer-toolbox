@@ -437,7 +437,7 @@ export default {
     direction: 'Direction',
     angle: 'Angle',
     colorStops: 'Color Stops',
-    position: 'Position',
+    gradientPosition: 'Position',
     // HTML minifier
     originalHtml: 'Original HTML',
     collapseWhitespace: 'Collapse whitespace',
@@ -457,7 +457,7 @@ export default {
     originalImage: 'Original Image',
     compressedImage: 'Compressed',
     // IPv4
-    ipAddress: 'IP Address',
+    ipv4Address: 'IP Address',
     decimalInteger: 'Decimal Integer',
     hexadecimal: 'Hexadecimal',
     binary: 'Binary',
@@ -476,9 +476,9 @@ export default {
     // More tools
     macAddress: 'MAC Address',
     generateMac: 'Generate MAC',
-    uppercase: 'Uppercase',
-    lowercase: 'Lowercase',
-    separator: 'Separator',
+    macUppercase: 'Uppercase',
+    macLowercase: 'Lowercase',
+    macSeparator: 'Separator',
     colon: 'Colon',
     hyphen: 'Hyphen',
     dot: 'Dot',
@@ -491,11 +491,11 @@ export default {
     // QR scanner
     uploadImage: 'Upload Image',
     scanResult: 'Scan Result',
-    // Regex
-    regexPattern: 'Regex Pattern',
-    testString: 'Test String',
-    matchResult: 'Match Result',
-    commonPatterns: 'Common Patterns',
+    // Regex tester
+    regexTestPattern: 'Regex Pattern',
+    regexTestString: 'Test String',
+    regexMatchResult: 'Match Result',
+    regexCommonPatterns: 'Common Patterns',
     // SQL generator
     tableName: 'Table Name',
     fieldName: 'Field Name',
@@ -753,7 +753,28 @@ export default {
   // Tool page details
   pages: {
     // Hash tools
-    md5: { title: 'MD5 Hash Generator', description: 'Convert text to MD5 hash, runs locally' },
+    md5: { 
+      title: 'MD5 Hash Generator', 
+      description: 'Convert text to MD5 hash, runs locally',
+      generate: 'Generate MD5',
+      hashResult: 'MD5 Hash Result',
+      format32Lower: '32-bit Lowercase',
+      format32Upper: '32-bit Uppercase',
+      format16Lower: '16-bit Lowercase',
+      format16Upper: '16-bit Uppercase',
+      outputFormats: 'Output Formats',
+      aboutTitle: 'About MD5',
+      what: 'What is MD5?',
+      whatContent: 'MD5 (Message-Digest Algorithm 5) is a widely used cryptographic hash function that produces a 128-bit (16-byte) hash value, typically expressed as a 32-character hexadecimal number. It was designed by Ronald Rivest in 1991.',
+      usage: 'Main Uses',
+      usageContent: 'MD5 is commonly used for file integrity verification, digital signatures, and password storage. However, due to discovered vulnerabilities, it is no longer recommended for security-critical applications. It is still useful for checksums and non-cryptographic purposes.',
+      security: 'Security Notes',
+      securityContent: 'MD5 has known cryptographic weaknesses and should not be used for security purposes like password hashing or digital certificates. For security-critical applications, use SHA-256, SHA-3, or bcrypt instead.',
+      features: 'Technical Features',
+      featuresContent: '• Fixed 128-bit output length\n• Fast computation speed\n• Deterministic (same input always produces same output)\n• One-way function (cannot reverse hash to original)\n• Supports 32-bit uppercase/lowercase and 16-bit uppercase/lowercase formats',
+      seoTitle: 'MD5 Hash Generator - Online MD5 Encryption Tool',
+      seoDesc: 'Free online MD5 hash generator. Supports 32-bit and 16-bit formats in uppercase and lowercase. All processing done locally in your browser for maximum privacy.'
+    },
     md4: { title: 'MD4 Hash Generator', description: 'Generate MD4 hash, older algorithm' },
     sha1: { title: 'SHA1 Hash Generator', description: 'Generate SHA1 hash, 160-bit secure hash' },
     sha256: { title: 'SHA256 Hash Generator', description: 'Generate SHA256 hash, more secure' },
@@ -795,8 +816,6 @@ export default {
     jsonCsv: { title: 'JSON CSV Converter', description: 'Convert between JSON and CSV' },
     
     // Text tools
-    diff: { title: 'Text Diff', description: 'Compare text differences' },
-    textDiff: { title: 'Text Difference', description: 'Detailed text comparison' },
     textStats: { title: 'Text Statistics', description: 'Word count and frequency analysis' },
     textDeduplicate: { title: 'Text Deduplicate', description: 'Remove duplicates and sort' },
     caseConverter: { title: 'Case Converter', description: 'Camel/Snake/Pascal case conversion' },

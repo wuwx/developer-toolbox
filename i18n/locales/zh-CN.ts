@@ -747,7 +747,28 @@ export default {
   // 工具页面详情
   pages: {
     // 哈希工具
-    md5: { title: 'MD5 哈希生成器', description: '快速将任意文本转换为 MD5 哈希值，完全本地运行' },
+    md5: { 
+      title: 'MD5 哈希生成器', 
+      description: '快速将任意文本转换为 MD5 哈希值，完全本地运行',
+      generate: '生成 MD5',
+      hashResult: 'MD5 哈希结果',
+      format32Lower: '32位小写',
+      format32Upper: '32位大写',
+      format16Lower: '16位小写',
+      format16Upper: '16位大写',
+      outputFormats: '输出格式',
+      aboutTitle: '关于 MD5',
+      what: '什么是 MD5？',
+      whatContent: 'MD5（Message-Digest Algorithm 5）是一种广泛使用的密码散列函数，可以产生 128 位（16 字节）的散列值，通常表示为 32 个十六进制字符。它由 Ronald Rivest 于 1991 年设计。',
+      usage: '主要用途',
+      usageContent: 'MD5 常用于文件完整性验证、数字签名和密码存储。但由于发现了安全漏洞，不再推荐用于安全关键型应用。它仍然适用于校验和和非加密用途。',
+      security: '安全提示',
+      securityContent: 'MD5 存在已知的密码学弱点，不应用于密码哈希或数字证书等安全用途。对于安全关键型应用，请使用 SHA-256、SHA-3 或 bcrypt。',
+      features: '技术特性',
+      featuresContent: '• 固定 128 位输出长度\n• 计算速度快\n• 确定性（相同输入始终产生相同输出）\n• 单向函数（无法从哈希值反推原文）\n• 支持 32 位大小写和 16 位大小写四种格式',
+      seoTitle: 'MD5 哈希生成器 - 在线 MD5 加密工具',
+      seoDesc: '免费在线 MD5 哈希生成器。支持 32 位和 16 位大小写格式。所有处理都在浏览器本地完成，保护您的隐私安全。'
+    },
     md4: { title: 'MD4 哈希生成器', description: '生成 MD4 哈希值，较旧的哈希算法' },
     sha1: { title: 'SHA1 哈希生成器', description: '生成 SHA1 哈希值，160 位安全哈希' },
     sha256: { title: 'SHA256 哈希生成器', description: '生成 SHA256 哈希值，安全性更高' },
