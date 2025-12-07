@@ -69,9 +69,9 @@ function generateHash() {
 function clearAll() { inputText.value = ''; sm3Hash.value = '' }
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' SM3?', icon: 'i-heroicons-question-mark-circle', content: 'SM3 is a cryptographic hash function published by the Chinese State Cryptography Administration (GB/T 32905-2016). It produces a 256-bit hash value and is comparable to SHA-256 in security.' },
-  { slot: 'usage', label: t('ui.mainUsage'), icon: 'i-heroicons-rocket-launch', content: 'SM3 is widely used in Chinese financial, e-government, and digital certificate systems. It is a core algorithm in the Chinese commercial cryptography system.' },
-  { slot: 'security', label: t('ui.securityNote'), icon: 'i-heroicons-shield-check', content: 'SM3 has strong collision resistance and is considered very secure. It complies with Chinese national cryptography policy requirements.' }
+  { slot: 'what', label: t('pages.sm3.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.sm3.whatContent') },
+  { slot: 'usage', label: t('pages.sm3.usage'), icon: 'i-heroicons-rocket-launch', content: t('pages.sm3.usageContent') },
+  { slot: 'security', label: t('pages.sm3.security'), icon: 'i-heroicons-shield-check', content: t('pages.sm3.securityContent') }
 ])
 
 useHead({ title: t('pages.sm3.title'), meta: [{ name: 'description', content: t('pages.sm3.description') }] })

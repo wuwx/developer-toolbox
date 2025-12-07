@@ -97,8 +97,8 @@ const decodeExamples: Example[] = [
 const currentExamples = computed(() => mode.value === 'encode' ? encodeExamples : decodeExamples)
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' URL Encoding?', icon: 'i-heroicons-question-mark-circle', content: 'URL encoding (percent-encoding) converts characters to a format that can be transmitted over the Internet. URLs can only contain a subset of ASCII characters.' },
-  { slot: 'usage', label: t('ui.mainUsage'), icon: 'i-heroicons-rocket-launch', content: 'When URL parameters contain spaces, special symbols (&, =, ?) or non-ASCII characters, they must be encoded to prevent URL parsing errors or data loss.' }
+  { slot: 'what', label: t('pages.url.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.url.whatContent') },
+  { slot: 'usage', label: t('pages.url.usage'), icon: 'i-heroicons-rocket-launch', content: t('pages.url.usageContent') }
 ])
 
 const switchMode = (newMode: 'encode' | 'decode') => { mode.value = newMode; clearAll() }

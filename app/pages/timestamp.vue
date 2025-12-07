@@ -125,8 +125,8 @@ const togglePause = () => {
 }
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' Unix Timestamp?', icon: 'i-heroicons-question-mark-circle', content: 'Unix timestamp is the number of seconds since January 1, 1970 (UTC midnight), not counting leap seconds. It is a standard way to represent time in computer systems.' },
-  { slot: 'year2038', label: 'Year 2038 Problem', icon: 'i-heroicons-exclamation-triangle', content: 'Systems using 32-bit signed integers for timestamps will overflow on January 19, 2038. Modern 64-bit systems have resolved this issue.' }
+  { slot: 'what', label: t('pages.timestamp.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.timestamp.whatContent') },
+  { slot: 'year2038', label: t('pages.timestamp.year2038'), icon: 'i-heroicons-exclamation-triangle', content: t('pages.timestamp.year2038Content') }
 ])
 
 onMounted(() => {

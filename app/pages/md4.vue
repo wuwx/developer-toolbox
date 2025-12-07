@@ -69,8 +69,8 @@ function generateHash() {
 function clearAll() { inputText.value = ''; md4Hash.value = '' }
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' MD4?', icon: 'i-heroicons-question-mark-circle', content: 'MD4 is a message digest algorithm designed by Ronald Rivest in 1990. It produces a 128-bit (16-byte) hash value. MD4 influenced the design of later algorithms like MD5, SHA-1, and RIPEMD.' },
-  { slot: 'security', label: t('ui.securityNote'), icon: 'i-heroicons-exclamation-triangle', content: 'MD4 has been proven to be very insecure and extremely vulnerable to collision attacks. It should not be used for any security purposes. This tool is only for research, compatibility testing, or generating non-security identifiers.' }
+  { slot: 'what', label: t('pages.md4.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.md4.whatContent') },
+  { slot: 'security', label: t('pages.md4.security'), icon: 'i-heroicons-exclamation-triangle', content: t('pages.md4.securityContent') }
 ])
 
 useHead({ title: t('pages.md4.title'), meta: [{ name: 'description', content: t('pages.md4.description') }] })

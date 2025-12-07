@@ -75,8 +75,8 @@ function generateHash() {
 function clearAll() { inputText.value = ''; ntlmHash.value = '' }
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' NTLM?', icon: 'i-heroicons-question-mark-circle', content: 'NTLM (New Technology LAN Manager) is a security protocol suite used in Microsoft Windows systems. NTLM hash is a one-way hash of user passwords, stored in Windows SAM database or domain controller NTDS.dit.' },
-  { slot: 'algo', label: t('ui.techFeatures'), icon: 'i-heroicons-calculator', content: 'NTLM hash calculation is simple: first convert the password to UTF-16LE encoding, then compute MD4 hash of the result. Since MD4 is extremely fast and has been broken, NTLM hash is considered insecure.' }
+  { slot: 'what', label: t('pages.ntlm.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.ntlm.whatContent') },
+  { slot: 'algo', label: t('pages.ntlm.algo'), icon: 'i-heroicons-calculator', content: t('pages.ntlm.algoContent') }
 ])
 
 useHead({ title: t('pages.ntlm.title'), meta: [{ name: 'description', content: t('pages.ntlm.description') }] })

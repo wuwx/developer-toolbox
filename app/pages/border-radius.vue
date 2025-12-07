@@ -14,7 +14,7 @@
         <UCard class="overflow-visible">
           <template #header>
             <div class="flex items-center justify-between">
-              <h3 class="font-semibold">实时预览</h3>
+              <h3 class="font-semibold">{{ $t('pages.borderRadius.preview') }}</h3>
               <div class="flex gap-2">
                 <UButton
                   color="neutral"
@@ -23,7 +23,7 @@
                   icon="i-heroicons-arrow-path"
                   @click="randomize"
                 >
-                  随机形状
+                  {{ $t('pages.borderRadius.randomShape') }}
                 </UButton>
               </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <UIcon name="i-heroicons-code-bracket" class="w-5 h-5" />
-                <h3 class="font-semibold">CSS 代码</h3>
+                <h3 class="font-semibold">{{ $t('pages.borderRadius.cssCode') }}</h3>
               </div>
               <UButton
                 color="primary"
@@ -54,7 +54,7 @@
                 icon="i-heroicons-clipboard-document"
                 @click="copyToClipboard(`border-radius: ${borderRadiusCSS};`, 'CSS')"
               >
-                复制
+                {{ $t('ui.copy') }}
               </UButton>
             </div>
           </template>
@@ -72,7 +72,7 @@
           <template #header>
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-adjustments-vertical" class="w-5 h-5" />
-              <h3 class="font-semibold">参数调整</h3>
+              <h3 class="font-semibold">{{ $t('pages.borderRadius.settings') }}</h3>
             </div>
           </template>
 
@@ -80,8 +80,8 @@
             <!-- 简单模式 -->
             <div v-if="!advanced" class="space-y-4">
               <div class="flex justify-between items-center">
-                <label class="text-sm font-medium">统一圆角</label>
-                <UToggle v-model="advanced" label="高级模式" />
+                <label class="text-sm font-medium">{{ $t('pages.borderRadius.uniformRadius') }}</label>
+                <UToggle v-model="advanced" :label="$t('pages.borderRadius.advancedMode')" />
               </div>
               <URange v-model="simpleRadius" :min="0" :max="100" />
             </div>
@@ -89,48 +89,48 @@
             <!-- 高级模式 (8个值) -->
             <div v-else class="space-y-6">
               <div class="flex justify-between items-center mb-4">
-                <h4 class="text-sm font-bold text-gray-900 dark:text-white">水平半径 (Horizontal)</h4>
-                <UToggle v-model="advanced" label="高级模式" />
+                <h4 class="text-sm font-bold text-gray-900 dark:text-white">{{ $t('pages.borderRadius.horizontalRadius') }}</h4>
+                <UToggle v-model="advanced" :label="$t('pages.borderRadius.advancedMode')" />
               </div>
               
               <div class="grid grid-cols-2 gap-4">
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block">左上 (Top-Left)</label>
+                  <label class="text-xs text-gray-500 mb-1 block">{{ $t('pages.borderRadius.topLeft') }}</label>
                   <URange v-model="radii.tl_x" :min="0" :max="100" size="sm" />
                 </div>
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block">右上 (Top-Right)</label>
+                  <label class="text-xs text-gray-500 mb-1 block">{{ $t('pages.borderRadius.topRight') }}</label>
                   <URange v-model="radii.tr_x" :min="0" :max="100" size="sm" />
                 </div>
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block">右下 (Bottom-Right)</label>
+                  <label class="text-xs text-gray-500 mb-1 block">{{ $t('pages.borderRadius.bottomRight') }}</label>
                   <URange v-model="radii.br_x" :min="0" :max="100" size="sm" />
                 </div>
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block">左下 (Bottom-Left)</label>
+                  <label class="text-xs text-gray-500 mb-1 block">{{ $t('pages.borderRadius.bottomLeft') }}</label>
                   <URange v-model="radii.bl_x" :min="0" :max="100" size="sm" />
                 </div>
               </div>
 
               <USeparator />
 
-              <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4">垂直半径 (Vertical)</h4>
+              <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4">{{ $t('pages.borderRadius.verticalRadius') }}</h4>
               
               <div class="grid grid-cols-2 gap-4">
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block">左上 (Top-Left)</label>
+                  <label class="text-xs text-gray-500 mb-1 block">{{ $t('pages.borderRadius.topLeft') }}</label>
                   <URange v-model="radii.tl_y" :min="0" :max="100" size="sm" />
                 </div>
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block">右上 (Top-Right)</label>
+                  <label class="text-xs text-gray-500 mb-1 block">{{ $t('pages.borderRadius.topRight') }}</label>
                   <URange v-model="radii.tr_y" :min="0" :max="100" size="sm" />
                 </div>
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block">右下 (Bottom-Right)</label>
+                  <label class="text-xs text-gray-500 mb-1 block">{{ $t('pages.borderRadius.bottomRight') }}</label>
                   <URange v-model="radii.br_y" :min="0" :max="100" size="sm" />
                 </div>
                 <div>
-                  <label class="text-xs text-gray-500 mb-1 block">左下 (Bottom-Left)</label>
+                  <label class="text-xs text-gray-500 mb-1 block">{{ $t('pages.borderRadius.bottomLeft') }}</label>
                   <URange v-model="radii.bl_y" :min="0" :max="100" size="sm" />
                 </div>
               </div>
@@ -143,7 +143,7 @@
           <template #header>
             <div class="flex items-center gap-2">
               <UIcon name="i-heroicons-star" class="w-5 h-5" />
-              <h3 class="font-semibold">常用形状</h3>
+              <h3 class="font-semibold">{{ $t('pages.borderRadius.presets') }}</h3>
             </div>
           </template>
 
@@ -157,7 +157,7 @@
               class="justify-center"
               @click="applyShape(shape)"
             >
-              {{ shape.name }}
+              {{ $t(`pages.borderRadius.shape${shape.key}`) }}
             </UButton>
           </div>
         </UCard>
@@ -199,10 +199,10 @@ function randomize() {
 }
 
 const shapes = [
-  { name: '叶子', radii: { tl_x: 0, tr_x: 100, br_x: 0, bl_x: 100, tl_y: 0, tr_y: 100, br_y: 0, bl_y: 100 } },
-  { name: '水滴', radii: { tl_x: 0, tr_x: 50, br_x: 50, bl_x: 50, tl_y: 0, tr_y: 50, br_y: 50, bl_y: 50 } },
-  { name: '盾牌', radii: { tl_x: 50, tr_x: 50, br_x: 50, bl_x: 50, tl_y: 15, tr_y: 15, br_y: 100, bl_y: 100 } },
-  { name: '柠檬', radii: { tl_x: 10, tr_x: 90, br_x: 10, bl_x: 90, tl_y: 90, tr_y: 10, br_y: 90, bl_y: 10 } }
+  { key: 'Leaf', name: 'Leaf', radii: { tl_x: 0, tr_x: 100, br_x: 0, bl_x: 100, tl_y: 0, tr_y: 100, br_y: 0, bl_y: 100 } },
+  { key: 'Drop', name: 'Drop', radii: { tl_x: 0, tr_x: 50, br_x: 50, bl_x: 50, tl_y: 0, tr_y: 50, br_y: 50, bl_y: 50 } },
+  { key: 'Shield', name: 'Shield', radii: { tl_x: 50, tr_x: 50, br_x: 50, bl_x: 50, tl_y: 15, tr_y: 15, br_y: 100, bl_y: 100 } },
+  { key: 'Lemon', name: 'Lemon', radii: { tl_x: 10, tr_x: 90, br_x: 10, bl_x: 90, tl_y: 90, tr_y: 10, br_y: 90, bl_y: 10 } }
 ]
 
 function applyShape(shape: typeof shapes[0]) {

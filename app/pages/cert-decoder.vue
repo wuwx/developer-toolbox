@@ -179,8 +179,8 @@ const daysRemaining = computed(() => {
 const formatDate = (date: Date) => new Intl.DateTimeFormat(locale.value, { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' }).format(date)
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'pem', label: t('ui.whatIs') + ' PEM?', icon: 'i-heroicons-question-mark-circle', content: 'PEM (Privacy Enhanced Mail) is the most common certificate format, typically with .crt, .pem, .cer, .key extensions.' },
-  { slot: 'san', label: t('ui.whatIs') + ' SANs?', icon: 'i-heroicons-globe-alt', content: 'SAN (Subject Alternative Name) allows specifying multiple domains, subdomains or IP addresses in an SSL certificate.' }
+  { slot: 'pem', label: t('pages.certDecoder.pem'), icon: 'i-heroicons-question-mark-circle', content: t('pages.certDecoder.pemContent') },
+  { slot: 'san', label: t('pages.certDecoder.san'), icon: 'i-heroicons-globe-alt', content: t('pages.certDecoder.sanContent') }
 ])
 
 useHead({ title: t('pages.certDecoder.title'), meta: [{ name: 'description', content: t('pages.certDecoder.description') }] })

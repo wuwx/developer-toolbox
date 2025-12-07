@@ -769,15 +769,81 @@ export default {
       seoTitle: 'MD5 哈希生成器 - 在线 MD5 加密工具',
       seoDesc: '免费在线 MD5 哈希生成器。支持 32 位和 16 位大小写格式。所有处理都在浏览器本地完成，保护您的隐私安全。'
     },
-    md4: { title: 'MD4 哈希生成器', description: '生成 MD4 哈希值，较旧的哈希算法' },
-    sha1: { title: 'SHA1 哈希生成器', description: '生成 SHA1 哈希值，160 位安全哈希' },
-    sha256: { title: 'SHA256 哈希生成器', description: '生成 SHA256 哈希值，安全性更高' },
-    sha512: { title: 'SHA512 哈希生成器', description: '生成 SHA512 哈希值，512 位安全哈希' },
-    ntlm: { title: 'NTLM 哈希生成器', description: 'Windows NTLM 密码哈希生成' },
-    bcrypt: { title: 'Bcrypt 哈希工具', description: 'Bcrypt 密码哈希生成与验证' },
+    md4: { 
+      title: 'MD4 哈希生成器', 
+      description: '生成 MD4 哈希值，较旧的哈希算法',
+      what: '什么是 MD4？',
+      whatContent: 'MD4 是由 Ronald Rivest 于 1990 年设计的消息摘要算法。它产生 128 位（16 字节）哈希值。MD4 影响了后来算法如 MD5、SHA-1 和 RIPEMD 的设计。',
+      security: '安全提示',
+      securityContent: 'MD4 已被证明非常不安全，极易受到碰撞攻击。不应用于任何安全目的。此工具仅用于研究、兼容性测试或生成非安全标识符。'
+    },
+    sha1: { 
+      title: 'SHA1 哈希生成器', 
+      description: '生成 SHA1 哈希值，160 位安全哈希',
+      what: '什么是 SHA1？',
+      whatContent: 'SHA1（安全哈希算法 1）是由 NSA 设计的密码学哈希函数。它产生 160 位（20 字节）哈希值，通常表示为 40 位十六进制数。',
+      usage: '主要用途',
+      usageContent: 'SHA1 广泛用于 Git 版本控制、数字签名、SSL 证书和文件完整性验证。',
+      security: '安全提示',
+      securityContent: 'SHA1 已被证明容易受到碰撞攻击。Google 在 2017 年演示了实际的碰撞攻击。对于安全敏感的应用，请使用 SHA-256 或更强的算法。'
+    },
+    sha256: { 
+      title: 'SHA256 哈希生成器', 
+      description: '生成 SHA256 哈希值，安全性更高',
+      what: '什么是 SHA-256？',
+      whatContent: 'SHA-256 是 SHA-2 系列的密码学哈希函数，产生 256 位哈希值。它是使用最广泛的安全哈希算法之一。',
+      usage: '主要用途',
+      usageContent: 'SHA-256 是比特币和其他加密货币的核心算法，也广泛用于 SSL/TLS 证书、数字签名、密码存储和文件完整性验证。',
+      security: '安全提示',
+      securityContent: '目前尚未发现针对 SHA-256 的有效攻击。它被认为是密码学安全的，广泛推荐用于新系统开发。'
+    },
+    sha512: { 
+      title: 'SHA512 哈希生成器', 
+      description: '生成 SHA512 哈希值，512 位安全哈希',
+      what: '什么是 SHA-512？',
+      whatContent: 'SHA-512 是 SHA-2 系列的密码学哈希函数，产生 512 位（64 字节）哈希值，通常表示为 128 位十六进制数。',
+      usage: '主要用途',
+      usageContent: 'SHA-512 广泛用于高安全场景，如数字证书、密码哈希（加盐）和区块链。',
+      security: '安全提示',
+      securityContent: 'SHA-512 提供极高的抗碰撞性，被认为非常安全。它比 SHA-256 更安全，但在某些 32 位系统上可能稍慢。'
+    },
+    ntlm: { 
+      title: 'NTLM 哈希生成器', 
+      description: 'Windows NTLM 密码哈希生成',
+      what: '什么是 NTLM？',
+      whatContent: 'NTLM（新技术 LAN 管理器）是 Microsoft Windows 系统中使用的安全协议套件。NTLM 哈希是用户密码的单向哈希，存储在 Windows SAM 数据库或域控制器 NTDS.dit 中。',
+      algo: '技术特性',
+      algoContent: 'NTLM 哈希计算很简单：首先将密码转换为 UTF-16LE 编码，然后计算结果的 MD4 哈希。由于 MD4 极快且已被破解，NTLM 哈希被认为不安全。'
+    },
+    bcrypt: { 
+      title: 'Bcrypt 哈希工具', 
+      description: 'Bcrypt 密码哈希生成与验证',
+      what: '什么是 Bcrypt？',
+      whatContent: 'Bcrypt 是一种密码哈希函数，专为安全密码存储而设计，具有自适应成本因子、自动盐生成和故意缓慢的计算特性。',
+      features: '技术特性',
+      featuresContent: '自适应：可调整计算成本。加盐：自动随机盐防止彩虹表攻击。缓慢：故意计算密集以抵抗暴力破解。'
+    },
     hashFile: { title: '文件哈希校验', description: '计算文件的 MD5/SHA 哈希值' },
-    sm3: { title: 'SM3 国密哈希', description: '中国国密标准 SM3 哈希算法' },
-    sm4: { title: 'SM4 国密加密', description: '中国国密标准 SM4 对称加密' },
+    sm3: { 
+      title: 'SM3 国密哈希', 
+      description: '中国国密标准 SM3 哈希算法',
+      what: '什么是 SM3？',
+      whatContent: 'SM3 是由中国国家密码管理局发布的密码学哈希函数（GB/T 32905-2016）。它产生 256 位哈希值，在安全性上与 SHA-256 相当。',
+      usage: '主要用途',
+      usageContent: 'SM3 广泛用于中国金融、电子政务和数字证书系统。它是中国商用密码体系的核心算法。',
+      security: '安全提示',
+      securityContent: 'SM3 具有强抗碰撞性，被认为非常安全。它符合中国国家密码政策要求。'
+    },
+    sm4: { 
+      title: 'SM4 国密加密', 
+      description: '中国国密标准 SM4 对称加密',
+      what: '什么是 SM4？',
+      whatContent: 'SM4 是由中国国家密码管理局发布的分组密码算法（GB/T 32907-2016）。它使用 128 位分组大小和 128 位密钥长度。',
+      security: '安全提示',
+      securityContent: 'SM4 在安全性上与 AES 相当，是中国商用密码体系的核心对称加密算法。',
+      tips: '使用提示',
+      tipsContent: 'SM4 密钥必须是 32 个十六进制字符（128 位）。加密输出为十六进制格式。'
+    },
     
     // 编码工具
     base64: { 
@@ -803,7 +869,14 @@ export default {
       seoDesc: '免费在线 Base64 编码和解码工具。将文本转换为 Base64 或解码 Base64 字符串。所有处理都在浏览器本地完成，保护您的隐私安全。'
     },
     base32: { title: 'Base32 编码解码', description: 'Base32 编码和解码转换' },
-    url: { title: 'URL 编码解码', description: 'URL 参数编码和解码，处理特殊字符' },
+    url: { 
+      title: 'URL 编码解码', 
+      description: 'URL 参数编码和解码，处理特殊字符',
+      what: '什么是 URL 编码？',
+      whatContent: 'URL 编码（百分号编码）将字符转换为可在互联网上传输的格式。URL 只能包含 ASCII 字符的子集。',
+      usage: '主要用途',
+      usageContent: '当 URL 参数包含空格、特殊符号（&、=、?）或非 ASCII 字符时，必须进行编码以防止 URL 解析错误或数据丢失。'
+    },
     hex: { title: '十六进制编码', description: '文本与十六进制互转' },
     unicode: { title: 'Unicode 转换', description: 'Unicode 字符编码转换' },
     htmlEntity: { title: 'HTML 实体编码', description: 'HTML 特殊字符转义' },
@@ -817,11 +890,27 @@ export default {
     textDiff: { title: '文本差异对比', description: '详细的文本差异比较' },
     
     // JWT
-    jwt: { title: 'JWT 解码器', description: '解析和验证 JWT Token' },
+    jwt: { 
+      title: 'JWT 解码器', 
+      description: '解析和验证 JWT Token',
+      structure: 'JWT 结构',
+      structureContent: 'JWT 由三部分组成：Header（算法）、Payload（数据）和 Signature（签名验证）。此工具仅解码前两部分。',
+      security: '安全提示',
+      securityContent: 'JWT Payload 仅使用 Base64 编码，并非加密！切勿在 Payload 中存储密码等敏感数据。'
+    },
     jwtDecoder: { title: 'JWT 详细解析', description: 'JWT Token 详细解析工具' },
     
     // AES
-    aes: { title: 'AES 加密解密', description: 'AES-GCM 对称加密解密' },
+    aes: { 
+      title: 'AES 加密解密', 
+      description: 'AES-GCM 对称加密解密',
+      what: '什么是 AES-GCM？',
+      whatContent: 'AES（高级加密标准）是最流行的对称加密算法。GCM 模式同时提供机密性和完整性验证。',
+      security: '安全提示',
+      securityContent: 'AES-256 被认为是最安全的加密标准之一。此工具使用 PBKDF2 进行密钥派生，迭代 100,000 次。',
+      tips: '使用提示',
+      tipsContent: '密钥长度应至少为 16 个字符。加密结果经过 Base64 编码，包含 Salt 和 IV。'
+    },
     
     // JSON 工具
     json: { title: 'JSON 格式化', description: '格式化、压缩和验证 JSON 数据' },
@@ -861,7 +950,14 @@ export default {
     csvJson: { title: 'CSV JSON 互转', description: 'CSV 与 JSON 格式互转' },
     
     // 转换工具
-    timestamp: { title: '时间戳转换', description: 'Unix 时间戳与日期互转' },
+    timestamp: { 
+      title: '时间戳转换', 
+      description: 'Unix 时间戳与日期互转',
+      what: '什么是 Unix 时间戳？',
+      whatContent: 'Unix 时间戳是自 1970 年 1 月 1 日（UTC 午夜）以来的秒数，不计闰秒。它是计算机系统中表示时间的标准方式。',
+      year2038: '2038 年问题',
+      year2038Content: '使用 32 位有符号整数存储时间戳的系统将在 2038 年 1 月 19 日溢出。现代 64 位系统已解决此问题。'
+    },
     baseConverter: { title: '进制转换', description: '2/8/10/16 进制互转' },
     unitConverter: { title: '单位换算', description: '数据/长度/重量单位换算' },
     numberConverter: { title: '数字转金额', description: '数字转中文大写金额' },
@@ -876,7 +972,27 @@ export default {
     boxShadow: { title: 'Box Shadow 生成器', description: '盒子阴影可视化生成' },
     cssShadow: { title: 'CSS 阴影生成器', description: 'CSS 阴影效果生成' },
     textShadow: { title: 'Text Shadow 生成器', description: '文字阴影效果生成' },
-    borderRadius: { title: '圆角生成器', description: 'Border Radius 可视化调整' },
+    borderRadius: { 
+      title: '圆角生成器', 
+      description: 'Border Radius 可视化调整',
+      preview: '实时预览',
+      randomShape: '随机形状',
+      cssCode: 'CSS 代码',
+      settings: '参数调整',
+      uniformRadius: '统一圆角',
+      advancedMode: '高级模式',
+      horizontalRadius: '水平半径 (Horizontal)',
+      verticalRadius: '垂直半径 (Vertical)',
+      topLeft: '左上 (Top-Left)',
+      topRight: '右上 (Top-Right)',
+      bottomRight: '右下 (Bottom-Right)',
+      bottomLeft: '左下 (Bottom-Left)',
+      presets: '常用形状',
+      shapeLeaf: '叶子',
+      shapeDrop: '水滴',
+      shapeShield: '盾牌',
+      shapeLemon: '柠檬'
+    },
     cssFilter: { title: 'CSS 滤镜', description: 'CSS 滤镜效果调节' },
     cssClipPath: { title: 'Clip Path 生成器', description: 'CSS 裁剪路径生成' },
     cssTransform: { title: 'CSS Transform', description: 'CSS 变换效果生成' },
@@ -929,8 +1045,22 @@ export default {
     dataGenerator: { title: '数据生成器', description: '测试数据生成' },
     dataMask: { title: '数据脱敏', description: '敏感数据脱敏' },
     metaTags: { title: 'Meta 标签生成', description: 'SEO Meta 标签生成' },
-    certDecoder: { title: 'SSL 证书解码', description: '解析 PEM 证书' },
-    csrGenerator: { title: 'CSR 生成器', description: '生成 SSL 证书申请' },
+    certDecoder: { 
+      title: 'SSL 证书解码', 
+      description: '解析 PEM 证书',
+      pem: '什么是 PEM？',
+      pemContent: 'PEM（隐私增强邮件）是最常见的证书格式，通常使用 .crt、.pem、.cer、.key 扩展名。',
+      san: '什么是 SANs？',
+      sanContent: 'SAN（主题备用名称）允许在 SSL 证书中指定多个域名、子域或 IP 地址。'
+    },
+    csrGenerator: { 
+      title: 'CSR 生成器', 
+      description: '生成 SSL 证书申请',
+      csr: '什么是 CSR？',
+      csrContent: 'CSR（证书签名请求）是向 CA 申请 SSL 证书时所需的文件。',
+      key: '安全提示',
+      keyContent: '私钥必须严格保密，切勿与任何人分享。'
+    },
     codeSandbox: { title: '代码沙箱', description: 'JavaScript 代码运行' },
     benchmark: { title: '性能测试', description: 'JavaScript 性能测试' },
     
@@ -944,7 +1074,17 @@ export default {
     
     // 生活工具
     pomodoro: { title: '番茄钟', description: '专注计时器' },
-    bmiCalculator: { title: 'BMI 计算器', description: 'BMI 指数计算' },
+    bmiCalculator: { 
+      title: 'BMI 计算器', 
+      description: 'BMI 指数计算',
+      height: '身高 (cm)',
+      weight: '体重 (kg)',
+      calculate: '计算 BMI',
+      underweight: '偏瘦',
+      normal: '正常',
+      overweight: '偏胖',
+      obese: '肥胖'
+    },
     worldClock: { title: '世界时钟', description: '全球时间查询' },
     countdown: { title: '倒计时', description: '事件倒计时' },
     currencyConverter: { title: '汇率换算', description: '货币汇率转换' }

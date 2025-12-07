@@ -775,15 +775,81 @@ export default {
       seoTitle: 'MD5 Hash Generator - Online MD5 Encryption Tool',
       seoDesc: 'Free online MD5 hash generator. Supports 32-bit and 16-bit formats in uppercase and lowercase. All processing done locally in your browser for maximum privacy.'
     },
-    md4: { title: 'MD4 Hash Generator', description: 'Generate MD4 hash, older algorithm' },
-    sha1: { title: 'SHA1 Hash Generator', description: 'Generate SHA1 hash, 160-bit secure hash' },
-    sha256: { title: 'SHA256 Hash Generator', description: 'Generate SHA256 hash, more secure' },
-    sha512: { title: 'SHA512 Hash Generator', description: 'Generate SHA512 hash, 512-bit secure hash' },
-    ntlm: { title: 'NTLM Hash Generator', description: 'Windows NTLM password hash' },
-    bcrypt: { title: 'Bcrypt Hash Tool', description: 'Bcrypt password hash generation and verification' },
+    md4: { 
+      title: 'MD4 Hash Generator', 
+      description: 'Generate MD4 hash, older algorithm',
+      what: 'What is MD4?',
+      whatContent: 'MD4 is a message digest algorithm designed by Ronald Rivest in 1990. It produces a 128-bit (16-byte) hash value. MD4 influenced the design of later algorithms like MD5, SHA-1, and RIPEMD.',
+      security: 'Security Notes',
+      securityContent: 'MD4 has been proven to be very insecure and extremely vulnerable to collision attacks. It should not be used for any security purposes. This tool is only for research, compatibility testing, or generating non-security identifiers.'
+    },
+    sha1: { 
+      title: 'SHA1 Hash Generator', 
+      description: 'Generate SHA1 hash, 160-bit secure hash',
+      what: 'What is SHA1?',
+      whatContent: 'SHA1 (Secure Hash Algorithm 1) is a cryptographic hash function designed by the NSA. It produces a 160-bit (20-byte) hash value, typically rendered as a 40-digit hexadecimal number.',
+      usage: 'Main Uses',
+      usageContent: 'SHA1 is widely used in Git version control, digital signatures, SSL certificates, and file integrity verification.',
+      security: 'Security Notes',
+      securityContent: 'SHA1 has been proven vulnerable to collision attacks. Google demonstrated a practical collision attack in 2017. For security-sensitive applications, use SHA-256 or stronger algorithms.'
+    },
+    sha256: { 
+      title: 'SHA256 Hash Generator', 
+      description: 'Generate SHA256 hash, more secure',
+      what: 'What is SHA-256?',
+      whatContent: 'SHA-256 is a cryptographic hash function from the SHA-2 family, producing a 256-bit hash value. It is one of the most widely used secure hash algorithms.',
+      usage: 'Main Uses',
+      usageContent: 'SHA-256 is the core algorithm for Bitcoin and other cryptocurrencies, also widely used in SSL/TLS certificates, digital signatures, password storage, and file integrity verification.',
+      security: 'Security Notes',
+      securityContent: 'No effective attacks against SHA-256 have been found. It is considered cryptographically secure and widely recommended for new system development.'
+    },
+    sha512: { 
+      title: 'SHA512 Hash Generator', 
+      description: 'Generate SHA512 hash, 512-bit secure hash',
+      what: 'What is SHA-512?',
+      whatContent: 'SHA-512 is a cryptographic hash function from the SHA-2 family, producing a 512-bit (64-byte) hash value, typically rendered as a 128-digit hexadecimal number.',
+      usage: 'Main Uses',
+      usageContent: 'SHA-512 is widely used in high-security scenarios such as digital certificates, password hashing (with salt), and blockchain.',
+      security: 'Security Notes',
+      securityContent: 'SHA-512 provides extremely high collision resistance and is considered very secure. It is more secure than SHA-256 but may be slightly slower on some 32-bit systems.'
+    },
+    ntlm: { 
+      title: 'NTLM Hash Generator', 
+      description: 'Windows NTLM password hash',
+      what: 'What is NTLM?',
+      whatContent: 'NTLM (New Technology LAN Manager) is a security protocol suite used in Microsoft Windows systems. NTLM hash is a one-way hash of user passwords, stored in Windows SAM database or domain controller NTDS.dit.',
+      algo: 'Technical Features',
+      algoContent: 'NTLM hash calculation is simple: first convert the password to UTF-16LE encoding, then compute MD4 hash of the result. Since MD4 is extremely fast and has been broken, NTLM hash is considered insecure.'
+    },
+    bcrypt: { 
+      title: 'Bcrypt Hash Tool', 
+      description: 'Bcrypt password hash generation and verification',
+      what: 'What is Bcrypt?',
+      whatContent: 'Bcrypt is a password hashing function designed for secure password storage with adaptive cost factor, automatic salt generation, and intentionally slow computation.',
+      features: 'Technical Features',
+      featuresContent: 'Adaptive: adjustable computation cost. Salted: automatic random salt prevents rainbow table attacks. Slow: intentionally computation-intensive to resist brute force.'
+    },
     hashFile: { title: 'File Hash Checker', description: 'Calculate MD5/SHA hash of files' },
-    sm3: { title: 'SM3 Hash', description: 'Chinese national SM3 hash algorithm' },
-    sm4: { title: 'SM4 Encryption', description: 'Chinese national SM4 symmetric encryption' },
+    sm3: { 
+      title: 'SM3 Hash', 
+      description: 'Chinese national SM3 hash algorithm',
+      what: 'What is SM3?',
+      whatContent: 'SM3 is a cryptographic hash function published by the Chinese State Cryptography Administration (GB/T 32905-2016). It produces a 256-bit hash value and is comparable to SHA-256 in security.',
+      usage: 'Main Uses',
+      usageContent: 'SM3 is widely used in Chinese financial, e-government, and digital certificate systems. It is a core algorithm in the Chinese commercial cryptography system.',
+      security: 'Security Notes',
+      securityContent: 'SM3 has strong collision resistance and is considered very secure. It complies with Chinese national cryptography policy requirements.'
+    },
+    sm4: { 
+      title: 'SM4 Encryption', 
+      description: 'Chinese national SM4 symmetric encryption',
+      what: 'What is SM4?',
+      whatContent: 'SM4 is a block cipher algorithm published by the Chinese State Cryptography Administration (GB/T 32907-2016). It uses 128-bit block size and 128-bit key length.',
+      security: 'Security Notes',
+      securityContent: 'SM4 is comparable to AES in security and is the core symmetric encryption algorithm in the Chinese commercial cryptography system.',
+      tips: 'Usage Tips',
+      tipsContent: 'SM4 key must be 32 hex characters (128 bits). Encrypted output is in hexadecimal format.'
+    },
     
     // Encoding tools
     base64: { 
@@ -809,7 +875,14 @@ export default {
       seoDesc: 'Free online Base64 encoder and decoder. Convert text to Base64 or decode Base64 strings. All processing done locally in your browser for maximum privacy.'
     },
     base32: { title: 'Base32 Encoder/Decoder', description: 'Base32 encoding and decoding' },
-    url: { title: 'URL Encoder/Decoder', description: 'URL parameter encoding and decoding' },
+    url: { 
+      title: 'URL Encoder/Decoder', 
+      description: 'URL parameter encoding and decoding',
+      what: 'What is URL Encoding?',
+      whatContent: 'URL encoding (percent-encoding) converts characters to a format that can be transmitted over the Internet. URLs can only contain a subset of ASCII characters.',
+      usage: 'Main Uses',
+      usageContent: 'When URL parameters contain spaces, special symbols (&, =, ?) or non-ASCII characters, they must be encoded to prevent URL parsing errors or data loss.'
+    },
     hex: { title: 'Hex Encoder', description: 'Text to hexadecimal conversion' },
     unicode: { title: 'Unicode Converter', description: 'Unicode character encoding conversion' },
     htmlEntity: { title: 'HTML Entity Encoder', description: 'HTML special character escaping' },
@@ -823,11 +896,27 @@ export default {
     textDiff: { title: 'Text Difference', description: 'Detailed text comparison' },
     
     // JWT
-    jwt: { title: 'JWT Decoder', description: 'Parse and verify JWT tokens' },
+    jwt: { 
+      title: 'JWT Decoder', 
+      description: 'Parse and verify JWT tokens',
+      structure: 'JWT Structure',
+      structureContent: 'JWT consists of three parts: Header (algorithm), Payload (data), and Signature (verification). This tool only decodes the first two parts.',
+      security: 'Security Notes',
+      securityContent: 'JWT Payload is only Base64 encoded, NOT encrypted! Never store sensitive data like passwords in the Payload.'
+    },
     jwtDecoder: { title: 'JWT Parser', description: 'Detailed JWT token parsing' },
     
     // AES
-    aes: { title: 'AES Encryption', description: 'AES-GCM symmetric encryption' },
+    aes: { 
+      title: 'AES Encryption', 
+      description: 'AES-GCM symmetric encryption',
+      what: 'What is AES-GCM?',
+      whatContent: 'AES (Advanced Encryption Standard) is the most popular symmetric encryption algorithm. GCM mode provides both confidentiality and integrity verification.',
+      security: 'Security Notes',
+      securityContent: 'AES-256 is considered one of the most secure encryption standards. This tool uses PBKDF2 for key derivation with 100,000 iterations.',
+      tips: 'Usage Tips',
+      tipsContent: 'Key length should be at least 16 characters. The encrypted result is Base64 encoded and includes Salt and IV.'
+    },
     
     // JSON tools
     json: { title: 'JSON Formatter', description: 'Format, compress and validate JSON' },
@@ -867,7 +956,14 @@ export default {
     csvJson: { title: 'CSV JSON Converter', description: 'Convert between CSV and JSON' },
     
     // Converters
-    timestamp: { title: 'Timestamp Converter', description: 'Unix timestamp and date conversion' },
+    timestamp: { 
+      title: 'Timestamp Converter', 
+      description: 'Unix timestamp and date conversion',
+      what: 'What is Unix Timestamp?',
+      whatContent: 'Unix timestamp is the number of seconds since January 1, 1970 (UTC midnight), not counting leap seconds. It is a standard way to represent time in computer systems.',
+      year2038: 'Year 2038 Problem',
+      year2038Content: 'Systems using 32-bit signed integers for timestamps will overflow on January 19, 2038. Modern 64-bit systems have resolved this issue.'
+    },
     baseConverter: { title: 'Base Converter', description: 'Binary/Octal/Decimal/Hex conversion' },
     unitConverter: { title: 'Unit Converter', description: 'Data/length/weight unit conversion' },
     numberConverter: { title: 'Number to Words', description: 'Number to Chinese currency words' },
@@ -882,7 +978,27 @@ export default {
     boxShadow: { title: 'Box Shadow Generator', description: 'Visual box shadow generator' },
     cssShadow: { title: 'CSS Shadow Generator', description: 'CSS shadow effect generator' },
     textShadow: { title: 'Text Shadow Generator', description: 'Text shadow effect generator' },
-    borderRadius: { title: 'Border Radius Generator', description: 'Visual border radius adjustment' },
+    borderRadius: { 
+      title: 'Border Radius Generator', 
+      description: 'Visual border radius adjustment',
+      preview: 'Live Preview',
+      randomShape: 'Random Shape',
+      cssCode: 'CSS Code',
+      settings: 'Settings',
+      uniformRadius: 'Uniform Radius',
+      advancedMode: 'Advanced Mode',
+      horizontalRadius: 'Horizontal Radius',
+      verticalRadius: 'Vertical Radius',
+      topLeft: 'Top-Left',
+      topRight: 'Top-Right',
+      bottomRight: 'Bottom-Right',
+      bottomLeft: 'Bottom-Left',
+      presets: 'Presets',
+      shapeLeaf: 'Leaf',
+      shapeDrop: 'Drop',
+      shapeShield: 'Shield',
+      shapeLemon: 'Lemon'
+    },
     cssFilter: { title: 'CSS Filter', description: 'CSS filter effect adjustment' },
     cssClipPath: { title: 'Clip Path Generator', description: 'CSS clip path generator' },
     cssTransform: { title: 'CSS Transform', description: 'CSS transform effect generator' },
@@ -935,8 +1051,22 @@ export default {
     dataGenerator: { title: 'Data Generator', description: 'Test data generation' },
     dataMask: { title: 'Data Masking', description: 'Sensitive data masking' },
     metaTags: { title: 'Meta Tags Generator', description: 'SEO meta tags generator' },
-    certDecoder: { title: 'SSL Cert Decoder', description: 'Parse PEM certificates' },
-    csrGenerator: { title: 'CSR Generator', description: 'Generate SSL certificate request' },
+    certDecoder: { 
+      title: 'SSL Cert Decoder', 
+      description: 'Parse PEM certificates',
+      pem: 'What is PEM?',
+      pemContent: 'PEM (Privacy Enhanced Mail) is the most common certificate format, typically with .crt, .pem, .cer, .key extensions.',
+      san: 'What is SANs?',
+      sanContent: 'SAN (Subject Alternative Name) allows specifying multiple domains, subdomains or IP addresses in an SSL certificate.'
+    },
+    csrGenerator: { 
+      title: 'CSR Generator', 
+      description: 'Generate SSL certificate request',
+      csr: 'What is CSR?',
+      csrContent: 'CSR (Certificate Signing Request) is a file required when applying for an SSL certificate from a CA.',
+      key: 'Security Notes',
+      keyContent: 'The private key must be kept strictly confidential and never shared with anyone.'
+    },
     codeSandbox: { title: 'Code Sandbox', description: 'JavaScript code runner' },
     benchmark: { title: 'Benchmark', description: 'JavaScript performance test' },
     
@@ -950,7 +1080,17 @@ export default {
     
     // Life tools
     pomodoro: { title: 'Pomodoro Timer', description: 'Focus timer' },
-    bmiCalculator: { title: 'BMI Calculator', description: 'BMI index calculator' },
+    bmiCalculator: { 
+      title: 'BMI Calculator', 
+      description: 'BMI index calculator',
+      height: 'Height (cm)',
+      weight: 'Weight (kg)',
+      calculate: 'Calculate BMI',
+      underweight: 'Underweight',
+      normal: 'Normal',
+      overweight: 'Overweight',
+      obese: 'Obese'
+    },
     worldClock: { title: 'World Clock', description: 'Global time query' },
     countdown: { title: 'Countdown Timer', description: 'Event countdown' },
     currencyConverter: { title: 'Currency Converter', description: 'Currency exchange rates' }

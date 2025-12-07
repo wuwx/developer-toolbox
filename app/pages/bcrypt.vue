@@ -100,8 +100,8 @@ async function hashPassword(password: string, salt: string): Promise<string> {
 }
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' Bcrypt?', icon: 'i-heroicons-question-mark-circle', content: 'Bcrypt is a password hashing function designed for secure password storage with adaptive cost factor, automatic salt generation, and intentionally slow computation.' },
-  { slot: 'features', label: t('ui.techFeatures'), icon: 'i-heroicons-cog', content: 'Adaptive: adjustable computation cost. Salted: automatic random salt prevents rainbow table attacks. Slow: intentionally computation-intensive to resist brute force.' }
+  { slot: 'what', label: t('pages.bcrypt.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.bcrypt.whatContent') },
+  { slot: 'features', label: t('pages.bcrypt.features'), icon: 'i-heroicons-cog', content: t('pages.bcrypt.featuresContent') }
 ])
 
 useHead({ title: t('pages.bcrypt.title'), meta: [{ name: 'description', content: t('pages.bcrypt.description') }] })

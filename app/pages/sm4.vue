@@ -116,9 +116,9 @@ function clearAll() { inputText.value = ''; outputText.value = ''; error.value =
 watch(mode, () => clearAll())
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' SM4?', icon: 'i-heroicons-question-mark-circle', content: 'SM4 is a block cipher algorithm published by the Chinese State Cryptography Administration (GB/T 32907-2016). It uses 128-bit block size and 128-bit key length.' },
-  { slot: 'security', label: t('ui.securityNote'), icon: 'i-heroicons-shield-check', content: 'SM4 is comparable to AES in security and is the core symmetric encryption algorithm in the Chinese commercial cryptography system.' },
-  { slot: 'tips', label: t('ui.usageTips'), icon: 'i-heroicons-light-bulb', content: 'SM4 key must be 32 hex characters (128 bits). Encrypted output is in hexadecimal format.' }
+  { slot: 'what', label: t('pages.sm4.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.sm4.whatContent') },
+  { slot: 'security', label: t('pages.sm4.security'), icon: 'i-heroicons-shield-check', content: t('pages.sm4.securityContent') },
+  { slot: 'tips', label: t('pages.sm4.tips'), icon: 'i-heroicons-light-bulb', content: t('pages.sm4.tipsContent') }
 ])
 
 useHead({ title: t('pages.sm4.title'), meta: [{ name: 'description', content: t('pages.sm4.description') }] })

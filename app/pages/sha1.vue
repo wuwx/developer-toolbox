@@ -87,9 +87,9 @@ const examples: Example[] = [
 ]
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' SHA1?', icon: 'i-heroicons-question-mark-circle', content: 'SHA1 (Secure Hash Algorithm 1) is a cryptographic hash function designed by the NSA. It produces a 160-bit (20-byte) hash value, typically rendered as a 40-digit hexadecimal number.' },
-  { slot: 'usage', label: t('ui.mainUsage'), icon: 'i-heroicons-rocket-launch', content: 'SHA1 is widely used in Git version control, digital signatures, SSL certificates, and file integrity verification.' },
-  { slot: 'security', label: t('ui.securityNote'), icon: 'i-heroicons-shield-exclamation', content: 'SHA1 has been proven vulnerable to collision attacks. Google demonstrated a practical collision attack in 2017. For security-sensitive applications, use SHA-256 or stronger algorithms.' }
+  { slot: 'what', label: t('pages.sha1.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.sha1.whatContent') },
+  { slot: 'usage', label: t('pages.sha1.usage'), icon: 'i-heroicons-rocket-launch', content: t('pages.sha1.usageContent') },
+  { slot: 'security', label: t('pages.sha1.security'), icon: 'i-heroicons-shield-exclamation', content: t('pages.sha1.securityContent') }
 ])
 
 const generateSHA1 = () => { if (inputText.value) sha1Hash.value = CryptoJS.SHA1(inputText.value).toString() }

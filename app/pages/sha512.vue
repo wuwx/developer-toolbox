@@ -70,9 +70,9 @@ async function generateHash() {
 function clearAll() { inputText.value = ''; sha512Hash.value = '' }
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' SHA-512?', icon: 'i-heroicons-question-mark-circle', content: 'SHA-512 is a cryptographic hash function from the SHA-2 family, producing a 512-bit (64-byte) hash value, typically rendered as a 128-digit hexadecimal number.' },
-  { slot: 'usage', label: t('ui.mainUsage'), icon: 'i-heroicons-rocket-launch', content: 'SHA-512 is widely used in high-security scenarios such as digital certificates, password hashing (with salt), and blockchain.' },
-  { slot: 'security', label: t('ui.securityNote'), icon: 'i-heroicons-shield-check', content: 'SHA-512 provides extremely high collision resistance and is considered very secure. It is more secure than SHA-256 but may be slightly slower on some 32-bit systems.' }
+  { slot: 'what', label: t('pages.sha512.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.sha512.whatContent') },
+  { slot: 'usage', label: t('pages.sha512.usage'), icon: 'i-heroicons-rocket-launch', content: t('pages.sha512.usageContent') },
+  { slot: 'security', label: t('pages.sha512.security'), icon: 'i-heroicons-shield-check', content: t('pages.sha512.securityContent') }
 ])
 
 useHead({ title: t('pages.sha512.title'), meta: [{ name: 'description', content: t('pages.sha512.description') }] })

@@ -74,9 +74,9 @@ async function generateHash() {
 function clearAll() { inputText.value = ''; sha256Hash.value = '' }
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' SHA-256?', icon: 'i-heroicons-question-mark-circle', content: 'SHA-256 is a cryptographic hash function from the SHA-2 family, producing a 256-bit hash value. It is one of the most widely used secure hash algorithms.' },
-  { slot: 'usage', label: t('ui.mainUsage'), icon: 'i-heroicons-rocket-launch', content: 'SHA-256 is the core algorithm for Bitcoin and other cryptocurrencies, also widely used in SSL/TLS certificates, digital signatures, password storage, and file integrity verification.' },
-  { slot: 'security', label: t('ui.securityNote'), icon: 'i-heroicons-shield-check', content: 'No effective attacks against SHA-256 have been found. It is considered cryptographically secure and widely recommended for new system development.' }
+  { slot: 'what', label: t('pages.sha256.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.sha256.whatContent') },
+  { slot: 'usage', label: t('pages.sha256.usage'), icon: 'i-heroicons-rocket-launch', content: t('pages.sha256.usageContent') },
+  { slot: 'security', label: t('pages.sha256.security'), icon: 'i-heroicons-shield-check', content: t('pages.sha256.securityContent') }
 ])
 
 useHead({ title: t('pages.sha256.title'), meta: [{ name: 'description', content: t('pages.sha256.description') }] })

@@ -138,9 +138,9 @@ function clearAll() { inputText.value = ''; outputText.value = ''; error.value =
 watch(mode, () => clearAll())
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'what', label: t('ui.whatIs') + ' AES-GCM?', icon: 'i-heroicons-question-mark-circle', content: 'AES (Advanced Encryption Standard) is the most popular symmetric encryption algorithm. GCM mode provides both confidentiality and integrity verification.' },
-  { slot: 'security', label: t('ui.securityNote'), icon: 'i-heroicons-shield-check', content: 'AES-256 is considered one of the most secure encryption standards. This tool uses PBKDF2 for key derivation with 100,000 iterations.' },
-  { slot: 'tips', label: t('ui.usageTips'), icon: 'i-heroicons-light-bulb', content: 'Key length should be at least 16 characters. The encrypted result is Base64 encoded and includes Salt and IV.' }
+  { slot: 'what', label: t('pages.aes.what'), icon: 'i-heroicons-question-mark-circle', content: t('pages.aes.whatContent') },
+  { slot: 'security', label: t('pages.aes.security'), icon: 'i-heroicons-shield-check', content: t('pages.aes.securityContent') },
+  { slot: 'tips', label: t('pages.aes.tips'), icon: 'i-heroicons-light-bulb', content: t('pages.aes.tipsContent') }
 ])
 
 useHead({ title: t('pages.aes.title'), meta: [{ name: 'description', content: t('pages.aes.description') }] })

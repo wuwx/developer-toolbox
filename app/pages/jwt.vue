@@ -134,8 +134,8 @@ const clearAll = () => { token.value = ''; error.value = ''; decodedHeader.value
 watch(token, decodeJWT)
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'structure', label: 'JWT Structure', icon: 'i-heroicons-cube', content: 'JWT consists of three parts: Header (algorithm), Payload (data), and Signature (verification). This tool only decodes the first two parts.' },
-  { slot: 'security', label: t('ui.securityNote'), icon: 'i-heroicons-shield-exclamation', content: 'JWT Payload is only Base64 encoded, NOT encrypted! Never store sensitive data like passwords in the Payload.' }
+  { slot: 'structure', label: t('pages.jwt.structure'), icon: 'i-heroicons-cube', content: t('pages.jwt.structureContent') },
+  { slot: 'security', label: t('pages.jwt.security'), icon: 'i-heroicons-shield-exclamation', content: t('pages.jwt.securityContent') }
 ])
 
 useHead({ title: t('pages.jwt.title'), meta: [{ name: 'description', content: t('pages.jwt.description') }] })

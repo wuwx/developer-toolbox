@@ -148,8 +148,8 @@ const generate = () => {
 }
 
 const accordionItems = computed<AccordionItem[]>(() => [
-  { slot: 'csr', label: t('ui.whatIs') + ' CSR?', icon: 'i-heroicons-question-mark-circle', content: 'CSR (Certificate Signing Request) is a file required when applying for an SSL certificate from a CA.' },
-  { slot: 'key', label: t('ui.securityNote'), icon: 'i-heroicons-lock-closed', content: 'The private key must be kept strictly confidential and never shared with anyone.' }
+  { slot: 'csr', label: t('pages.csrGenerator.csr'), icon: 'i-heroicons-question-mark-circle', content: t('pages.csrGenerator.csrContent') },
+  { slot: 'key', label: t('pages.csrGenerator.key'), icon: 'i-heroicons-lock-closed', content: t('pages.csrGenerator.keyContent') }
 ])
 
 useHead({ title: t('pages.csrGenerator.title'), meta: [{ name: 'description', content: t('pages.csrGenerator.description') }] })
